@@ -4,9 +4,9 @@
  * 数据来源：食鉴-C角色交付包 v1.0（02_地域菜库/dishes.json、cities.json）
  * 契约：字段以 C 的 01_数据规格/菜品对象字段规范.md 为准，这里只做「补齐我方附加字段」。
  */
-import dishesRaw from '../data/dishes.json'
-import citiesRaw from '../data/cities.json'
-import type { Dish } from '../../shared/types/dish'
+import dishesRaw from '../../seed/dishes.json'
+import citiesRaw from '../../seed/cities.json'
+import type { Dish } from '../../shared/types'
 
 interface RawDish {
   id: string

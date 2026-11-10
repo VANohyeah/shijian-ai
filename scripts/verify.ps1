@@ -34,7 +34,7 @@ $body = @{ imageBase64 = $b64; mime = "image/png" } | ConvertTo-Json -Compress
 $sw = [Diagnostics.Stopwatch]::StartNew()
 
 try {
-  $r = Invoke-RestMethod "$Base/api/dish/analyze" -Method Post -Body $body -ContentType "application/json" -TimeoutSec 90
+  $r = Invoke-RestMethod "$Base/api/scan" -Method Post -Body $body -ContentType "application/json" -TimeoutSec 90
   $sw.Stop()
   Write-Host ("耗时 {0} ms" -f $sw.ElapsedMilliseconds) -ForegroundColor Green
   $r | ConvertTo-Json -Depth 5

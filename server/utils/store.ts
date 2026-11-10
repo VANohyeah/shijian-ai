@@ -9,7 +9,7 @@
  */
 import { readFile, writeFile, mkdir, rename } from 'node:fs/promises'
 import { join } from 'node:path'
-import type { Dish } from '../../shared/types/dish'
+import type { Dish } from '../../shared/types'
 
 export interface FavoriteDish extends Dish {
   favoritedAt: string

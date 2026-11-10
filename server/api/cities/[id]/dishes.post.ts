@@ -2,11 +2,11 @@
  * 某城市的特色菜 + 健康评估。
  * 这是 M3 的核心：不用拍照、不用提问，进来就知道每道菜适不适合你。
  */
-import type { UserProfile } from '../../../shared/types/dish'
+import type { UserProfile } from '../../../shared/types'
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody<{ cityId?: string; profile?: Partial<UserProfile> }>(event)
-  const cityKey = body?.cityId?.trim()
+  const cityKey = String(event.context.params?.id ?? '').trim()
+  const body = await readBody<{ profile?: Partial<UserProfile> }>(event).catch(() => ({}) as { profile?: Partial<UserProfile> })
 
   if (!cityKey) {
     throw createError({ statusCode: 400, statusMessage: '缺少 cityId' })

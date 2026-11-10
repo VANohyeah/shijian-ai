@@ -2,7 +2,7 @@
  * 写一条历史记录（每次识别 / 每次看城市都算一次）。
  * body: { deviceId, source, title, dishes, summary? }
  */
-import type { Dish } from '../../../shared/types/dish'
+import type { Dish } from '../../../shared/types'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<{

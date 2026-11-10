@@ -7,7 +7,7 @@
  *
  * 容错策略：供应商优先 GLM，模型按候选列表逐个试，图片按 data URI / 裸 base64 两种传法逐个试。
  */
-import { ALLERGENS, type Allergen, type Dish } from '../../../shared/types/dish'
+import { ALLERGENS, type Allergen, type Dish } from '../../shared/types'
 
 const SYSTEM_PROMPT =
   '你是菜单识别器。只输出一个 JSON 对象，不要解释，不要 markdown 代码块。'

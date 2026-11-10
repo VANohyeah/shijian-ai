@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Dish } from '~/shared/types/dish'
+import type { Dish } from '~/shared/types'
 
 /* ---------------- ① 流式对话 ---------------- */
 
@@ -78,7 +78,7 @@ async function onFileChange(e: Event) {
 
   try {
     const { base64, mime } = await readAsBase64(file)
-    const res = await fetch('/api/dish/analyze', {
+    const res = await fetch('/api/scan', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ imageBase64: base64, mime })
@@ -161,7 +161,7 @@ async function assess() {
   summary.value = null
 
   try {
-    const res = await fetch('/api/dish/assess', {
+    const res = await fetch('/api/evaluate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ dishes: dishes.value, profile })
@@ -208,7 +208,7 @@ onMounted(async () => {
   ensureDeviceId()
   await refreshUserData()
   try {
-    const res = await fetch('/api/city/list')
+    const res = await fetch('/api/cities')
     const data = (await res.json()) as { cities: CityInfo[]; areas: string[] }
     cities.value = data.cities
     areas.value = data.areas
@@ -224,7 +224,7 @@ async function loadCity() {
   citySummary.value = null
 
   try {
-    const res = await fetch('/api/city/dishes', {
+    const res = await fetch('/api/cities/' + selectedCity.value + '/dishes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ cityId: selectedCity.value, profile })

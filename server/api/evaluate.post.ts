@@ -2,7 +2,7 @@
  * 健康评估接口：档案 × 菜品列表 → 每道菜的三色判定。
  * 判定逻辑在 server/utils/health-rules.ts，这里是纯 IO 与校验。
  */
-import type { Dish, UserProfile } from '../../../shared/types/dish'
+import type { Dish, UserProfile } from '../../shared/types'
 
 const DEFAULT_PROFILE: UserProfile = {
   gender: 'female',

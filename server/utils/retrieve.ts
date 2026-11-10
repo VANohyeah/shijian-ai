@@ -8,8 +8,8 @@
  *
  * 返回结果必须带 source，前端据此展示「依据」。
  */
-import kbRaw from '../data/knowledge_entries.json'
-import type { Dish, DishAssessment, RiskLevel, UserProfile } from '../../shared/types/dish'
+import kbRaw from '../../seed/knowledge.json'
+import type { Dish, DishAssessment, RiskLevel, UserProfile } from '../../shared/types'
 
 export interface KnowledgeEntry {
   id: string

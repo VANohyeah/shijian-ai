@@ -16,7 +16,7 @@ import type {
   DishAssessment,
   RiskLevel,
   UserProfile
-} from '../../shared/types/dish'
+} from '../../shared/types'
 
 /** 关键词 → 过敏原。模型漏报时的兜底推断。12 类与 C 的 allergens.json 对齐。 */
 const ALLERGEN_KEYWORDS: Record<Allergen, string[]> = {
