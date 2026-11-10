@@ -125,7 +125,7 @@ async function readAsBase64(file: File): Promise<{ base64: string; mime: string 
 
 /* ---------------- ③ 健康评估 ---------------- */
 
-const ALLERGEN_OPTIONS = ['海鲜', '花生', '坚果', '乳制品', '麸质', '蛋', '大豆', '鱼']
+const ALLERGEN_OPTIONS = ['含麸质谷物', '甲壳类', '鱼类', '蛋类', '花生', '大豆', '乳制品', '坚果', '贝类/软体', '芝麻', '酒精', '亚硫酸盐']
 const CONDITION_OPTIONS = ['痛风', '高血压', '糖尿病', '肾病', '孕期']
 
 const profile = reactive({
@@ -176,6 +176,71 @@ async function assess() {
 }
 
 const LEVEL_TEXT = { safe: '✅ 可以吃', caution: '⚠️ 注意', forbidden: '⛔ 别点' } as const
+
+/* ---------------- ④ 地域推荐 ---------------- */
+
+interface CityInfo {
+  id: string
+  name: string
+  area: string
+  region: string
+  intro: string
+  dishCount: number
+}
+
+const cities = ref<CityInfo[]>([])
+const areas = ref<string[]>([])
+const selectedCity = ref('')
+const cityDishes = ref<Dish[]>([])
+const cityAssessments = ref<Record<string, Assessment>>({})
+const citySummary = ref<{ total: number; safe: number; caution: number; forbidden: number } | null>(null)
+const cityLoading = ref(false)
+const cityError = ref('')
+
+onMounted(async () => {
+  try {
+    const res = await fetch('/api/city/list')
+    const data = (await res.json()) as { cities: CityInfo[]; areas: string[] }
+    cities.value = data.cities
+    areas.value = data.areas
+  } catch (err) {
+    cityError.value = '城市列表加载失败：' + String(err)
+  }
+})
+
+async function loadCity() {
+  if (!selectedCity.value || cityLoading.value) return
+  cityLoading.value = true
+  cityError.value = ''
+  citySummary.value = null
+
+  try {
+    const res = await fetch('/api/city/dishes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cityId: selectedCity.value, profile })
+    })
+    if (!res.ok) {
+      cityError.value = `HTTP ${res.status}：${await res.text()}`
+      return
+    }
+    const data = (await res.json()) as {
+      dishes: Dish[]
+      assessments: Assessment[] | null
+      summary: typeof citySummary.value
+    }
+    cityDishes.value = data.dishes
+    const map: Record<string, Assessment> = {}
+    for (const a of data.assessments ?? []) map[a.dish_id] = a
+    cityAssessments.value = map
+    citySummary.value = data.summary
+  } catch (err) {
+    cityError.value = String(err)
+  } finally {
+    cityLoading.value = false
+  }
+}
+
 </script>
 
 <template>
@@ -281,6 +346,55 @@ const LEVEL_TEXT = { safe: '✅ 可以吃', caution: '⚠️ 注意', forbidden:
         {{ summary.forbidden }}
       </p>
       <p v-if="assessError" class="err">{{ assessError }}</p>
+    </section>
+
+    <section class="card">
+      <h2>④ 地域特色菜推荐</h2>
+      <p class="hint">
+        选一个城市，直接用上面的过敏原/身体状况设置，看哪些本地菜你能吃。
+      </p>
+
+      <div class="group">
+        <span class="label">城市</span>
+        <select v-model="selectedCity" class="sel">
+          <option value="">请选择</option>
+          <optgroup v-for="area in areas" :key="area" :label="area">
+            <option v-for="c in cities.filter((x) => x.area === area)" :key="c.id" :value="c.id">
+              {{ c.name }}（{{ c.dishCount }} 道）
+            </option>
+          </optgroup>
+        </select>
+        <button :disabled="!selectedCity || cityLoading" @click="loadCity">
+          {{ cityLoading ? '加载中…' : '看本地特色菜' }}
+        </button>
+      </div>
+
+      <p v-if="citySummary" class="summary">
+        共 {{ citySummary.total }} 道：可以吃 {{ citySummary.safe }} · 注意
+        {{ citySummary.caution }} · 别点 {{ citySummary.forbidden }}
+      </p>
+      <p v-if="cityError" class="err">{{ cityError }}</p>
+
+      <div v-for="d in cityDishes" :key="d.id" class="dish">
+        <div class="dish-head">
+          <div>
+            <strong>{{ d.name }}</strong>
+            <span class="orig">{{ d.region }} · {{ d.method }}</span>
+          </div>
+          <span v-if="d.reference_price !== null" class="price">¥{{ d.reference_price }}</span>
+        </div>
+        <p v-if="d.ingredients.length" class="line">食材：{{ d.ingredients.join('、') }}</p>
+        <p v-if="d.allergens.length" class="line warn">⚠ 可能含：{{ d.allergens.join('、') }}</p>
+
+        <div v-if="cityAssessments[d.id]" class="assess">
+          <span :class="['badge', cityAssessments[d.id].level]">
+            {{ LEVEL_TEXT[cityAssessments[d.id].level] }}
+          </span>
+          <ul class="reasons">
+            <li v-for="r in cityAssessments[d.id].reasons" :key="r">{{ r }}</li>
+          </ul>
+        </div>
+      </div>
     </section>
   </main>
 </template>

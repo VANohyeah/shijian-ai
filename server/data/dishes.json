@@ -1,0 +1,7777 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-11-09",
+  "owner": "C（数据/交付）",
+  "schema": "01_数据规格/菜品对象字段规范.md",
+  "count": 250,
+  "dishes": [
+    {
+      "id": "dish_beijing_01",
+      "name": "北京烤鸭",
+      "region": "京菜",
+      "city": "北京",
+      "ingredients": [
+        "填鸭",
+        "荷叶饼",
+        "甜面酱",
+        "大葱",
+        "黄瓜条",
+        "麦芽糖"
+      ],
+      "method": "烤",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "烧烤",
+        "含禽肉",
+        "高油",
+        "高蛋白"
+      ],
+      "reference_price": 198
+    },
+    {
+      "id": "dish_beijing_02",
+      "name": "炸酱面",
+      "region": "京菜",
+      "city": "北京",
+      "ingredients": [
+        "手擀面",
+        "干黄酱",
+        "甜面酱",
+        "五花肉",
+        "黄瓜",
+        "豆芽",
+        "大葱"
+      ],
+      "method": "煮",
+      "flavors": [
+        "酱香",
+        "咸香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "含猪肉",
+        "高盐",
+        "精制碳水"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_beijing_03",
+      "name": "卤煮火烧",
+      "region": "京菜",
+      "city": "北京",
+      "ingredients": [
+        "猪肠",
+        "猪肺",
+        "炸豆腐",
+        "火烧",
+        "蒜",
+        "酱油",
+        "香菜"
+      ],
+      "method": "卤",
+      "flavors": [
+        "咸香",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "含猪肉",
+        "含内脏",
+        "高嘌呤",
+        "高盐"
+      ],
+      "reference_price": 32
+    },
+    {
+      "id": "dish_beijing_04",
+      "name": "爆肚",
+      "region": "京菜",
+      "city": "北京",
+      "ingredients": [
+        "羊肚仁",
+        "芝麻酱",
+        "韭菜花",
+        "腐乳",
+        "香菜",
+        "辣椒油"
+      ],
+      "method": "汆",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "芝麻",
+        "大豆"
+      ],
+      "tags": [
+        "含内脏",
+        "含羊肉",
+        "高嘌呤",
+        "高蛋白"
+      ],
+      "reference_price": 45
+    },
+    {
+      "id": "dish_beijing_05",
+      "name": "京酱肉丝",
+      "region": "京菜",
+      "city": "北京",
+      "ingredients": [
+        "猪里脊",
+        "甜面酱",
+        "大葱",
+        "豆腐皮",
+        "蛋清",
+        "白糖",
+        "淀粉"
+      ],
+      "method": "炒",
+      "flavors": [
+        "酱香",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物",
+        "蛋类"
+      ],
+      "tags": [
+        "含猪肉",
+        "含蛋",
+        "高油",
+        "高盐",
+        "高蛋白"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_beijing_06",
+      "name": "豌豆黄",
+      "region": "京菜",
+      "city": "北京",
+      "ingredients": [
+        "白豌豆",
+        "白糖",
+        "桂花",
+        "金糕"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "甜品",
+        "小吃",
+        "高糖"
+      ],
+      "reference_price": 18
+    },
+    {
+      "id": "dish_beijing_07",
+      "name": "白水羊头",
+      "region": "京菜",
+      "city": "北京",
+      "ingredients": [
+        "羊头肉",
+        "花椒",
+        "盐",
+        "大葱",
+        "蒜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "凉菜",
+        "含羊肉",
+        "高盐"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_beijing_08",
+      "name": "涮羊肉",
+      "region": "京菜",
+      "city": "北京",
+      "ingredients": [
+        "羊肉片",
+        "白菜",
+        "冻豆腐",
+        "粉丝",
+        "芝麻酱",
+        "韭菜花",
+        "腐乳"
+      ],
+      "method": "涮",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "芝麻",
+        "大豆"
+      ],
+      "tags": [
+        "火锅",
+        "含羊肉",
+        "高蛋白"
+      ],
+      "reference_price": 128
+    },
+    {
+      "id": "dish_beijing_09",
+      "name": "豆汁",
+      "region": "京菜",
+      "city": "北京",
+      "ingredients": [
+        "绿豆",
+        "焦圈",
+        "腌芥菜丝",
+        "辣椒油"
+      ],
+      "method": "煮",
+      "flavors": [
+        "糟香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "高盐",
+        "油炸"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_changsha_01",
+      "name": "剁椒鱼头",
+      "region": "湘菜",
+      "city": "长沙",
+      "ingredients": [
+        "胖头鱼头",
+        "剁辣椒",
+        "豆豉",
+        "姜",
+        "蒜",
+        "小葱",
+        "蒸鱼豉油"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "辣",
+        "咸鲜"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "鱼类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "蒸菜",
+        "含海鲜",
+        "高盐",
+        "中嘌呤"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_changsha_02",
+      "name": "小炒黄牛肉",
+      "region": "湘菜",
+      "city": "长沙",
+      "ingredients": [
+        "黄牛肉",
+        "小米椒",
+        "螺丝椒",
+        "蒜",
+        "姜",
+        "酱油",
+        "紫苏"
+      ],
+      "method": "小炒",
+      "flavors": [
+        "辣",
+        "香辣"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含牛肉",
+        "高油",
+        "高蛋白",
+        "中嘌呤"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_changsha_03",
+      "name": "口味虾",
+      "region": "湘菜",
+      "city": "长沙",
+      "ingredients": [
+        "小龙虾",
+        "干辣椒",
+        "花椒",
+        "姜",
+        "蒜",
+        "紫苏",
+        "豆瓣酱"
+      ],
+      "method": "焖",
+      "flavors": [
+        "香辣",
+        "麻"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "甲壳类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含海鲜",
+        "高油",
+        "高盐",
+        "中嘌呤"
+      ],
+      "reference_price": 128
+    },
+    {
+      "id": "dish_changsha_04",
+      "name": "臭豆腐",
+      "region": "湘菜",
+      "city": "长沙",
+      "ingredients": [
+        "豆腐",
+        "辣椒油",
+        "蒜蓉",
+        "香菜",
+        "酱油",
+        "香醋"
+      ],
+      "method": "炸",
+      "flavors": [
+        "辣",
+        "咸香"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "油炸",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_changsha_05",
+      "name": "辣椒炒肉",
+      "region": "湘菜",
+      "city": "长沙",
+      "ingredients": [
+        "猪前腿肉",
+        "螺丝椒",
+        "蒜",
+        "酱油",
+        "豆豉",
+        "猪油"
+      ],
+      "method": "炒",
+      "flavors": [
+        "辣",
+        "咸香"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含猪肉",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 38
+    },
+    {
+      "id": "dish_changsha_06",
+      "name": "腊味合蒸",
+      "region": "湘菜",
+      "city": "长沙",
+      "ingredients": [
+        "腊肉",
+        "腊鸡",
+        "腊鱼",
+        "干辣椒",
+        "豆豉",
+        "姜"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸香",
+        "辣"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "鱼类",
+        "大豆"
+      ],
+      "tags": [
+        "蒸菜",
+        "含猪肉",
+        "含禽肉",
+        "加工肉",
+        "高盐",
+        "含海鲜"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_changsha_07",
+      "name": "擂辣椒皮蛋",
+      "region": "湘菜",
+      "city": "长沙",
+      "ingredients": [
+        "青辣椒",
+        "皮蛋",
+        "蒜",
+        "香醋",
+        "酱油",
+        "香油"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "辣",
+        "蒜香",
+        "咸鲜"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "蛋类",
+        "大豆",
+        "含麸质谷物",
+        "芝麻"
+      ],
+      "tags": [
+        "凉菜",
+        "含蛋",
+        "高盐"
+      ],
+      "reference_price": 26
+    },
+    {
+      "id": "dish_changsha_08",
+      "name": "糖油粑粑",
+      "region": "湘菜",
+      "city": "长沙",
+      "ingredients": [
+        "糯米粉",
+        "红糖",
+        "茶油",
+        "熟黄豆粉"
+      ],
+      "method": "炸",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆"
+      ],
+      "tags": [
+        "小吃",
+        "甜品",
+        "高糖",
+        "油炸",
+        "精制碳水"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_changsha_09",
+      "name": "长沙米粉",
+      "region": "湘菜",
+      "city": "长沙",
+      "ingredients": [
+        "米粉",
+        "猪骨汤",
+        "肉丝",
+        "酸豆角",
+        "剁椒",
+        "香葱",
+        "猪油"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "辣"
+      ],
+      "spicy_level": 1,
+      "allergens": [],
+      "tags": [
+        "主食",
+        "含猪肉",
+        "精制碳水",
+        "中嘌呤"
+      ],
+      "reference_price": 14
+    },
+    {
+      "id": "dish_chaozhou_01",
+      "name": "潮州卤鹅",
+      "region": "潮州菜",
+      "city": "潮州",
+      "ingredients": [
+        "狮头鹅",
+        "生抽",
+        "老抽",
+        "南姜",
+        "八角",
+        "桂皮",
+        "香茅",
+        "冰糖"
+      ],
+      "method": "卤",
+      "flavors": [
+        "酱香",
+        "咸香",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含禽肉",
+        "高盐",
+        "高油",
+        "高蛋白"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_chaozhou_02",
+      "name": "潮州生腌血蚶",
+      "region": "潮州菜",
+      "city": "潮州",
+      "ingredients": [
+        "血蚶",
+        "蒜",
+        "辣椒",
+        "香菜",
+        "鱼露",
+        "米醋"
+      ],
+      "method": "腌",
+      "flavors": [
+        "咸鲜",
+        "辣"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "贝类/软体",
+        "鱼类"
+      ],
+      "tags": [
+        "生食",
+        "含海鲜",
+        "高盐",
+        "凉菜"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_chaozhou_03",
+      "name": "生腌虾",
+      "region": "潮州菜",
+      "city": "潮州",
+      "ingredients": [
+        "基围虾",
+        "蒜",
+        "辣椒",
+        "香菜",
+        "鱼露",
+        "高度白酒",
+        "米醋"
+      ],
+      "method": "腌",
+      "flavors": [
+        "咸鲜",
+        "辣",
+        "蒜香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "甲壳类",
+        "鱼类",
+        "酒精"
+      ],
+      "tags": [
+        "生食",
+        "含海鲜",
+        "高盐",
+        "含酒精",
+        "凉菜"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_chaozhou_04",
+      "name": "潮州蚝烙",
+      "region": "潮州菜",
+      "city": "潮州",
+      "ingredients": [
+        "珠蚝",
+        "番薯粉",
+        "鸡蛋",
+        "鱼露",
+        "猪油",
+        "香菜",
+        "葱花"
+      ],
+      "method": "煎",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "贝类/软体",
+        "蛋类",
+        "鱼类"
+      ],
+      "tags": [
+        "含海鲜",
+        "含蛋",
+        "高油",
+        "含猪肉"
+      ],
+      "reference_price": 42
+    },
+    {
+      "id": "dish_chaozhou_05",
+      "name": "牛肉丸粿条",
+      "region": "潮州菜",
+      "city": "潮州",
+      "ingredients": [
+        "黄牛后腿肉",
+        "粿条",
+        "番薯粉",
+        "芹菜粒",
+        "蒜酥",
+        "盐",
+        "牛骨汤"
+      ],
+      "method": "汤",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "主食",
+        "含牛肉",
+        "加工肉",
+        "汤羹",
+        "高蛋白"
+      ],
+      "reference_price": 25
+    },
+    {
+      "id": "dish_chaozhou_06",
+      "name": "护国菜",
+      "region": "潮州菜",
+      "city": "潮州",
+      "ingredients": [
+        "番薯叶",
+        "草菇",
+        "火腿末",
+        "上汤",
+        "猪油",
+        "生粉",
+        "盐"
+      ],
+      "method": "羹",
+      "flavors": [
+        "鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含猪肉",
+        "加工肉"
+      ],
+      "reference_price": 32
+    },
+    {
+      "id": "dish_chaozhou_07",
+      "name": "返沙芋头",
+      "region": "潮州菜",
+      "city": "潮州",
+      "ingredients": [
+        "芋头",
+        "白糖",
+        "猪油",
+        "白芝麻"
+      ],
+      "method": "炒",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "芝麻"
+      ],
+      "tags": [
+        "甜品",
+        "高糖",
+        "含猪肉",
+        "油炸"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_chaozhou_08",
+      "name": "潮州鱼饭",
+      "region": "潮州菜",
+      "city": "潮州",
+      "ingredients": [
+        "巴浪鱼",
+        "盐",
+        "姜",
+        "葱",
+        "南姜",
+        "普宁豆酱"
+      ],
+      "method": "煮",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "凉菜",
+        "含海鲜",
+        "高蛋白",
+        "高盐"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_chaozhou_09",
+      "name": "金不换炒薄壳",
+      "region": "潮州菜",
+      "city": "潮州",
+      "ingredients": [
+        "薄壳",
+        "金不换",
+        "蒜",
+        "辣椒",
+        "生抽",
+        "花生油"
+      ],
+      "method": "爆炒",
+      "flavors": [
+        "咸鲜",
+        "蒜香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "贝类/软体",
+        "大豆",
+        "含麸质谷物",
+        "花生"
+      ],
+      "tags": [
+        "含海鲜",
+        "高盐",
+        "高蛋白"
+      ],
+      "reference_price": 32
+    },
+    {
+      "id": "dish_chengdu_01",
+      "name": "麻婆豆腐",
+      "region": "川菜",
+      "city": "成都",
+      "ingredients": [
+        "豆腐",
+        "牛肉末",
+        "郫县豆瓣",
+        "花椒面",
+        "蒜苗",
+        "豆豉"
+      ],
+      "method": "烩",
+      "flavors": [
+        "辣",
+        "麻",
+        "咸鲜"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "高油",
+        "高盐",
+        "含牛肉",
+        "中嘌呤"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_chengdu_02",
+      "name": "回锅肉",
+      "region": "川菜",
+      "city": "成都",
+      "ingredients": [
+        "五花肉",
+        "蒜苗",
+        "郫县豆瓣",
+        "甜面酱",
+        "豆豉",
+        "青椒"
+      ],
+      "method": "爆炒",
+      "flavors": [
+        "辣",
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "高油",
+        "高盐",
+        "含猪肉"
+      ],
+      "reference_price": 42
+    },
+    {
+      "id": "dish_chengdu_03",
+      "name": "夫妻肺片",
+      "region": "川菜",
+      "city": "成都",
+      "ingredients": [
+        "牛腱肉",
+        "牛肚",
+        "牛舌",
+        "红油辣子",
+        "花椒面",
+        "花生碎",
+        "芝麻",
+        "芹菜"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "辣",
+        "麻",
+        "咸鲜"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "花生",
+        "芝麻"
+      ],
+      "tags": [
+        "凉菜",
+        "含牛肉",
+        "含内脏",
+        "高嘌呤",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_chengdu_04",
+      "name": "麻辣兔头",
+      "region": "川菜",
+      "city": "成都",
+      "ingredients": [
+        "兔头",
+        "干辣椒",
+        "花椒",
+        "八角",
+        "姜",
+        "酱油"
+      ],
+      "method": "卤",
+      "flavors": [
+        "辣",
+        "麻",
+        "五香"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "小吃",
+        "高盐",
+        "高油",
+        "含内脏",
+        "高嘌呤"
+      ],
+      "reference_price": 25
+    },
+    {
+      "id": "dish_chengdu_05",
+      "name": "钟水饺",
+      "region": "川菜",
+      "city": "成都",
+      "ingredients": [
+        "饺子皮",
+        "猪肉馅",
+        "复制酱油",
+        "红油辣子",
+        "蒜泥",
+        "白糖"
+      ],
+      "method": "煮",
+      "flavors": [
+        "辣",
+        "甜",
+        "蒜香"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "小吃",
+        "精制碳水",
+        "含猪肉",
+        "高油"
+      ],
+      "reference_price": 18
+    },
+    {
+      "id": "dish_chengdu_06",
+      "name": "担担面",
+      "region": "川菜",
+      "city": "成都",
+      "ingredients": [
+        "细面条",
+        "猪肉臊子",
+        "宜宾芽菜",
+        "红油辣子",
+        "花椒面",
+        "花生碎",
+        "葱花"
+      ],
+      "method": "煮",
+      "flavors": [
+        "辣",
+        "麻",
+        "咸鲜"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "含麸质谷物",
+        "花生"
+      ],
+      "tags": [
+        "主食",
+        "精制碳水",
+        "含猪肉",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 16
+    },
+    {
+      "id": "dish_chengdu_07",
+      "name": "赖汤圆",
+      "region": "川菜",
+      "city": "成都",
+      "ingredients": [
+        "糯米粉",
+        "黑芝麻",
+        "猪油",
+        "白糖"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "芝麻"
+      ],
+      "tags": [
+        "甜品",
+        "高糖",
+        "精制碳水",
+        "含猪肉"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_chengdu_08",
+      "name": "樟茶鸭",
+      "region": "川菜",
+      "city": "成都",
+      "ingredients": [
+        "麻鸭",
+        "花椒",
+        "盐",
+        "樟树叶",
+        "花茶",
+        "姜"
+      ],
+      "method": "炸",
+      "flavors": [
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "油炸",
+        "高盐",
+        "含禽肉",
+        "含咖啡因"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_chengdu_09",
+      "name": "开水白菜",
+      "region": "川菜",
+      "city": "成都",
+      "ingredients": [
+        "白菜心",
+        "老母鸡",
+        "老鸭",
+        "金华火腿",
+        "干贝",
+        "姜"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "清淡",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "贝类/软体"
+      ],
+      "tags": [
+        "汤羹",
+        "含禽肉",
+        "含猪肉",
+        "含海鲜",
+        "高蛋白"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_chongqing_01",
+      "name": "重庆火锅",
+      "region": "渝菜",
+      "city": "重庆",
+      "ingredients": [
+        "牛油",
+        "郫县豆瓣",
+        "干辣椒",
+        "花椒",
+        "毛肚",
+        "黄喉",
+        "鸭肠",
+        "蒜泥"
+      ],
+      "method": "涮",
+      "flavors": [
+        "辣",
+        "麻",
+        "香辣"
+      ],
+      "spicy_level": 5,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "火锅",
+        "高油",
+        "含牛肉",
+        "含禽肉",
+        "含内脏",
+        "高嘌呤"
+      ],
+      "reference_price": 98
+    },
+    {
+      "id": "dish_chongqing_02",
+      "name": "毛血旺",
+      "region": "渝菜",
+      "city": "重庆",
+      "ingredients": [
+        "鸭血",
+        "毛肚",
+        "黄喉",
+        "午餐肉",
+        "黄豆芽",
+        "郫县豆瓣",
+        "干辣椒",
+        "花椒"
+      ],
+      "method": "煮",
+      "flavors": [
+        "辣",
+        "麻",
+        "香辣"
+      ],
+      "spicy_level": 4,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "高油",
+        "含猪肉",
+        "含禽肉",
+        "含内脏",
+        "高嘌呤",
+        "加工肉",
+        "含牛肉"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_chongqing_03",
+      "name": "辣子鸡",
+      "region": "渝菜",
+      "city": "重庆",
+      "ingredients": [
+        "仔鸡",
+        "干辣椒",
+        "花椒",
+        "姜",
+        "蒜",
+        "白芝麻",
+        "盐"
+      ],
+      "method": "炸",
+      "flavors": [
+        "辣",
+        "麻",
+        "香辣"
+      ],
+      "spicy_level": 4,
+      "allergens": [
+        "芝麻"
+      ],
+      "tags": [
+        "油炸",
+        "高油",
+        "高盐",
+        "含禽肉"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_chongqing_04",
+      "name": "水煮鱼",
+      "region": "渝菜",
+      "city": "重庆",
+      "ingredients": [
+        "草鱼",
+        "黄豆芽",
+        "干辣椒",
+        "花椒",
+        "郫县豆瓣",
+        "蛋清",
+        "淀粉"
+      ],
+      "method": "煮",
+      "flavors": [
+        "辣",
+        "麻",
+        "香辣"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "鱼类",
+        "蛋类",
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "高油",
+        "高盐",
+        "含海鲜",
+        "高蛋白",
+        "含蛋"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_chongqing_05",
+      "name": "口水鸡",
+      "region": "渝菜",
+      "city": "重庆",
+      "ingredients": [
+        "土鸡",
+        "红油辣子",
+        "花椒面",
+        "花生碎",
+        "芝麻",
+        "葱",
+        "姜"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "辣",
+        "麻",
+        "咸鲜"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "花生",
+        "芝麻"
+      ],
+      "tags": [
+        "凉菜",
+        "含禽肉",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 45
+    },
+    {
+      "id": "dish_chongqing_06",
+      "name": "酸辣粉",
+      "region": "渝菜",
+      "city": "重庆",
+      "ingredients": [
+        "红薯粉",
+        "花生米",
+        "芽菜",
+        "辣椒油",
+        "陈醋",
+        "香菜",
+        "黄豆"
+      ],
+      "method": "煮",
+      "flavors": [
+        "酸辣"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "花生",
+        "大豆"
+      ],
+      "tags": [
+        "小吃",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_chongqing_07",
+      "name": "重庆小面",
+      "region": "渝菜",
+      "city": "重庆",
+      "ingredients": [
+        "碱水面",
+        "红油辣子",
+        "花椒面",
+        "芽菜",
+        "花生碎",
+        "猪油",
+        "青菜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "辣",
+        "麻"
+      ],
+      "spicy_level": 4,
+      "allergens": [
+        "含麸质谷物",
+        "花生"
+      ],
+      "tags": [
+        "主食",
+        "精制碳水",
+        "含猪肉",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_chongqing_08",
+      "name": "酸萝卜老鸭汤",
+      "region": "渝菜",
+      "city": "重庆",
+      "ingredients": [
+        "老鸭",
+        "酸萝卜",
+        "姜",
+        "花椒",
+        "葱"
+      ],
+      "method": "炖",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含禽肉",
+        "腌制",
+        "高盐"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_chongqing_09",
+      "name": "磁器口麻花",
+      "region": "渝菜",
+      "city": "重庆",
+      "ingredients": [
+        "面粉",
+        "蛋液",
+        "白糖",
+        "植物油",
+        "白芝麻"
+      ],
+      "method": "炸",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "蛋类",
+        "芝麻"
+      ],
+      "tags": [
+        "油炸",
+        "高糖",
+        "小吃",
+        "精制碳水",
+        "含蛋"
+      ],
+      "reference_price": 20
+    },
+    {
+      "id": "dish_foshan_01",
+      "name": "顺德鱼生",
+      "region": "顺德菜",
+      "city": "佛山",
+      "ingredients": [
+        "瘦身鲩鱼",
+        "姜丝",
+        "蒜片",
+        "葱丝",
+        "花生碎",
+        "芝麻",
+        "生抽",
+        "花生油"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "花生",
+        "芝麻",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "生食",
+        "凉菜",
+        "含海鲜",
+        "高蛋白",
+        "中嘌呤"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_foshan_02",
+      "name": "大良炒鲜奶",
+      "region": "顺德菜",
+      "city": "佛山",
+      "ingredients": [
+        "水牛奶",
+        "蛋清",
+        "虾仁",
+        "叉烧粒",
+        "榄仁",
+        "生粉",
+        "盐"
+      ],
+      "method": "炒",
+      "flavors": [
+        "鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "乳制品",
+        "蛋类",
+        "甲壳类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含乳",
+        "含蛋",
+        "含海鲜",
+        "含猪肉",
+        "高蛋白"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_foshan_03",
+      "name": "桑拿鱼",
+      "region": "顺德菜",
+      "city": "佛山",
+      "ingredients": [
+        "山坑鲩鱼",
+        "姜丝",
+        "葱丝",
+        "花生油",
+        "盐",
+        "丝瓜"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "花生"
+      ],
+      "tags": [
+        "蒸菜",
+        "含海鲜",
+        "高蛋白",
+        "中嘌呤"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_foshan_04",
+      "name": "陈村粉",
+      "region": "顺德菜",
+      "city": "佛山",
+      "ingredients": [
+        "陈村粉",
+        "生抽",
+        "花生油",
+        "葱花",
+        "熟芝麻",
+        "白糖"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸鲜",
+        "葱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物",
+        "花生",
+        "芝麻"
+      ],
+      "tags": [
+        "主食",
+        "小吃",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 18
+    },
+    {
+      "id": "dish_foshan_05",
+      "name": "均安烧猪",
+      "region": "顺德菜",
+      "city": "佛山",
+      "ingredients": [
+        "中猪",
+        "五香粉",
+        "盐",
+        "白醋",
+        "麦芽糖",
+        "蒜"
+      ],
+      "method": "烤",
+      "flavors": [
+        "咸香",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "烧烤",
+        "含猪肉",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 138
+    },
+    {
+      "id": "dish_foshan_06",
+      "name": "顺德拆鱼羹",
+      "region": "顺德菜",
+      "city": "佛山",
+      "ingredients": [
+        "鲩鱼蓉",
+        "木耳丝",
+        "丝瓜丝",
+        "陈皮丝",
+        "姜丝",
+        "蛋清",
+        "生粉"
+      ],
+      "method": "羹",
+      "flavors": [
+        "鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "蛋类"
+      ],
+      "tags": [
+        "汤羹",
+        "含海鲜",
+        "含蛋",
+        "高蛋白"
+      ],
+      "reference_price": 38
+    },
+    {
+      "id": "dish_foshan_07",
+      "name": "双皮奶",
+      "region": "顺德菜",
+      "city": "佛山",
+      "ingredients": [
+        "水牛奶",
+        "蛋清",
+        "白糖",
+        "红豆"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "乳制品",
+        "蛋类"
+      ],
+      "tags": [
+        "甜品",
+        "含乳",
+        "含蛋",
+        "高糖"
+      ],
+      "reference_price": 16
+    },
+    {
+      "id": "dish_foshan_08",
+      "name": "顺德酿鲮鱼",
+      "region": "顺德菜",
+      "city": "佛山",
+      "ingredients": [
+        "鲮鱼",
+        "猪肉末",
+        "虾米",
+        "冬菇",
+        "陈皮",
+        "生粉",
+        "生抽",
+        "葱"
+      ],
+      "method": "煎",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "甲壳类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含海鲜",
+        "含猪肉",
+        "高蛋白",
+        "高油"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_fuzhou_01",
+      "name": "佛跳墙",
+      "region": "闽菜",
+      "city": "福州",
+      "ingredients": [
+        "鲍鱼",
+        "海参",
+        "瑶柱",
+        "鸡肉",
+        "鸽蛋",
+        "花菇",
+        "花雕酒",
+        "酱油"
+      ],
+      "method": "煨",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "贝类/软体",
+        "蛋类",
+        "大豆",
+        "含麸质谷物",
+        "酒精"
+      ],
+      "tags": [
+        "汤羹",
+        "含海鲜",
+        "含禽肉",
+        "含蛋",
+        "高嘌呤",
+        "含酒精"
+      ],
+      "reference_price": 198
+    },
+    {
+      "id": "dish_fuzhou_02",
+      "name": "荔枝肉",
+      "region": "闽菜",
+      "city": "福州",
+      "ingredients": [
+        "猪里脊",
+        "荸荠",
+        "番茄酱",
+        "白糖",
+        "白醋",
+        "淀粉",
+        "蒜"
+      ],
+      "method": "炸",
+      "flavors": [
+        "酸甜",
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "含猪肉",
+        "油炸",
+        "高糖",
+        "高油"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_fuzhou_03",
+      "name": "福州鱼丸",
+      "region": "闽菜",
+      "city": "福州",
+      "ingredients": [
+        "鳗鱼肉",
+        "猪五花肉",
+        "地瓜粉",
+        "葱",
+        "虾油",
+        "芹菜"
+      ],
+      "method": "汤",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "甲壳类"
+      ],
+      "tags": [
+        "汤羹",
+        "小吃",
+        "含海鲜",
+        "含猪肉"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_fuzhou_04",
+      "name": "锅边糊",
+      "region": "闽菜",
+      "city": "福州",
+      "ingredients": [
+        "米浆",
+        "虾米",
+        "花蛤",
+        "香菇",
+        "芹菜",
+        "鱼露"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "贝类/软体",
+        "鱼类"
+      ],
+      "tags": [
+        "小吃",
+        "含海鲜",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_fuzhou_05",
+      "name": "醉排骨",
+      "region": "闽菜",
+      "city": "福州",
+      "ingredients": [
+        "猪肋排",
+        "蒜",
+        "番茄酱",
+        "白糖",
+        "白醋",
+        "淀粉",
+        "酱油"
+      ],
+      "method": "炸",
+      "flavors": [
+        "酸甜",
+        "蒜香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含猪肉",
+        "油炸",
+        "高糖",
+        "高油"
+      ],
+      "reference_price": 45
+    },
+    {
+      "id": "dish_fuzhou_06",
+      "name": "太平燕",
+      "region": "闽菜",
+      "city": "福州",
+      "ingredients": [
+        "肉燕皮",
+        "猪肉馅",
+        "鸭蛋",
+        "芹菜",
+        "高汤",
+        "虾油"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "蛋类",
+        "甲壳类"
+      ],
+      "tags": [
+        "汤羹",
+        "小吃",
+        "含猪肉",
+        "含蛋",
+        "含海鲜",
+        "精制碳水"
+      ],
+      "reference_price": 25
+    },
+    {
+      "id": "dish_fuzhou_07",
+      "name": "芋泥",
+      "region": "闽菜",
+      "city": "福州",
+      "ingredients": [
+        "槟榔芋",
+        "猪油",
+        "白糖",
+        "红枣",
+        "熟芝麻"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "芝麻"
+      ],
+      "tags": [
+        "甜品",
+        "高糖",
+        "含猪肉",
+        "高油"
+      ],
+      "reference_price": 22
+    },
+    {
+      "id": "dish_fuzhou_08",
+      "name": "醉糟鸡",
+      "region": "闽菜",
+      "city": "福州",
+      "ingredients": [
+        "三黄鸡",
+        "红糟",
+        "黄酒",
+        "姜",
+        "蒜",
+        "白糖"
+      ],
+      "method": "糟",
+      "flavors": [
+        "糟香",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "酒精"
+      ],
+      "tags": [
+        "凉菜",
+        "含禽肉",
+        "含酒精",
+        "高盐"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_guangzhou_01",
+      "name": "白切鸡",
+      "region": "粤菜",
+      "city": "广州",
+      "ingredients": [
+        "清远鸡",
+        "姜",
+        "葱",
+        "盐",
+        "花生油",
+        "沙姜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "花生"
+      ],
+      "tags": [
+        "含禽肉",
+        "高蛋白",
+        "中嘌呤"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_guangzhou_02",
+      "name": "霸王花猪骨汤",
+      "region": "粤菜",
+      "city": "广州",
+      "ingredients": [
+        "霸王花",
+        "猪筒骨",
+        "无花果",
+        "陈皮",
+        "姜",
+        "盐"
+      ],
+      "method": "煲",
+      "flavors": [
+        "清淡",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含猪肉",
+        "高嘌呤"
+      ],
+      "reference_price": 45
+    },
+    {
+      "id": "dish_guangzhou_03",
+      "name": "烧鹅",
+      "region": "粤菜",
+      "city": "广州",
+      "ingredients": [
+        "黑鬃鹅",
+        "五香粉",
+        "盐",
+        "麦芽糖",
+        "白醋",
+        "蒜",
+        "八角"
+      ],
+      "method": "烤",
+      "flavors": [
+        "咸香",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "烧烤",
+        "含禽肉",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_guangzhou_04",
+      "name": "干炒牛河",
+      "region": "粤菜",
+      "city": "广州",
+      "ingredients": [
+        "河粉",
+        "牛肉",
+        "豆芽",
+        "韭黄",
+        "生抽",
+        "蚝油",
+        "葱"
+      ],
+      "method": "炒",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物",
+        "贝类/软体"
+      ],
+      "tags": [
+        "主食",
+        "含牛肉",
+        "高油",
+        "精制碳水",
+        "含海鲜"
+      ],
+      "reference_price": 32
+    },
+    {
+      "id": "dish_guangzhou_05",
+      "name": "白灼虾",
+      "region": "粤菜",
+      "city": "广州",
+      "ingredients": [
+        "基围虾",
+        "姜",
+        "葱",
+        "盐",
+        "生抽"
+      ],
+      "method": "汆",
+      "flavors": [
+        "鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含海鲜",
+        "高蛋白",
+        "中嘌呤"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_guangzhou_06",
+      "name": "虾饺",
+      "region": "粤菜",
+      "city": "广州",
+      "ingredients": [
+        "鲜虾仁",
+        "澄面",
+        "生粉",
+        "笋粒",
+        "猪油",
+        "盐"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "蒸菜",
+        "含海鲜",
+        "含猪肉",
+        "高蛋白"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_guangzhou_07",
+      "name": "蜜汁叉烧",
+      "region": "粤菜",
+      "city": "广州",
+      "ingredients": [
+        "梅头肉",
+        "叉烧酱",
+        "生抽",
+        "蜂蜜",
+        "蒜",
+        "五香粉"
+      ],
+      "method": "烤",
+      "flavors": [
+        "甜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "烧烤",
+        "含猪肉",
+        "高糖",
+        "高盐"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_guangzhou_08",
+      "name": "艇仔粥",
+      "region": "粤菜",
+      "city": "广州",
+      "ingredients": [
+        "大米",
+        "鲩鱼片",
+        "鱿鱼丝",
+        "炸花生",
+        "油条",
+        "浮皮",
+        "姜丝",
+        "葱花"
+      ],
+      "method": "煮",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "贝类/软体",
+        "花生",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "含海鲜",
+        "含猪肉",
+        "中嘌呤"
+      ],
+      "reference_price": 22
+    },
+    {
+      "id": "dish_guangzhou_09",
+      "name": "白云猪手",
+      "region": "粤菜",
+      "city": "广州",
+      "ingredients": [
+        "猪前蹄",
+        "白醋",
+        "冰糖",
+        "盐",
+        "姜",
+        "辣椒",
+        "蒜"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "酸甜",
+        "蒜香"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "凉菜",
+        "含猪肉",
+        "高糖",
+        "高油"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_guilin_01",
+      "name": "阳朔啤酒鱼",
+      "region": "桂菜",
+      "city": "桂林",
+      "ingredients": [
+        "漓江草鱼",
+        "啤酒",
+        "番茄",
+        "青红椒",
+        "蒜",
+        "姜",
+        "紫苏",
+        "生抽"
+      ],
+      "method": "焖",
+      "flavors": [
+        "咸鲜",
+        "酸辣"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "鱼类",
+        "大豆",
+        "含麸质谷物",
+        "酒精"
+      ],
+      "tags": [
+        "含海鲜",
+        "高油",
+        "高盐",
+        "中嘌呤",
+        "含酒精"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_guilin_02",
+      "name": "桂林米粉",
+      "region": "桂菜",
+      "city": "桂林",
+      "ingredients": [
+        "鲜米粉",
+        "卤牛肉",
+        "锅烧",
+        "酸豆角",
+        "炸花生",
+        "卤水",
+        "葱花"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "花生",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "精制碳水",
+        "含牛肉",
+        "含猪肉",
+        "高盐"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_guilin_03",
+      "name": "荔浦芋扣肉",
+      "region": "桂菜",
+      "city": "桂林",
+      "ingredients": [
+        "荔浦芋头",
+        "五花肉",
+        "腐乳",
+        "生抽",
+        "老抽",
+        "冰糖",
+        "八角"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸香",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含猪肉",
+        "高油",
+        "高盐",
+        "蒸菜"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_guilin_04",
+      "name": "田螺酿",
+      "region": "桂菜",
+      "city": "桂林",
+      "ingredients": [
+        "田螺",
+        "猪肉末",
+        "薄荷",
+        "紫苏",
+        "姜",
+        "蒜",
+        "辣椒",
+        "生抽"
+      ],
+      "method": "焖",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "贝类/软体",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含海鲜",
+        "含猪肉",
+        "高蛋白"
+      ],
+      "reference_price": 38
+    },
+    {
+      "id": "dish_guilin_05",
+      "name": "恭城油茶",
+      "region": "桂菜",
+      "city": "桂林",
+      "ingredients": [
+        "茶叶",
+        "花生",
+        "炒米",
+        "姜",
+        "蒜",
+        "猪油",
+        "葱花"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸香",
+        "蒜香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "花生"
+      ],
+      "tags": [
+        "小吃",
+        "含咖啡因",
+        "含猪肉"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_guilin_06",
+      "name": "桂林酸嘢",
+      "region": "桂菜",
+      "city": "桂林",
+      "ingredients": [
+        "木瓜",
+        "白萝卜",
+        "黄瓜",
+        "米醋",
+        "辣椒粉",
+        "白糖",
+        "盐"
+      ],
+      "method": "腌",
+      "flavors": [
+        "酸甜",
+        "辣"
+      ],
+      "spicy_level": 1,
+      "allergens": [],
+      "tags": [
+        "凉菜",
+        "腌制",
+        "高糖",
+        "小吃"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_guilin_07",
+      "name": "全州醋血鸭",
+      "region": "桂菜",
+      "city": "桂林",
+      "ingredients": [
+        "麻鸭",
+        "鸭血",
+        "米醋",
+        "仔姜",
+        "辣椒",
+        "蒜",
+        "五花肉"
+      ],
+      "method": "炒",
+      "flavors": [
+        "酸辣",
+        "咸鲜"
+      ],
+      "spicy_level": 2,
+      "allergens": [],
+      "tags": [
+        "含禽肉",
+        "含猪肉",
+        "含内脏",
+        "高嘌呤",
+        "高油"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_guilin_08",
+      "name": "白果炖老鸭",
+      "region": "桂菜",
+      "city": "桂林",
+      "ingredients": [
+        "老鸭",
+        "白果",
+        "姜",
+        "枸杞",
+        "陈皮",
+        "盐"
+      ],
+      "method": "炖",
+      "flavors": [
+        "清淡",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含禽肉",
+        "高嘌呤"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_guiyang_01",
+      "name": "酸汤鱼",
+      "region": "黔菜",
+      "city": "贵阳",
+      "ingredients": [
+        "稻花鱼",
+        "红酸汤",
+        "西红柿",
+        "木姜子",
+        "小米辣",
+        "姜",
+        "蒜",
+        "香菜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "酸辣",
+        "鲜"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "鱼类"
+      ],
+      "tags": [
+        "汤羹",
+        "含海鲜",
+        "中嘌呤",
+        "高盐"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_guiyang_02",
+      "name": "肠旺面",
+      "region": "黔菜",
+      "city": "贵阳",
+      "ingredients": [
+        "全蛋面",
+        "猪大肠",
+        "猪血",
+        "脆哨",
+        "酱油",
+        "绿豆芽"
+      ],
+      "method": "煮",
+      "flavors": [
+        "辣",
+        "咸鲜"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "含麸质谷物",
+        "蛋类",
+        "大豆"
+      ],
+      "tags": [
+        "主食",
+        "含猪肉",
+        "含内脏",
+        "高嘌呤",
+        "含蛋",
+        "高油"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_guiyang_03",
+      "name": "丝娃娃",
+      "region": "黔菜",
+      "city": "贵阳",
+      "ingredients": [
+        "米皮",
+        "萝卜丝",
+        "折耳根",
+        "海带丝",
+        "黄瓜丝",
+        "酸辣蘸水",
+        "花生碎"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "酸辣"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "花生"
+      ],
+      "tags": [
+        "凉菜",
+        "小吃",
+        "精制碳水"
+      ],
+      "reference_price": 18
+    },
+    {
+      "id": "dish_guiyang_04",
+      "name": "恋爱豆腐果",
+      "region": "黔菜",
+      "city": "贵阳",
+      "ingredients": [
+        "酸汤豆腐",
+        "折耳根",
+        "辣椒面",
+        "酱油",
+        "木姜子",
+        "葱"
+      ],
+      "method": "烤",
+      "flavors": [
+        "辣",
+        "咸鲜"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "烧烤",
+        "高盐"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_guiyang_05",
+      "name": "折耳根炒腊肉",
+      "region": "黔菜",
+      "city": "贵阳",
+      "ingredients": [
+        "折耳根",
+        "腊肉",
+        "干辣椒",
+        "蒜苗",
+        "姜"
+      ],
+      "method": "炒",
+      "flavors": [
+        "辣",
+        "咸香"
+      ],
+      "spicy_level": 2,
+      "allergens": [],
+      "tags": [
+        "含猪肉",
+        "腌制",
+        "加工肉",
+        "高盐"
+      ],
+      "reference_price": 42
+    },
+    {
+      "id": "dish_guiyang_06",
+      "name": "豆米火锅",
+      "region": "黔菜",
+      "city": "贵阳",
+      "ingredients": [
+        "芸豆",
+        "猪骨汤",
+        "腊肉",
+        "白菜",
+        "糍粑辣椒",
+        "蒜苗"
+      ],
+      "method": "煮",
+      "flavors": [
+        "辣",
+        "咸香"
+      ],
+      "spicy_level": 2,
+      "allergens": [],
+      "tags": [
+        "火锅",
+        "含猪肉",
+        "高盐"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_guiyang_07",
+      "name": "糕粑稀饭",
+      "region": "黔菜",
+      "city": "贵阳",
+      "ingredients": [
+        "米糕",
+        "藕粉",
+        "玫瑰糖",
+        "白芝麻",
+        "花生碎",
+        "冬瓜糖"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "芝麻",
+        "花生"
+      ],
+      "tags": [
+        "甜品",
+        "高糖",
+        "小吃",
+        "精制碳水"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_guiyang_08",
+      "name": "花溪牛肉粉",
+      "region": "黔菜",
+      "city": "贵阳",
+      "ingredients": [
+        "米粉",
+        "牛肉",
+        "牛骨汤",
+        "花椒",
+        "香菜",
+        "酸菜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "麻"
+      ],
+      "spicy_level": 1,
+      "allergens": [],
+      "tags": [
+        "主食",
+        "含牛肉",
+        "中嘌呤",
+        "汤羹"
+      ],
+      "reference_price": 14
+    },
+    {
+      "id": "dish_haerbin_01",
+      "name": "锅包肉",
+      "region": "东北菜",
+      "city": "哈尔滨",
+      "ingredients": [
+        "猪里脊",
+        "土豆淀粉",
+        "白糖",
+        "白醋",
+        "大葱",
+        "生姜",
+        "胡萝卜"
+      ],
+      "method": "酥炸",
+      "flavors": [
+        "酸甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "油炸",
+        "高油",
+        "高糖",
+        "含猪肉"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_haerbin_02",
+      "name": "哈尔滨红肠",
+      "region": "东北菜",
+      "city": "哈尔滨",
+      "ingredients": [
+        "猪肉",
+        "牛肉",
+        "淀粉",
+        "大蒜",
+        "黑胡椒",
+        "肠衣"
+      ],
+      "method": "卤",
+      "flavors": [
+        "蒜香",
+        "咸香"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "加工肉",
+        "高盐",
+        "腌制",
+        "含猪肉",
+        "含牛肉",
+        "凉菜"
+      ],
+      "reference_price": 38
+    },
+    {
+      "id": "dish_haerbin_03",
+      "name": "杀猪菜",
+      "region": "东北菜",
+      "city": "哈尔滨",
+      "ingredients": [
+        "酸菜",
+        "五花肉",
+        "血肠",
+        "猪骨",
+        "粉条",
+        "大葱",
+        "生姜"
+      ],
+      "method": "炖",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含猪肉",
+        "含内脏",
+        "高嘌呤",
+        "腌制",
+        "高盐"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_haerbin_04",
+      "name": "得莫利炖鱼",
+      "region": "东北菜",
+      "city": "哈尔滨",
+      "ingredients": [
+        "鲤鱼",
+        "豆腐",
+        "粉条",
+        "五花肉",
+        "大酱",
+        "大葱",
+        "生姜"
+      ],
+      "method": "炖",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "汤羹",
+        "含海鲜",
+        "含猪肉",
+        "高盐",
+        "高蛋白"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_haerbin_05",
+      "name": "马迭尔冰棍",
+      "region": "东北菜",
+      "city": "哈尔滨",
+      "ingredients": [
+        "牛奶",
+        "淡奶油",
+        "白糖",
+        "鸡蛋",
+        "香草"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "乳制品",
+        "蛋类"
+      ],
+      "tags": [
+        "甜品",
+        "小吃",
+        "含乳",
+        "含蛋",
+        "高糖"
+      ],
+      "reference_price": 8
+    },
+    {
+      "id": "dish_haerbin_06",
+      "name": "地三鲜",
+      "region": "东北菜",
+      "city": "哈尔滨",
+      "ingredients": [
+        "土豆",
+        "茄子",
+        "青椒",
+        "大蒜",
+        "酱油",
+        "淀粉"
+      ],
+      "method": "炒",
+      "flavors": [
+        "咸鲜",
+        "蒜香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "高油",
+        "高盐",
+        "精制碳水"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_haerbin_07",
+      "name": "小鸡炖蘑菇",
+      "region": "东北菜",
+      "city": "哈尔滨",
+      "ingredients": [
+        "小笨鸡",
+        "榛蘑",
+        "粉条",
+        "大葱",
+        "生姜",
+        "八角",
+        "酱油"
+      ],
+      "method": "炖",
+      "flavors": [
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "汤羹",
+        "含禽肉",
+        "高盐",
+        "高钾"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_haerbin_08",
+      "name": "苏泊汤",
+      "region": "东北菜",
+      "city": "哈尔滨",
+      "ingredients": [
+        "牛肉",
+        "卷心菜",
+        "土豆",
+        "西红柿",
+        "洋葱",
+        "芹菜",
+        "番茄酱"
+      ],
+      "method": "汤",
+      "flavors": [
+        "酸甜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含牛肉",
+        "高盐"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_haerbin_09",
+      "name": "大列巴",
+      "region": "东北菜",
+      "city": "哈尔滨",
+      "ingredients": [
+        "面粉",
+        "黑麦粉",
+        "酵母",
+        "盐",
+        "啤酒花"
+      ],
+      "method": "烤",
+      "flavors": [
+        "咸香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 22
+    },
+    {
+      "id": "dish_haikou_01",
+      "name": "文昌鸡",
+      "region": "琼菜",
+      "city": "海口",
+      "ingredients": [
+        "文昌鸡",
+        "姜",
+        "蒜",
+        "桔子汁",
+        "生抽",
+        "香油"
+      ],
+      "method": "煮",
+      "flavors": [
+        "鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物",
+        "芝麻"
+      ],
+      "tags": [
+        "含禽肉",
+        "高蛋白",
+        "中嘌呤"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_haikou_02",
+      "name": "加积鸭",
+      "region": "琼菜",
+      "city": "海口",
+      "ingredients": [
+        "加积鸭",
+        "姜",
+        "蒜",
+        "酸桔",
+        "生抽",
+        "辣椒"
+      ],
+      "method": "煮",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含禽肉",
+        "高蛋白",
+        "中嘌呤"
+      ],
+      "reference_price": 72
+    },
+    {
+      "id": "dish_haikou_03",
+      "name": "和乐蟹",
+      "region": "琼菜",
+      "city": "海口",
+      "ingredients": [
+        "和乐蟹",
+        "姜",
+        "蒜",
+        "米醋",
+        "生抽"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含海鲜",
+        "高蛋白",
+        "蒸菜",
+        "中嘌呤"
+      ],
+      "reference_price": 168
+    },
+    {
+      "id": "dish_haikou_04",
+      "name": "椰子鸡",
+      "region": "琼菜",
+      "city": "海口",
+      "ingredients": [
+        "文昌鸡",
+        "椰青水",
+        "椰肉",
+        "姜",
+        "沙姜",
+        "桔子汁",
+        "小米椒",
+        "生抽"
+      ],
+      "method": "涮",
+      "flavors": [
+        "清淡",
+        "鲜"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "火锅",
+        "含禽肉",
+        "高蛋白"
+      ],
+      "reference_price": 128
+    },
+    {
+      "id": "dish_haikou_05",
+      "name": "海南粉",
+      "region": "琼菜",
+      "city": "海口",
+      "ingredients": [
+        "细米粉",
+        "卤牛肉",
+        "炸花生",
+        "芝麻",
+        "酸菜",
+        "豆芽",
+        "卤汁"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "花生",
+        "芝麻",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "小吃",
+        "含牛肉",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_haikou_06",
+      "name": "清补凉",
+      "region": "琼菜",
+      "city": "海口",
+      "ingredients": [
+        "椰浆",
+        "红豆",
+        "绿豆",
+        "薏米",
+        "西瓜",
+        "芋头",
+        "花生",
+        "冰糖"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "花生"
+      ],
+      "tags": [
+        "凉菜",
+        "甜品",
+        "高糖",
+        "高钾"
+      ],
+      "reference_price": 14
+    },
+    {
+      "id": "dish_haikou_07",
+      "name": "椰子饭",
+      "region": "琼菜",
+      "city": "海口",
+      "ingredients": [
+        "糯米",
+        "椰肉",
+        "椰浆",
+        "白糖",
+        "盐"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "甜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "主食",
+        "甜品",
+        "高糖",
+        "精制碳水"
+      ],
+      "reference_price": 20
+    },
+    {
+      "id": "dish_haikou_08",
+      "name": "糟粕醋",
+      "region": "琼菜",
+      "city": "海口",
+      "ingredients": [
+        "糟粕醋",
+        "海菜",
+        "蛤蜊",
+        "鲜虾",
+        "米粉",
+        "辣椒",
+        "蒜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "酸辣",
+        "鲜"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "贝类/软体",
+        "甲壳类"
+      ],
+      "tags": [
+        "汤羹",
+        "含海鲜",
+        "中嘌呤"
+      ],
+      "reference_price": 35
+    },
+    {
+      "id": "dish_hangzhou_01",
+      "name": "西湖醋鱼",
+      "region": "杭帮菜",
+      "city": "杭州",
+      "ingredients": [
+        "草鱼",
+        "镇江香醋",
+        "白糖",
+        "生抽",
+        "姜末",
+        "黄酒",
+        "淀粉"
+      ],
+      "method": "汆",
+      "flavors": [
+        "酸甜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "鱼类",
+        "大豆",
+        "酒精"
+      ],
+      "tags": [
+        "高糖",
+        "含海鲜",
+        "高蛋白",
+        "含酒精"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_hangzhou_02",
+      "name": "东坡肉",
+      "region": "杭帮菜",
+      "city": "杭州",
+      "ingredients": [
+        "五花肉",
+        "黄酒",
+        "冰糖",
+        "生抽",
+        "老抽",
+        "姜",
+        "葱"
+      ],
+      "method": "焖",
+      "flavors": [
+        "甜",
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆",
+        "酒精"
+      ],
+      "tags": [
+        "高油",
+        "高糖",
+        "含猪肉",
+        "高盐",
+        "含酒精"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_hangzhou_03",
+      "name": "龙井虾仁",
+      "region": "杭帮菜",
+      "city": "杭州",
+      "ingredients": [
+        "河虾仁",
+        "龙井茶",
+        "蛋清",
+        "淀粉",
+        "盐",
+        "熟猪油"
+      ],
+      "method": "清炒",
+      "flavors": [
+        "鲜",
+        "清淡",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "蛋类"
+      ],
+      "tags": [
+        "含海鲜",
+        "高蛋白",
+        "含咖啡因",
+        "含猪肉",
+        "含蛋"
+      ],
+      "reference_price": 98
+    },
+    {
+      "id": "dish_hangzhou_04",
+      "name": "片儿川",
+      "region": "杭帮菜",
+      "city": "杭州",
+      "ingredients": [
+        "面条",
+        "雪菜",
+        "笋片",
+        "瘦肉丝",
+        "猪骨汤",
+        "盐"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "精制碳水",
+        "含猪肉",
+        "高盐",
+        "腌制"
+      ],
+      "reference_price": 22
+    },
+    {
+      "id": "dish_hangzhou_05",
+      "name": "叫化鸡",
+      "region": "杭帮菜",
+      "city": "杭州",
+      "ingredients": [
+        "童子鸡",
+        "荷叶",
+        "生抽",
+        "黄酒",
+        "香菇",
+        "姜",
+        "葱"
+      ],
+      "method": "烤",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆",
+        "酒精"
+      ],
+      "tags": [
+        "含禽肉",
+        "高蛋白",
+        "高盐",
+        "烧烤",
+        "含酒精"
+      ],
+      "reference_price": 118
+    },
+    {
+      "id": "dish_hangzhou_06",
+      "name": "西湖牛肉羹",
+      "region": "杭帮菜",
+      "city": "杭州",
+      "ingredients": [
+        "牛肉末",
+        "嫩豆腐",
+        "蛋清",
+        "香菜",
+        "淀粉",
+        "胡椒粉"
+      ],
+      "method": "羹",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "蛋类"
+      ],
+      "tags": [
+        "汤羹",
+        "含牛肉",
+        "含蛋",
+        "高蛋白"
+      ],
+      "reference_price": 38
+    },
+    {
+      "id": "dish_hangzhou_07",
+      "name": "香干马兰头",
+      "region": "杭帮菜",
+      "city": "杭州",
+      "ingredients": [
+        "马兰头",
+        "香干",
+        "香油",
+        "盐",
+        "白糖"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "咸鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "芝麻"
+      ],
+      "tags": [
+        "凉菜",
+        "高钾",
+        "中嘌呤"
+      ],
+      "reference_price": 26
+    },
+    {
+      "id": "dish_hangzhou_08",
+      "name": "葱包桧",
+      "region": "杭帮菜",
+      "city": "杭州",
+      "ingredients": [
+        "春饼皮",
+        "油条",
+        "小葱",
+        "甜面酱",
+        "辣酱"
+      ],
+      "method": "煎",
+      "flavors": [
+        "咸鲜",
+        "酱香",
+        "葱香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "小吃",
+        "精制碳水",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_kunming_01",
+      "name": "过桥米线",
+      "region": "滇菜",
+      "city": "昆明",
+      "ingredients": [
+        "米线",
+        "鸡汤",
+        "鸡片",
+        "宣威火腿",
+        "鹌鹑蛋",
+        "韭菜",
+        "豌豆尖"
+      ],
+      "method": "汆",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "蛋类"
+      ],
+      "tags": [
+        "主食",
+        "汤羹",
+        "含禽肉",
+        "含猪肉",
+        "含蛋",
+        "高蛋白"
+      ],
+      "reference_price": 45
+    },
+    {
+      "id": "dish_kunming_02",
+      "name": "汽锅鸡",
+      "region": "滇菜",
+      "city": "昆明",
+      "ingredients": [
+        "土鸡",
+        "姜",
+        "葱",
+        "盐",
+        "枸杞",
+        "三七根"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "清淡",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含禽肉",
+        "高蛋白"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_kunming_03",
+      "name": "野生菌火锅",
+      "region": "滇菜",
+      "city": "昆明",
+      "ingredients": [
+        "见手青",
+        "青头菌",
+        "鸡枞菌",
+        "土鸡",
+        "大蒜",
+        "青椒"
+      ],
+      "method": "煮",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "火锅",
+        "高钾",
+        "含禽肉",
+        "高蛋白"
+      ],
+      "reference_price": 128
+    },
+    {
+      "id": "dish_kunming_04",
+      "name": "宜良烤鸭",
+      "region": "滇菜",
+      "city": "昆明",
+      "ingredients": [
+        "麻鸭",
+        "蜂蜜",
+        "花椒",
+        "姜",
+        "葱",
+        "盐"
+      ],
+      "method": "烤",
+      "flavors": [
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "烧烤",
+        "含禽肉",
+        "高油",
+        "高蛋白"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_kunming_05",
+      "name": "火夹乳饼",
+      "region": "滇菜",
+      "city": "昆明",
+      "ingredients": [
+        "乳饼",
+        "宣威火腿",
+        "青豆",
+        "盐"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "乳制品"
+      ],
+      "tags": [
+        "蒸菜",
+        "含乳",
+        "含猪肉",
+        "高蛋白"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_kunming_06",
+      "name": "老奶洋芋",
+      "region": "滇菜",
+      "city": "昆明",
+      "ingredients": [
+        "土豆",
+        "腌菜",
+        "辣椒面",
+        "葱",
+        "猪油"
+      ],
+      "method": "炒",
+      "flavors": [
+        "辣",
+        "咸香"
+      ],
+      "spicy_level": 2,
+      "allergens": [],
+      "tags": [
+        "含猪肉",
+        "高钾",
+        "高盐"
+      ],
+      "reference_price": 18
+    },
+    {
+      "id": "dish_kunming_07",
+      "name": "破酥包",
+      "region": "滇菜",
+      "city": "昆明",
+      "ingredients": [
+        "面粉",
+        "猪油",
+        "火腿",
+        "白糖",
+        "香菇"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸鲜",
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "精制碳水",
+        "含猪肉"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_kunming_08",
+      "name": "凉拌豌豆粉",
+      "region": "滇菜",
+      "city": "昆明",
+      "ingredients": [
+        "豌豆粉",
+        "酱油",
+        "陈醋",
+        "辣椒油",
+        "花生碎",
+        "香菜",
+        "蒜水"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "酸辣",
+        "蒜香"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "大豆",
+        "含麸质谷物",
+        "花生"
+      ],
+      "tags": [
+        "凉菜",
+        "小吃",
+        "高盐"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_lanzhou_01",
+      "name": "兰州牛肉面",
+      "region": "陇菜",
+      "city": "兰州",
+      "ingredients": [
+        "牛肉",
+        "拉面",
+        "白萝卜",
+        "香菜",
+        "蒜苗",
+        "辣椒油",
+        "牛骨汤"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "辣"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "汤羹",
+        "主食",
+        "含牛肉",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 16
+    },
+    {
+      "id": "dish_lanzhou_02",
+      "name": "手抓羊肉",
+      "region": "陇菜",
+      "city": "兰州",
+      "ingredients": [
+        "羊肉",
+        "花椒",
+        "生姜",
+        "大蒜",
+        "盐",
+        "香菜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "含羊肉",
+        "高蛋白",
+        "高盐"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_lanzhou_03",
+      "name": "酿皮子",
+      "region": "陇菜",
+      "city": "兰州",
+      "ingredients": [
+        "酿皮",
+        "面筋",
+        "黄瓜丝",
+        "辣椒油",
+        "香醋",
+        "蒜泥",
+        "芝麻酱"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "酸辣",
+        "蒜香"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "含麸质谷物",
+        "芝麻"
+      ],
+      "tags": [
+        "凉菜",
+        "小吃",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_lanzhou_04",
+      "name": "灰豆子",
+      "region": "陇菜",
+      "city": "兰州",
+      "ingredients": [
+        "麻豌豆",
+        "红枣",
+        "白糖",
+        "食用碱"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "甜品",
+        "小吃",
+        "高糖"
+      ],
+      "reference_price": 8
+    },
+    {
+      "id": "dish_lanzhou_05",
+      "name": "甜醅子",
+      "region": "陇菜",
+      "city": "兰州",
+      "ingredients": [
+        "莜麦",
+        "青稞",
+        "酒曲",
+        "白糖"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "酒精"
+      ],
+      "tags": [
+        "甜品",
+        "小吃",
+        "含酒精",
+        "高糖"
+      ],
+      "reference_price": 8
+    },
+    {
+      "id": "dish_lanzhou_06",
+      "name": "牛奶鸡蛋醪糟",
+      "region": "陇菜",
+      "city": "兰州",
+      "ingredients": [
+        "牛奶",
+        "鸡蛋",
+        "醪糟",
+        "葡萄干",
+        "芝麻",
+        "花生",
+        "白糖"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "乳制品",
+        "蛋类",
+        "芝麻",
+        "花生",
+        "酒精"
+      ],
+      "tags": [
+        "甜品",
+        "小吃",
+        "含乳",
+        "含蛋",
+        "含酒精",
+        "高糖"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_lanzhou_07",
+      "name": "黄焖羊肉",
+      "region": "陇菜",
+      "city": "兰州",
+      "ingredients": [
+        "羊肉",
+        "土豆",
+        "粉条",
+        "干辣椒",
+        "花椒",
+        "生姜",
+        "大蒜"
+      ],
+      "method": "焖",
+      "flavors": [
+        "辣",
+        "咸香"
+      ],
+      "spicy_level": 2,
+      "allergens": [],
+      "tags": [
+        "含羊肉",
+        "高油",
+        "高盐",
+        "精制碳水"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_lanzhou_08",
+      "name": "浆水面",
+      "region": "陇菜",
+      "city": "兰州",
+      "ingredients": [
+        "面条",
+        "浆水",
+        "芹菜",
+        "韭菜",
+        "干辣椒",
+        "大蒜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "酸辣",
+        "蒜香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "汤羹",
+        "精制碳水"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_lasa_01",
+      "name": "糌粑",
+      "region": "藏餐",
+      "city": "拉萨",
+      "ingredients": [
+        "青稞炒面",
+        "酥油",
+        "酥油茶",
+        "白糖",
+        "奶渣"
+      ],
+      "method": "炒",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "乳制品"
+      ],
+      "tags": [
+        "主食",
+        "含乳",
+        "高油"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_lasa_02",
+      "name": "酥油茶",
+      "region": "藏餐",
+      "city": "拉萨",
+      "ingredients": [
+        "砖茶",
+        "酥油",
+        "鲜牛奶",
+        "盐"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "乳制品"
+      ],
+      "tags": [
+        "汤羹",
+        "含乳",
+        "含咖啡因",
+        "高油"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_lasa_03",
+      "name": "藏面",
+      "region": "藏餐",
+      "city": "拉萨",
+      "ingredients": [
+        "藏面",
+        "牦牛肉",
+        "牛骨汤",
+        "葱花",
+        "盐",
+        "辣椒粉"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "含牛肉",
+        "汤羹",
+        "高盐"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_lasa_04",
+      "name": "手抓牦牛肉",
+      "region": "藏餐",
+      "city": "拉萨",
+      "ingredients": [
+        "牦牛肉",
+        "姜",
+        "花椒",
+        "盐",
+        "葱",
+        "蒜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "含牛肉",
+        "高蛋白",
+        "高盐"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_lasa_05",
+      "name": "藏式血肠",
+      "region": "藏餐",
+      "city": "拉萨",
+      "ingredients": [
+        "牦牛血",
+        "牦牛肉",
+        "糌粑",
+        "牛油",
+        "盐",
+        "葱"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含内脏",
+        "高嘌呤",
+        "高盐",
+        "含牛肉"
+      ],
+      "reference_price": 38
+    },
+    {
+      "id": "dish_lasa_06",
+      "name": "人参果饭",
+      "region": "藏餐",
+      "city": "拉萨",
+      "ingredients": [
+        "蕨麻",
+        "大米",
+        "酥油",
+        "白糖",
+        "葡萄干"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "乳制品"
+      ],
+      "tags": [
+        "甜品",
+        "含乳",
+        "高糖",
+        "精制碳水"
+      ],
+      "reference_price": 25
+    },
+    {
+      "id": "dish_lasa_07",
+      "name": "甜茶",
+      "region": "藏餐",
+      "city": "拉萨",
+      "ingredients": [
+        "红茶",
+        "牛奶",
+        "炼乳",
+        "白糖"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "乳制品"
+      ],
+      "tags": [
+        "汤羹",
+        "含乳",
+        "高糖",
+        "含咖啡因"
+      ],
+      "reference_price": 8
+    },
+    {
+      "id": "dish_lasa_08",
+      "name": "牦牛肉包子",
+      "region": "藏餐",
+      "city": "拉萨",
+      "ingredients": [
+        "面粉",
+        "牦牛肉",
+        "洋葱",
+        "姜",
+        "花椒",
+        "盐"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "精制碳水",
+        "含牛肉"
+      ],
+      "reference_price": 20
+    },
+    {
+      "id": "dish_nanjing_01",
+      "name": "盐水鸭",
+      "region": "金陵菜",
+      "city": "南京",
+      "ingredients": [
+        "光鸭",
+        "粗盐",
+        "花椒",
+        "八角",
+        "姜",
+        "葱"
+      ],
+      "method": "卤",
+      "flavors": [
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "凉菜",
+        "腌制",
+        "含禽肉",
+        "高盐",
+        "高蛋白"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_nanjing_02",
+      "name": "鸭血粉丝汤",
+      "region": "金陵菜",
+      "city": "南京",
+      "ingredients": [
+        "鸭血",
+        "粉丝",
+        "鸭肠",
+        "鸭肝",
+        "豆腐果",
+        "鸭汤",
+        "香菜"
+      ],
+      "method": "汤",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆"
+      ],
+      "tags": [
+        "汤羹",
+        "含内脏",
+        "高嘌呤",
+        "高盐",
+        "含禽肉"
+      ],
+      "reference_price": 22
+    },
+    {
+      "id": "dish_nanjing_03",
+      "name": "清炖狮子头",
+      "region": "金陵菜",
+      "city": "南京",
+      "ingredients": [
+        "猪前腿肉",
+        "马蹄",
+        "鸡蛋",
+        "青菜",
+        "姜",
+        "黄酒",
+        "盐"
+      ],
+      "method": "炖",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "蛋类",
+        "酒精"
+      ],
+      "tags": [
+        "汤羹",
+        "含猪肉",
+        "含蛋",
+        "高油",
+        "含酒精"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_nanjing_04",
+      "name": "皮肚面",
+      "region": "金陵菜",
+      "city": "南京",
+      "ingredients": [
+        "面条",
+        "皮肚",
+        "肉丝",
+        "青菜",
+        "木耳",
+        "猪骨汤",
+        "盐"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "含猪肉",
+        "精制碳水",
+        "高油",
+        "含内脏"
+      ],
+      "reference_price": 20
+    },
+    {
+      "id": "dish_nanjing_05",
+      "name": "金陵烤鸭",
+      "region": "金陵菜",
+      "city": "南京",
+      "ingredients": [
+        "光鸭",
+        "麦芽糖",
+        "白醋",
+        "花椒",
+        "姜",
+        "盐"
+      ],
+      "method": "烤",
+      "flavors": [
+        "咸香",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "烧烤",
+        "含禽肉",
+        "高油",
+        "高蛋白"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_nanjing_06",
+      "name": "炖生敲",
+      "region": "金陵菜",
+      "city": "南京",
+      "ingredients": [
+        "鳝鱼",
+        "五花肉",
+        "蒜",
+        "生抽",
+        "黄酒",
+        "姜"
+      ],
+      "method": "炖",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "鱼类",
+        "大豆",
+        "酒精"
+      ],
+      "tags": [
+        "汤羹",
+        "含海鲜",
+        "含猪肉",
+        "高油",
+        "高盐",
+        "含酒精"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_nanjing_07",
+      "name": "鸭油酥烧饼",
+      "region": "金陵菜",
+      "city": "南京",
+      "ingredients": [
+        "面粉",
+        "鸭油",
+        "芝麻",
+        "葱",
+        "盐"
+      ],
+      "method": "烤",
+      "flavors": [
+        "咸香",
+        "葱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "芝麻"
+      ],
+      "tags": [
+        "小吃",
+        "精制碳水",
+        "高油",
+        "含禽肉"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_nanjing_08",
+      "name": "美龄粥",
+      "region": "金陵菜",
+      "city": "南京",
+      "ingredients": [
+        "豆浆",
+        "山药",
+        "糯米",
+        "冰糖",
+        "枸杞"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆"
+      ],
+      "tags": [
+        "甜品",
+        "高糖",
+        "精制碳水"
+      ],
+      "reference_price": 18
+    },
+    {
+      "id": "dish_ningbo_01",
+      "name": "红膏炝蟹",
+      "region": "甬帮菜",
+      "city": "宁波",
+      "ingredients": [
+        "梭子蟹",
+        "盐",
+        "黄酒",
+        "姜",
+        "花椒",
+        "白糖"
+      ],
+      "method": "腌",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "酒精"
+      ],
+      "tags": [
+        "生食",
+        "含海鲜",
+        "高盐",
+        "凉菜",
+        "含酒精"
+      ],
+      "reference_price": 98
+    },
+    {
+      "id": "dish_ningbo_02",
+      "name": "雪菜大汤黄鱼",
+      "region": "甬帮菜",
+      "city": "宁波",
+      "ingredients": [
+        "黄鱼",
+        "雪里蕻",
+        "冬笋",
+        "姜",
+        "葱",
+        "猪油"
+      ],
+      "method": "汤",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类"
+      ],
+      "tags": [
+        "汤羹",
+        "含海鲜",
+        "高盐",
+        "高蛋白",
+        "中嘌呤",
+        "含猪肉"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_ningbo_03",
+      "name": "冰糖甲鱼",
+      "region": "甬帮菜",
+      "city": "宁波",
+      "ingredients": [
+        "甲鱼",
+        "冰糖",
+        "酱油",
+        "黄酒",
+        "姜",
+        "猪油"
+      ],
+      "method": "煨",
+      "flavors": [
+        "咸鲜",
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物",
+        "酒精"
+      ],
+      "tags": [
+        "高糖",
+        "高油",
+        "高盐",
+        "高蛋白",
+        "含猪肉",
+        "含酒精"
+      ],
+      "reference_price": 168
+    },
+    {
+      "id": "dish_ningbo_04",
+      "name": "苔菜拖黄鱼",
+      "region": "甬帮菜",
+      "city": "宁波",
+      "ingredients": [
+        "黄鱼",
+        "苔菜",
+        "面粉",
+        "鸡蛋",
+        "料酒",
+        "盐"
+      ],
+      "method": "炸",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "含麸质谷物",
+        "蛋类"
+      ],
+      "tags": [
+        "油炸",
+        "含海鲜",
+        "含蛋",
+        "高油",
+        "高蛋白"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_ningbo_05",
+      "name": "黄鱼鲞烤肉",
+      "region": "甬帮菜",
+      "city": "宁波",
+      "ingredients": [
+        "黄鱼鲞",
+        "五花肉",
+        "酱油",
+        "冰糖",
+        "姜",
+        "葱"
+      ],
+      "method": "红烧",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含猪肉",
+        "含海鲜",
+        "高盐",
+        "腌制",
+        "高油"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_ningbo_06",
+      "name": "梭子蟹炒年糕",
+      "region": "甬帮菜",
+      "city": "宁波",
+      "ingredients": [
+        "梭子蟹",
+        "年糕",
+        "姜",
+        "葱",
+        "酱油",
+        "料酒"
+      ],
+      "method": "炒",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "含海鲜",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_ningbo_07",
+      "name": "宁波烤菜",
+      "region": "甬帮菜",
+      "city": "宁波",
+      "ingredients": [
+        "天菜",
+        "酱油",
+        "白糖",
+        "菜籽油",
+        "桂皮"
+      ],
+      "method": "焖",
+      "flavors": [
+        "咸鲜",
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "凉菜",
+        "高盐",
+        "高糖",
+        "高油"
+      ],
+      "reference_price": 22
+    },
+    {
+      "id": "dish_ningbo_08",
+      "name": "宁波汤圆",
+      "region": "甬帮菜",
+      "city": "宁波",
+      "ingredients": [
+        "糯米粉",
+        "黑芝麻",
+        "猪板油",
+        "白糖",
+        "糖桂花"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "芝麻"
+      ],
+      "tags": [
+        "甜品",
+        "小吃",
+        "高糖",
+        "精制碳水",
+        "含猪肉"
+      ],
+      "reference_price": 18
+    },
+    {
+      "id": "dish_qingdao_01",
+      "name": "辣炒花蛤",
+      "region": "鲁菜",
+      "city": "青岛",
+      "ingredients": [
+        "花蛤",
+        "干辣椒",
+        "葱",
+        "姜",
+        "蒜",
+        "酱油"
+      ],
+      "method": "爆炒",
+      "flavors": [
+        "辣",
+        "咸鲜"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "贝类/软体",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含海鲜",
+        "高盐",
+        "高蛋白",
+        "高嘌呤"
+      ],
+      "reference_price": 38
+    },
+    {
+      "id": "dish_qingdao_02",
+      "name": "葱烧海参",
+      "region": "鲁菜",
+      "city": "青岛",
+      "ingredients": [
+        "海参",
+        "大葱",
+        "酱油",
+        "白糖",
+        "高汤",
+        "猪油"
+      ],
+      "method": "红烧",
+      "flavors": [
+        "葱香",
+        "酱香",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "贝类/软体",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含海鲜",
+        "高蛋白",
+        "高盐",
+        "含猪肉"
+      ],
+      "reference_price": 168
+    },
+    {
+      "id": "dish_qingdao_03",
+      "name": "鲅鱼水饺",
+      "region": "鲁菜",
+      "city": "青岛",
+      "ingredients": [
+        "鲅鱼",
+        "猪五花肉",
+        "韭菜",
+        "面粉",
+        "花椒水"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "含海鲜",
+        "含猪肉",
+        "精制碳水"
+      ],
+      "reference_price": 32
+    },
+    {
+      "id": "dish_qingdao_04",
+      "name": "排骨米饭",
+      "region": "鲁菜",
+      "city": "青岛",
+      "ingredients": [
+        "猪肋排",
+        "米饭",
+        "酱油",
+        "八角",
+        "姜",
+        "葱"
+      ],
+      "method": "炖",
+      "flavors": [
+        "酱香",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "含猪肉",
+        "高盐",
+        "精制碳水"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_qingdao_05",
+      "name": "海菜凉粉",
+      "region": "鲁菜",
+      "city": "青岛",
+      "ingredients": [
+        "石花菜",
+        "蒜",
+        "香醋",
+        "香菜",
+        "虾皮",
+        "香油"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "咸鲜",
+        "蒜香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "芝麻"
+      ],
+      "tags": [
+        "凉菜",
+        "含海鲜",
+        "高盐"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_qingdao_06",
+      "name": "蒜蓉粉丝扇贝",
+      "region": "鲁菜",
+      "city": "青岛",
+      "ingredients": [
+        "扇贝",
+        "粉丝",
+        "蒜",
+        "葱",
+        "蒸鱼豉油",
+        "花生油"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "蒜香",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "贝类/软体",
+        "大豆",
+        "含麸质谷物",
+        "花生"
+      ],
+      "tags": [
+        "蒸菜",
+        "含海鲜",
+        "高蛋白",
+        "高盐"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_qingdao_07",
+      "name": "崂山菇炖鸡",
+      "region": "鲁菜",
+      "city": "青岛",
+      "ingredients": [
+        "土鸡",
+        "崂山菇",
+        "姜",
+        "葱",
+        "盐",
+        "枸杞"
+      ],
+      "method": "炖",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含禽肉",
+        "高蛋白",
+        "高钾"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_qingdao_08",
+      "name": "三鲜锅贴",
+      "region": "鲁菜",
+      "city": "青岛",
+      "ingredients": [
+        "面粉",
+        "猪肉馅",
+        "虾仁",
+        "韭菜",
+        "姜"
+      ],
+      "method": "煎",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "甲壳类"
+      ],
+      "tags": [
+        "小吃",
+        "含猪肉",
+        "含海鲜",
+        "精制碳水",
+        "高油"
+      ],
+      "reference_price": 25
+    },
+    {
+      "id": "dish_shanghai_01",
+      "name": "红烧肉",
+      "region": "本帮菜",
+      "city": "上海",
+      "ingredients": [
+        "五花肉",
+        "冰糖",
+        "生抽",
+        "老抽",
+        "黄酒",
+        "姜"
+      ],
+      "method": "红烧",
+      "flavors": [
+        "甜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆",
+        "酒精"
+      ],
+      "tags": [
+        "高油",
+        "高糖",
+        "高盐",
+        "含猪肉",
+        "含酒精"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_shanghai_02",
+      "name": "腌笃鲜",
+      "region": "本帮菜",
+      "city": "上海",
+      "ingredients": [
+        "咸五花肉",
+        "鲜五花肉",
+        "春笋",
+        "百叶结",
+        "姜"
+      ],
+      "method": "炖",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆"
+      ],
+      "tags": [
+        "汤羹",
+        "含猪肉",
+        "腌制",
+        "高盐",
+        "中嘌呤"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_shanghai_03",
+      "name": "油爆虾",
+      "region": "本帮菜",
+      "city": "上海",
+      "ingredients": [
+        "河虾",
+        "黄酒",
+        "生抽",
+        "白糖",
+        "葱",
+        "姜"
+      ],
+      "method": "爆炒",
+      "flavors": [
+        "甜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "甲壳类",
+        "大豆",
+        "酒精"
+      ],
+      "tags": [
+        "高油",
+        "油炸",
+        "高糖",
+        "含海鲜",
+        "含酒精"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_shanghai_04",
+      "name": "八宝鸭",
+      "region": "本帮菜",
+      "city": "上海",
+      "ingredients": [
+        "光鸭",
+        "糯米",
+        "火腿",
+        "香菇",
+        "笋丁",
+        "虾仁",
+        "生抽"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "甲壳类",
+        "大豆"
+      ],
+      "tags": [
+        "含禽肉",
+        "含海鲜",
+        "精制碳水",
+        "蒸菜",
+        "高油",
+        "含猪肉"
+      ],
+      "reference_price": 138
+    },
+    {
+      "id": "dish_shanghai_05",
+      "name": "生煎馒头",
+      "region": "本帮菜",
+      "city": "上海",
+      "ingredients": [
+        "面粉",
+        "猪肉馅",
+        "猪皮冻",
+        "芝麻",
+        "葱花",
+        "酵母"
+      ],
+      "method": "煎",
+      "flavors": [
+        "咸鲜",
+        "葱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "芝麻"
+      ],
+      "tags": [
+        "小吃",
+        "精制碳水",
+        "含猪肉",
+        "高油"
+      ],
+      "reference_price": 18
+    },
+    {
+      "id": "dish_shanghai_06",
+      "name": "蟹粉豆腐",
+      "region": "本帮菜",
+      "city": "上海",
+      "ingredients": [
+        "蟹粉",
+        "嫩豆腐",
+        "猪油",
+        "姜末",
+        "黄酒",
+        "淀粉"
+      ],
+      "method": "烩",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "大豆",
+        "酒精"
+      ],
+      "tags": [
+        "含海鲜",
+        "含猪肉",
+        "高油",
+        "高蛋白",
+        "含酒精"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_shanghai_07",
+      "name": "草头圈子",
+      "region": "本帮菜",
+      "city": "上海",
+      "ingredients": [
+        "猪大肠",
+        "草头",
+        "生抽",
+        "冰糖",
+        "黄酒",
+        "姜"
+      ],
+      "method": "红烧",
+      "flavors": [
+        "甜",
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆",
+        "酒精"
+      ],
+      "tags": [
+        "含猪肉",
+        "含内脏",
+        "高嘌呤",
+        "高油",
+        "高糖",
+        "含酒精"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_shanghai_08",
+      "name": "白斩鸡",
+      "region": "本帮菜",
+      "city": "上海",
+      "ingredients": [
+        "三黄鸡",
+        "姜",
+        "葱",
+        "黄酒",
+        "生抽",
+        "香油"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆",
+        "芝麻",
+        "酒精"
+      ],
+      "tags": [
+        "凉菜",
+        "含禽肉",
+        "高蛋白",
+        "含酒精"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_shanghai_09",
+      "name": "本帮熏鱼",
+      "region": "本帮菜",
+      "city": "上海",
+      "ingredients": [
+        "草鱼",
+        "生抽",
+        "老抽",
+        "冰糖",
+        "五香粉",
+        "姜",
+        "黄酒"
+      ],
+      "method": "炸",
+      "flavors": [
+        "甜",
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "鱼类",
+        "大豆",
+        "酒精"
+      ],
+      "tags": [
+        "凉菜",
+        "高油",
+        "高糖",
+        "含海鲜",
+        "含酒精"
+      ],
+      "reference_price": 42
+    },
+    {
+      "id": "dish_shenyang_01",
+      "name": "熏鸡架",
+      "region": "辽菜",
+      "city": "沈阳",
+      "ingredients": [
+        "鸡架",
+        "酱油",
+        "白糖",
+        "花椒",
+        "八角",
+        "生姜",
+        "茶叶"
+      ],
+      "method": "卤",
+      "flavors": [
+        "五香",
+        "咸香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "含禽肉",
+        "高盐",
+        "高蛋白"
+      ],
+      "reference_price": 25
+    },
+    {
+      "id": "dish_shenyang_02",
+      "name": "老边饺子",
+      "region": "辽菜",
+      "city": "沈阳",
+      "ingredients": [
+        "面粉",
+        "猪肉",
+        "白菜",
+        "大葱",
+        "生姜",
+        "酱油",
+        "香油"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "葱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆",
+        "芝麻"
+      ],
+      "tags": [
+        "主食",
+        "含猪肉",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_shenyang_03",
+      "name": "白肉血肠",
+      "region": "辽菜",
+      "city": "沈阳",
+      "ingredients": [
+        "五花肉",
+        "血肠",
+        "酸菜",
+        "大葱",
+        "生姜",
+        "大蒜",
+        "酱油"
+      ],
+      "method": "炖",
+      "flavors": [
+        "咸鲜",
+        "蒜香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "汤羹",
+        "含猪肉",
+        "含内脏",
+        "高嘌呤",
+        "腌制",
+        "高盐"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_shenyang_04",
+      "name": "熘肉段",
+      "region": "辽菜",
+      "city": "沈阳",
+      "ingredients": [
+        "猪里脊",
+        "土豆淀粉",
+        "青椒",
+        "胡萝卜",
+        "酱油",
+        "香醋",
+        "大蒜"
+      ],
+      "method": "炒",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "油炸",
+        "高油",
+        "含猪肉",
+        "高盐"
+      ],
+      "reference_price": 38
+    },
+    {
+      "id": "dish_shenyang_05",
+      "name": "鸡架拌面",
+      "region": "辽菜",
+      "city": "沈阳",
+      "ingredients": [
+        "鸡架",
+        "面条",
+        "黄瓜丝",
+        "花生碎",
+        "辣椒油",
+        "香醋",
+        "蒜泥",
+        "芝麻酱"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "酸辣",
+        "蒜香"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "含麸质谷物",
+        "花生",
+        "芝麻"
+      ],
+      "tags": [
+        "主食",
+        "凉菜",
+        "含禽肉",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 18
+    },
+    {
+      "id": "dish_shenyang_06",
+      "name": "沈阳回头",
+      "region": "辽菜",
+      "city": "沈阳",
+      "ingredients": [
+        "面粉",
+        "牛肉",
+        "大葱",
+        "生姜",
+        "花椒水",
+        "食用油"
+      ],
+      "method": "煎",
+      "flavors": [
+        "咸鲜",
+        "葱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "主食",
+        "含牛肉",
+        "精制碳水",
+        "高油"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_shenyang_07",
+      "name": "扒肘子",
+      "region": "辽菜",
+      "city": "沈阳",
+      "ingredients": [
+        "猪肘",
+        "酱油",
+        "冰糖",
+        "八角",
+        "桂皮",
+        "大葱",
+        "生姜"
+      ],
+      "method": "扒",
+      "flavors": [
+        "酱香",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含猪肉",
+        "高油",
+        "高盐",
+        "高蛋白"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_shenyang_08",
+      "name": "西塔冷面",
+      "region": "辽菜",
+      "city": "沈阳",
+      "ingredients": [
+        "荞麦面",
+        "牛肉汤",
+        "牛肉片",
+        "鸡蛋",
+        "黄瓜",
+        "梨",
+        "辣白菜",
+        "香醋"
+      ],
+      "method": "煮",
+      "flavors": [
+        "酸甜",
+        "辣"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物",
+        "蛋类"
+      ],
+      "tags": [
+        "主食",
+        "凉菜",
+        "含牛肉",
+        "含蛋",
+        "精制碳水"
+      ],
+      "reference_price": 22
+    },
+    {
+      "id": "dish_suzhou_01",
+      "name": "松鼠鳜鱼",
+      "region": "苏帮菜",
+      "city": "苏州",
+      "ingredients": [
+        "鳜鱼",
+        "番茄酱",
+        "白糖",
+        "白醋",
+        "干淀粉",
+        "松子仁",
+        "蛋清"
+      ],
+      "method": "酥炸",
+      "flavors": [
+        "酸甜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "坚果",
+        "蛋类"
+      ],
+      "tags": [
+        "油炸",
+        "高糖",
+        "高油",
+        "含海鲜",
+        "含蛋"
+      ],
+      "reference_price": 138
+    },
+    {
+      "id": "dish_suzhou_02",
+      "name": "响油鳝糊",
+      "region": "苏帮菜",
+      "city": "苏州",
+      "ingredients": [
+        "鳝丝",
+        "蒜末",
+        "生抽",
+        "白糖",
+        "香油",
+        "胡椒粉",
+        "淀粉"
+      ],
+      "method": "炒",
+      "flavors": [
+        "咸鲜",
+        "蒜香",
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "鱼类",
+        "大豆",
+        "芝麻"
+      ],
+      "tags": [
+        "高油",
+        "高糖",
+        "含海鲜",
+        "高盐"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_suzhou_03",
+      "name": "樱桃肉",
+      "region": "苏帮菜",
+      "city": "苏州",
+      "ingredients": [
+        "五花肉",
+        "红曲米",
+        "冰糖",
+        "黄酒",
+        "生抽",
+        "姜"
+      ],
+      "method": "红烧",
+      "flavors": [
+        "甜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆",
+        "酒精"
+      ],
+      "tags": [
+        "高油",
+        "高糖",
+        "含猪肉",
+        "高盐",
+        "含酒精"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_suzhou_04",
+      "name": "碧螺虾仁",
+      "region": "苏帮菜",
+      "city": "苏州",
+      "ingredients": [
+        "河虾仁",
+        "碧螺春茶叶",
+        "蛋清",
+        "淀粉",
+        "熟猪油",
+        "盐"
+      ],
+      "method": "清炒",
+      "flavors": [
+        "鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "蛋类"
+      ],
+      "tags": [
+        "含海鲜",
+        "高蛋白",
+        "含咖啡因",
+        "含猪肉",
+        "含蛋"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_suzhou_05",
+      "name": "苏式焖肉面",
+      "region": "苏帮菜",
+      "city": "苏州",
+      "ingredients": [
+        "细面条",
+        "焖肉",
+        "猪骨汤",
+        "青蒜",
+        "猪油",
+        "盐"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "含猪肉",
+        "精制碳水",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 24
+    },
+    {
+      "id": "dish_suzhou_06",
+      "name": "酒酿圆子",
+      "region": "苏帮菜",
+      "city": "苏州",
+      "ingredients": [
+        "糯米小圆子",
+        "酒酿",
+        "白糖",
+        "干桂花",
+        "鸡蛋"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜",
+        "糟香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "蛋类",
+        "酒精"
+      ],
+      "tags": [
+        "甜品",
+        "高糖",
+        "精制碳水",
+        "含酒精",
+        "含蛋"
+      ],
+      "reference_price": 16
+    },
+    {
+      "id": "dish_suzhou_07",
+      "name": "苏式酱鸭",
+      "region": "苏帮菜",
+      "city": "苏州",
+      "ingredients": [
+        "光鸭",
+        "生抽",
+        "老抽",
+        "冰糖",
+        "八角",
+        "桂皮",
+        "黄酒"
+      ],
+      "method": "卤",
+      "flavors": [
+        "甜",
+        "酱香",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆",
+        "酒精"
+      ],
+      "tags": [
+        "凉菜",
+        "含禽肉",
+        "高糖",
+        "高盐",
+        "含酒精"
+      ],
+      "reference_price": 38
+    },
+    {
+      "id": "dish_suzhou_08",
+      "name": "鲃肺汤",
+      "region": "苏帮菜",
+      "city": "苏州",
+      "ingredients": [
+        "鲃鱼",
+        "鱼肝",
+        "火腿",
+        "香菇",
+        "笋片",
+        "盐"
+      ],
+      "method": "汤",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类"
+      ],
+      "tags": [
+        "汤羹",
+        "含海鲜",
+        "含内脏",
+        "高嘌呤",
+        "高蛋白",
+        "含猪肉"
+      ],
+      "reference_price": 98
+    },
+    {
+      "id": "dish_taiyuan_01",
+      "name": "过油肉",
+      "region": "晋菜",
+      "city": "太原",
+      "ingredients": [
+        "猪里脊",
+        "木耳",
+        "冬笋",
+        "蒜苗",
+        "鸡蛋",
+        "香醋",
+        "酱油",
+        "淀粉"
+      ],
+      "method": "炒",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "大豆",
+        "含麸质谷物",
+        "蛋类"
+      ],
+      "tags": [
+        "含猪肉",
+        "含蛋",
+        "高油",
+        "高盐",
+        "高蛋白"
+      ],
+      "reference_price": 42
+    },
+    {
+      "id": "dish_taiyuan_02",
+      "name": "刀削面",
+      "region": "晋菜",
+      "city": "太原",
+      "ingredients": [
+        "面粉",
+        "猪肉",
+        "番茄",
+        "老陈醋",
+        "小葱",
+        "香菜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "含猪肉",
+        "精制碳水"
+      ],
+      "reference_price": 16
+    },
+    {
+      "id": "dish_taiyuan_03",
+      "name": "莜面栲栳栳",
+      "region": "晋菜",
+      "city": "太原",
+      "ingredients": [
+        "莜面粉",
+        "羊肉",
+        "番茄",
+        "蒜",
+        "老陈醋",
+        "辣椒油"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸鲜",
+        "酸辣"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "蒸菜",
+        "含羊肉"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_taiyuan_04",
+      "name": "头脑",
+      "region": "晋菜",
+      "city": "太原",
+      "ingredients": [
+        "羊肉",
+        "长山药",
+        "莲藕",
+        "黄芪",
+        "黄酒",
+        "煨面粉",
+        "韭菜"
+      ],
+      "method": "羹",
+      "flavors": [
+        "咸鲜",
+        "糟香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "酒精"
+      ],
+      "tags": [
+        "汤羹",
+        "含羊肉",
+        "含酒精",
+        "高蛋白"
+      ],
+      "reference_price": 32
+    },
+    {
+      "id": "dish_taiyuan_05",
+      "name": "平遥牛肉",
+      "region": "晋菜",
+      "city": "太原",
+      "ingredients": [
+        "牛腱子",
+        "盐",
+        "花椒",
+        "八角",
+        "姜"
+      ],
+      "method": "卤",
+      "flavors": [
+        "咸香",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "凉菜",
+        "含牛肉",
+        "高盐",
+        "高蛋白"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_taiyuan_06",
+      "name": "羊杂割",
+      "region": "晋菜",
+      "city": "太原",
+      "ingredients": [
+        "羊肚",
+        "羊肠",
+        "羊肝",
+        "粉条",
+        "香菜",
+        "辣椒油",
+        "老陈醋"
+      ],
+      "method": "汤",
+      "flavors": [
+        "咸鲜",
+        "辣"
+      ],
+      "spicy_level": 1,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含羊肉",
+        "含内脏",
+        "高嘌呤",
+        "高盐"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_taiyuan_07",
+      "name": "荞面灌肠",
+      "region": "晋菜",
+      "city": "太原",
+      "ingredients": [
+        "荞面",
+        "蒜",
+        "老陈醋",
+        "辣椒油",
+        "盐"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "酸辣",
+        "蒜香"
+      ],
+      "spicy_level": 1,
+      "allergens": [],
+      "tags": [
+        "小吃",
+        "凉菜",
+        "高盐"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_taiyuan_08",
+      "name": "稍梅",
+      "region": "晋菜",
+      "city": "太原",
+      "ingredients": [
+        "面粉",
+        "羊肉馅",
+        "大葱",
+        "姜",
+        "花椒水",
+        "香油"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸鲜",
+        "葱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "芝麻"
+      ],
+      "tags": [
+        "小吃",
+        "蒸菜",
+        "含羊肉",
+        "精制碳水"
+      ],
+      "reference_price": 22
+    },
+    {
+      "id": "dish_tianjin_01",
+      "name": "狗不理包子",
+      "region": "津菜",
+      "city": "天津",
+      "ingredients": [
+        "面粉",
+        "猪肉馅",
+        "葱",
+        "姜",
+        "酱油",
+        "香油"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆",
+        "芝麻"
+      ],
+      "tags": [
+        "主食",
+        "含猪肉",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 36
+    },
+    {
+      "id": "dish_tianjin_02",
+      "name": "煎饼果子",
+      "region": "津菜",
+      "city": "天津",
+      "ingredients": [
+        "绿豆面",
+        "鸡蛋",
+        "油条",
+        "甜面酱",
+        "葱花",
+        "腐乳"
+      ],
+      "method": "煎",
+      "flavors": [
+        "咸香",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "蛋类",
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "小吃",
+        "含蛋",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_tianjin_03",
+      "name": "锅巴菜",
+      "region": "津菜",
+      "city": "天津",
+      "ingredients": [
+        "绿豆锅巴",
+        "卤汁",
+        "芝麻酱",
+        "腐乳",
+        "香菜",
+        "辣椒油"
+      ],
+      "method": "烩",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "芝麻",
+        "大豆"
+      ],
+      "tags": [
+        "小吃",
+        "高盐",
+        "精制碳水"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_tianjin_04",
+      "name": "罾蹦鲤鱼",
+      "region": "津菜",
+      "city": "天津",
+      "ingredients": [
+        "鲤鱼",
+        "白糖",
+        "醋",
+        "葱",
+        "姜",
+        "蒜",
+        "淀粉"
+      ],
+      "method": "炸",
+      "flavors": [
+        "酸甜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类"
+      ],
+      "tags": [
+        "油炸",
+        "含海鲜",
+        "高糖",
+        "高蛋白"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_tianjin_05",
+      "name": "八珍豆腐",
+      "region": "津菜",
+      "city": "天津",
+      "ingredients": [
+        "豆腐",
+        "虾仁",
+        "鱿鱼",
+        "海参",
+        "鸡丁",
+        "香菇",
+        "酱油"
+      ],
+      "method": "烩",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物",
+        "甲壳类",
+        "贝类/软体"
+      ],
+      "tags": [
+        "含海鲜",
+        "含禽肉",
+        "高蛋白",
+        "高盐"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_tianjin_06",
+      "name": "老爆三",
+      "region": "津菜",
+      "city": "天津",
+      "ingredients": [
+        "猪肝",
+        "猪腰",
+        "猪里脊",
+        "葱",
+        "蒜",
+        "酱油",
+        "醋"
+      ],
+      "method": "爆炒",
+      "flavors": [
+        "咸鲜",
+        "蒜香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含内脏",
+        "高嘌呤",
+        "含猪肉",
+        "高蛋白"
+      ],
+      "reference_price": 42
+    },
+    {
+      "id": "dish_tianjin_07",
+      "name": "老醋蜇皮",
+      "region": "津菜",
+      "city": "天津",
+      "ingredients": [
+        "海蜇皮",
+        "黄瓜",
+        "老醋",
+        "蒜",
+        "香油",
+        "盐"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "咸鲜",
+        "蒜香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "芝麻"
+      ],
+      "tags": [
+        "凉菜",
+        "含海鲜",
+        "高盐"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_tianjin_08",
+      "name": "贴饽饽熬鱼",
+      "region": "津菜",
+      "city": "天津",
+      "ingredients": [
+        "玉米面",
+        "小鲫鱼",
+        "甜面酱",
+        "葱",
+        "姜",
+        "蒜"
+      ],
+      "method": "炖",
+      "flavors": [
+        "酱香",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "含海鲜",
+        "高盐"
+      ],
+      "reference_price": 45
+    },
+    {
+      "id": "dish_wuhan_01",
+      "name": "热干面",
+      "region": "楚菜",
+      "city": "武汉",
+      "ingredients": [
+        "碱水面",
+        "芝麻酱",
+        "香油",
+        "酱油",
+        "萝卜干",
+        "小葱"
+      ],
+      "method": "煮",
+      "flavors": [
+        "酱香",
+        "咸香",
+        "葱香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物",
+        "芝麻",
+        "大豆"
+      ],
+      "tags": [
+        "主食",
+        "小吃",
+        "精制碳水",
+        "高油"
+      ],
+      "reference_price": 8
+    },
+    {
+      "id": "dish_wuhan_02",
+      "name": "三鲜豆皮",
+      "region": "楚菜",
+      "city": "武汉",
+      "ingredients": [
+        "绿豆米浆皮",
+        "糯米",
+        "鸡蛋",
+        "五花肉",
+        "香菇",
+        "笋丁",
+        "酱油"
+      ],
+      "method": "煎",
+      "flavors": [
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "蛋类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "精制碳水",
+        "高油",
+        "含猪肉",
+        "含蛋"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_wuhan_03",
+      "name": "排骨藕汤",
+      "region": "楚菜",
+      "city": "武汉",
+      "ingredients": [
+        "猪排骨",
+        "莲藕",
+        "姜",
+        "小葱",
+        "白胡椒粉"
+      ],
+      "method": "煨",
+      "flavors": [
+        "咸鲜",
+        "清淡"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含猪肉",
+        "高嘌呤"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_wuhan_04",
+      "name": "清蒸武昌鱼",
+      "region": "楚菜",
+      "city": "武汉",
+      "ingredients": [
+        "武昌鱼",
+        "姜",
+        "小葱",
+        "蒸鱼豉油",
+        "红椒丝",
+        "香菜"
+      ],
+      "method": "清蒸",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "蒸菜",
+        "含海鲜",
+        "高蛋白",
+        "中嘌呤"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_wuhan_05",
+      "name": "沔阳三蒸",
+      "region": "楚菜",
+      "city": "武汉",
+      "ingredients": [
+        "五花肉",
+        "草鱼",
+        "莲藕",
+        "大米粉",
+        "姜",
+        "小葱"
+      ],
+      "method": "粉蒸",
+      "flavors": [
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "鱼类"
+      ],
+      "tags": [
+        "蒸菜",
+        "含猪肉",
+        "含海鲜",
+        "中嘌呤"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_wuhan_06",
+      "name": "鸭脖",
+      "region": "楚菜",
+      "city": "武汉",
+      "ingredients": [
+        "鸭脖",
+        "干辣椒",
+        "花椒",
+        "八角",
+        "桂皮",
+        "酱油",
+        "冰糖"
+      ],
+      "method": "卤",
+      "flavors": [
+        "辣",
+        "五香",
+        "咸香"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "含禽肉",
+        "高盐"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_wuhan_07",
+      "name": "酸辣藕带",
+      "region": "楚菜",
+      "city": "武汉",
+      "ingredients": [
+        "藕带",
+        "泡椒",
+        "米醋",
+        "蒜",
+        "香油",
+        "盐"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "酸辣",
+        "蒜香"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "芝麻"
+      ],
+      "tags": [
+        "凉菜",
+        "腌制",
+        "高盐"
+      ],
+      "reference_price": 26
+    },
+    {
+      "id": "dish_wuhan_08",
+      "name": "菜薹炒腊肉",
+      "region": "楚菜",
+      "city": "武汉",
+      "ingredients": [
+        "洪山菜薹",
+        "腊肉",
+        "蒜",
+        "干辣椒",
+        "盐"
+      ],
+      "method": "炒",
+      "flavors": [
+        "咸香",
+        "辣"
+      ],
+      "spicy_level": 1,
+      "allergens": [],
+      "tags": [
+        "含猪肉",
+        "加工肉",
+        "高盐",
+        "高油"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_wulumuqi_01",
+      "name": "大盘鸡",
+      "region": "新疆菜",
+      "city": "乌鲁木齐",
+      "ingredients": [
+        "土鸡",
+        "土豆",
+        "青椒",
+        "皮带面",
+        "干辣椒",
+        "花椒",
+        "豆瓣酱",
+        "生姜"
+      ],
+      "method": "炖",
+      "flavors": [
+        "辣",
+        "咸香"
+      ],
+      "spicy_level": 3,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "含禽肉",
+        "高油",
+        "高盐",
+        "精制碳水"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_wulumuqi_02",
+      "name": "手抓饭",
+      "region": "新疆菜",
+      "city": "乌鲁木齐",
+      "ingredients": [
+        "羊肉",
+        "大米",
+        "胡萝卜",
+        "洋葱",
+        "孜然",
+        "羊油"
+      ],
+      "method": "焖",
+      "flavors": [
+        "咸鲜",
+        "孜然"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "主食",
+        "含羊肉",
+        "高油",
+        "精制碳水"
+      ],
+      "reference_price": 35
+    },
+    {
+      "id": "dish_wulumuqi_03",
+      "name": "烤包子",
+      "region": "新疆菜",
+      "city": "乌鲁木齐",
+      "ingredients": [
+        "面粉",
+        "羊肉",
+        "洋葱",
+        "孜然",
+        "羊油",
+        "黑胡椒"
+      ],
+      "method": "烤",
+      "flavors": [
+        "孜然",
+        "咸香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "主食",
+        "含羊肉",
+        "烧烤",
+        "精制碳水"
+      ],
+      "reference_price": 8
+    },
+    {
+      "id": "dish_wulumuqi_04",
+      "name": "馕坑肉",
+      "region": "新疆菜",
+      "city": "乌鲁木齐",
+      "ingredients": [
+        "羊肉",
+        "洋葱",
+        "孜然",
+        "辣椒面",
+        "盐",
+        "鸡蛋"
+      ],
+      "method": "烤",
+      "flavors": [
+        "孜然",
+        "咸香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "蛋类"
+      ],
+      "tags": [
+        "含羊肉",
+        "烧烤",
+        "高蛋白",
+        "高盐",
+        "含蛋"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_wulumuqi_05",
+      "name": "拉条子",
+      "region": "新疆菜",
+      "city": "乌鲁木齐",
+      "ingredients": [
+        "面粉",
+        "羊肉",
+        "西红柿",
+        "青椒",
+        "洋葱",
+        "大蒜",
+        "香醋"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "辣"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "精制碳水",
+        "含羊肉",
+        "高油"
+      ],
+      "reference_price": 30
+    },
+    {
+      "id": "dish_wulumuqi_06",
+      "name": "椒麻鸡",
+      "region": "新疆菜",
+      "city": "乌鲁木齐",
+      "ingredients": [
+        "土鸡",
+        "花椒",
+        "麻椒",
+        "洋葱",
+        "线辣椒",
+        "香醋",
+        "生姜"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "椒麻",
+        "辣"
+      ],
+      "spicy_level": 2,
+      "allergens": [],
+      "tags": [
+        "凉菜",
+        "含禽肉",
+        "高盐",
+        "高蛋白"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_wulumuqi_07",
+      "name": "缸子肉",
+      "region": "新疆菜",
+      "city": "乌鲁木齐",
+      "ingredients": [
+        "羊肉",
+        "洋葱",
+        "胡萝卜",
+        "盐",
+        "孜然",
+        "香菜"
+      ],
+      "method": "炖",
+      "flavors": [
+        "咸鲜",
+        "孜然"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含羊肉",
+        "高蛋白",
+        "高盐"
+      ],
+      "reference_price": 32
+    },
+    {
+      "id": "dish_wulumuqi_08",
+      "name": "包尔萨克",
+      "region": "新疆菜",
+      "city": "乌鲁木齐",
+      "ingredients": [
+        "面粉",
+        "牛奶",
+        "鸡蛋",
+        "黄油",
+        "白糖",
+        "酵母"
+      ],
+      "method": "炸",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "乳制品",
+        "蛋类"
+      ],
+      "tags": [
+        "小吃",
+        "油炸",
+        "含乳",
+        "含蛋",
+        "高糖"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_xiamen_01",
+      "name": "沙茶面",
+      "region": "闽南菜",
+      "city": "厦门",
+      "ingredients": [
+        "碱水面",
+        "沙茶酱",
+        "猪骨汤",
+        "鲜虾",
+        "豆干",
+        "豆芽"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "香辣"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "花生",
+        "甲壳类",
+        "鱼类",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "汤羹",
+        "含猪肉",
+        "含海鲜",
+        "高盐"
+      ],
+      "reference_price": 22
+    },
+    {
+      "id": "dish_xiamen_02",
+      "name": "土笋冻",
+      "region": "闽南菜",
+      "city": "厦门",
+      "ingredients": [
+        "土笋",
+        "盐",
+        "酱油",
+        "蒜",
+        "香醋",
+        "芥末"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "蒜香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "凉菜",
+        "小吃",
+        "含海鲜",
+        "高蛋白"
+      ],
+      "reference_price": 25
+    },
+    {
+      "id": "dish_xiamen_03",
+      "name": "姜母鸭",
+      "region": "闽南菜",
+      "city": "厦门",
+      "ingredients": [
+        "番鸭",
+        "老姜",
+        "米酒",
+        "黑麻油",
+        "当归",
+        "枸杞"
+      ],
+      "method": "煲",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "酒精",
+        "芝麻"
+      ],
+      "tags": [
+        "含禽肉",
+        "含酒精",
+        "汤羹",
+        "高油"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_xiamen_04",
+      "name": "海蛎煎",
+      "region": "闽南菜",
+      "city": "厦门",
+      "ingredients": [
+        "海蛎",
+        "地瓜粉",
+        "鸡蛋",
+        "青蒜",
+        "猪油",
+        "甜辣酱"
+      ],
+      "method": "煎",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "贝类/软体",
+        "蛋类"
+      ],
+      "tags": [
+        "小吃",
+        "含海鲜",
+        "含蛋",
+        "含猪肉",
+        "高油"
+      ],
+      "reference_price": 30
+    },
+    {
+      "id": "dish_xiamen_05",
+      "name": "同安封肉",
+      "region": "闽南菜",
+      "city": "厦门",
+      "ingredients": [
+        "五花肉",
+        "板栗",
+        "香菇",
+        "虾米",
+        "酱油",
+        "冰糖"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物",
+        "甲壳类"
+      ],
+      "tags": [
+        "含猪肉",
+        "高油",
+        "高盐",
+        "蒸菜",
+        "含海鲜"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_xiamen_06",
+      "name": "烧肉粽",
+      "region": "闽南菜",
+      "city": "厦门",
+      "ingredients": [
+        "糯米",
+        "五花肉",
+        "咸蛋黄",
+        "香菇",
+        "虾米",
+        "酱油"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物",
+        "甲壳类",
+        "蛋类"
+      ],
+      "tags": [
+        "主食",
+        "小吃",
+        "含猪肉",
+        "含蛋",
+        "含海鲜",
+        "高油"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_xiamen_07",
+      "name": "酱油水小管",
+      "region": "闽南菜",
+      "city": "厦门",
+      "ingredients": [
+        "小管",
+        "酱油",
+        "姜",
+        "蒜",
+        "青蒜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "贝类/软体",
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含海鲜",
+        "高盐",
+        "高蛋白",
+        "中嘌呤"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_xiamen_08",
+      "name": "花生汤",
+      "region": "闽南菜",
+      "city": "厦门",
+      "ingredients": [
+        "花生仁",
+        "白糖",
+        "鸡蛋",
+        "食用碱"
+      ],
+      "method": "煮",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "花生",
+        "蛋类"
+      ],
+      "tags": [
+        "甜品",
+        "高糖",
+        "高钾",
+        "含蛋"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_xian_01",
+      "name": "肉夹馍",
+      "region": "陕菜",
+      "city": "西安",
+      "ingredients": [
+        "五花肉",
+        "白吉馍",
+        "酱油",
+        "八角",
+        "桂皮",
+        "生姜",
+        "冰糖"
+      ],
+      "method": "卤",
+      "flavors": [
+        "咸香",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "主食",
+        "小吃",
+        "含猪肉",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_xian_02",
+      "name": "羊肉泡馍",
+      "region": "陕菜",
+      "city": "西安",
+      "ingredients": [
+        "羊肉",
+        "羊骨",
+        "饦饦馍",
+        "粉丝",
+        "木耳",
+        "香菜",
+        "糖蒜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "汤羹",
+        "含羊肉",
+        "精制碳水",
+        "高蛋白"
+      ],
+      "reference_price": 38
+    },
+    {
+      "id": "dish_xian_03",
+      "name": "biangbiang面",
+      "region": "陕菜",
+      "city": "西安",
+      "ingredients": [
+        "面粉",
+        "辣椒面",
+        "大蒜",
+        "青菜",
+        "菜籽油",
+        "香醋",
+        "盐"
+      ],
+      "method": "煮",
+      "flavors": [
+        "辣",
+        "咸香"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "主食",
+        "精制碳水",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 22
+    },
+    {
+      "id": "dish_xian_04",
+      "name": "葫芦头泡馍",
+      "region": "陕菜",
+      "city": "西安",
+      "ingredients": [
+        "猪大肠",
+        "猪肚",
+        "馍块",
+        "粉丝",
+        "蒜苗",
+        "花椒",
+        "酱油"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "汤羹",
+        "主食",
+        "含猪肉",
+        "含内脏",
+        "高嘌呤",
+        "高盐"
+      ],
+      "reference_price": 35
+    },
+    {
+      "id": "dish_xian_05",
+      "name": "臊子面",
+      "region": "陕菜",
+      "city": "西安",
+      "ingredients": [
+        "面条",
+        "猪肉末",
+        "胡萝卜",
+        "豆腐",
+        "木耳",
+        "鸡蛋皮",
+        "香醋"
+      ],
+      "method": "煮",
+      "flavors": [
+        "酸辣",
+        "咸鲜"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "含麸质谷物",
+        "大豆",
+        "蛋类"
+      ],
+      "tags": [
+        "主食",
+        "汤羹",
+        "含猪肉",
+        "含蛋",
+        "精制碳水"
+      ],
+      "reference_price": 18
+    },
+    {
+      "id": "dish_xian_06",
+      "name": "凉皮",
+      "region": "陕菜",
+      "city": "西安",
+      "ingredients": [
+        "面皮",
+        "黄瓜丝",
+        "绿豆芽",
+        "辣椒油",
+        "香醋",
+        "蒜水",
+        "芝麻酱"
+      ],
+      "method": "凉拌",
+      "flavors": [
+        "酸辣",
+        "蒜香"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "含麸质谷物",
+        "芝麻"
+      ],
+      "tags": [
+        "凉菜",
+        "小吃",
+        "精制碳水",
+        "高盐"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_xian_07",
+      "name": "肉丸胡辣汤",
+      "region": "陕菜",
+      "city": "西安",
+      "ingredients": [
+        "牛肉丸",
+        "土豆",
+        "胡萝卜",
+        "莲花白",
+        "花椒",
+        "淀粉",
+        "辣椒"
+      ],
+      "method": "羹",
+      "flavors": [
+        "麻",
+        "咸鲜"
+      ],
+      "spicy_level": 2,
+      "allergens": [],
+      "tags": [
+        "汤羹",
+        "含牛肉",
+        "高盐",
+        "精制碳水"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_xian_08",
+      "name": "葫芦鸡",
+      "region": "陕菜",
+      "city": "西安",
+      "ingredients": [
+        "整鸡",
+        "花椒",
+        "八角",
+        "桂皮",
+        "生姜",
+        "大葱",
+        "料酒"
+      ],
+      "method": "酥炸",
+      "flavors": [
+        "五香",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "含禽肉",
+        "油炸",
+        "高油",
+        "高蛋白"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_xian_09",
+      "name": "甑糕",
+      "region": "陕菜",
+      "city": "西安",
+      "ingredients": [
+        "糯米",
+        "红枣",
+        "芸豆",
+        "白糖"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "甜品",
+        "小吃",
+        "高糖",
+        "精制碳水"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_yangzhou_01",
+      "name": "大煮干丝",
+      "region": "淮扬菜",
+      "city": "扬州",
+      "ingredients": [
+        "豆腐干",
+        "鸡丝",
+        "虾仁",
+        "火腿",
+        "鸡汤",
+        "姜"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "大豆"
+      ],
+      "tags": [
+        "汤羹",
+        "高蛋白",
+        "含海鲜",
+        "含禽肉",
+        "含猪肉"
+      ],
+      "reference_price": 42
+    },
+    {
+      "id": "dish_yangzhou_02",
+      "name": "蟹粉狮子头",
+      "region": "淮扬菜",
+      "city": "扬州",
+      "ingredients": [
+        "猪五花肉",
+        "蟹粉",
+        "蟹黄",
+        "马蹄",
+        "鸡蛋",
+        "青菜",
+        "姜"
+      ],
+      "method": "炖",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "蛋类"
+      ],
+      "tags": [
+        "汤羹",
+        "含猪肉",
+        "含海鲜",
+        "含蛋",
+        "高油"
+      ],
+      "reference_price": 78
+    },
+    {
+      "id": "dish_yangzhou_03",
+      "name": "扬州炒饭",
+      "region": "淮扬菜",
+      "city": "扬州",
+      "ingredients": [
+        "米饭",
+        "鸡蛋",
+        "虾仁",
+        "火腿",
+        "青豆",
+        "胡萝卜",
+        "葱"
+      ],
+      "method": "炒",
+      "flavors": [
+        "咸鲜",
+        "葱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "甲壳类",
+        "蛋类"
+      ],
+      "tags": [
+        "主食",
+        "精制碳水",
+        "含蛋",
+        "含海鲜",
+        "高油",
+        "含猪肉"
+      ],
+      "reference_price": 28
+    },
+    {
+      "id": "dish_yangzhou_04",
+      "name": "文思豆腐",
+      "region": "淮扬菜",
+      "city": "扬州",
+      "ingredients": [
+        "嫩豆腐",
+        "鸡脯肉",
+        "火腿",
+        "香菇",
+        "笋",
+        "鸡汤"
+      ],
+      "method": "羹",
+      "flavors": [
+        "清淡",
+        "鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆"
+      ],
+      "tags": [
+        "汤羹",
+        "高蛋白",
+        "含禽肉",
+        "含猪肉"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_yangzhou_05",
+      "name": "三丁包",
+      "region": "淮扬菜",
+      "city": "扬州",
+      "ingredients": [
+        "面粉",
+        "五花肉丁",
+        "鸡丁",
+        "笋丁",
+        "酱油",
+        "酵母"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸鲜",
+        "酱香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "小吃",
+        "蒸菜",
+        "精制碳水",
+        "含猪肉",
+        "含禽肉"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_yangzhou_06",
+      "name": "扬州老鹅",
+      "region": "淮扬菜",
+      "city": "扬州",
+      "ingredients": [
+        "鹅",
+        "粗盐",
+        "花椒",
+        "八角",
+        "姜",
+        "葱"
+      ],
+      "method": "卤",
+      "flavors": [
+        "咸鲜",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "凉菜",
+        "腌制",
+        "含禽肉",
+        "高盐",
+        "高蛋白"
+      ],
+      "reference_price": 58
+    },
+    {
+      "id": "dish_yangzhou_07",
+      "name": "拆烩鲢鱼头",
+      "region": "淮扬菜",
+      "city": "扬州",
+      "ingredients": [
+        "鲢鱼头",
+        "火腿",
+        "香菇",
+        "笋片",
+        "鸡汤",
+        "黄酒",
+        "姜"
+      ],
+      "method": "烩",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "酒精"
+      ],
+      "tags": [
+        "汤羹",
+        "含海鲜",
+        "高蛋白",
+        "含禽肉",
+        "高油",
+        "含猪肉",
+        "含酒精"
+      ],
+      "reference_price": 88
+    },
+    {
+      "id": "dish_yangzhou_08",
+      "name": "千层油糕",
+      "region": "淮扬菜",
+      "city": "扬州",
+      "ingredients": [
+        "面粉",
+        "猪油",
+        "白糖",
+        "酵母",
+        "青红丝"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "小吃",
+        "高糖",
+        "高油",
+        "精制碳水",
+        "含猪肉"
+      ],
+      "reference_price": 15
+    },
+    {
+      "id": "dish_yangzhou_09",
+      "name": "三套鸭",
+      "region": "淮扬菜",
+      "city": "扬州",
+      "ingredients": [
+        "家鸭",
+        "野鸭",
+        "乳鸽",
+        "火腿",
+        "笋",
+        "黄酒"
+      ],
+      "method": "炖",
+      "flavors": [
+        "鲜",
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "酒精"
+      ],
+      "tags": [
+        "汤羹",
+        "含禽肉",
+        "高蛋白",
+        "高油",
+        "含猪肉",
+        "含酒精"
+      ],
+      "reference_price": 158
+    },
+    {
+      "id": "dish_zhengzhou_01",
+      "name": "羊肉烩面",
+      "region": "豫菜",
+      "city": "郑州",
+      "ingredients": [
+        "烩面片",
+        "羊肉",
+        "羊骨汤",
+        "粉条",
+        "豆腐皮",
+        "香菜",
+        "海带丝"
+      ],
+      "method": "煮",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物",
+        "大豆"
+      ],
+      "tags": [
+        "主食",
+        "汤羹",
+        "含羊肉",
+        "高嘌呤"
+      ],
+      "reference_price": 22
+    },
+    {
+      "id": "dish_zhengzhou_02",
+      "name": "胡辣汤",
+      "region": "豫菜",
+      "city": "郑州",
+      "ingredients": [
+        "牛肉",
+        "面筋",
+        "粉条",
+        "海带",
+        "胡椒",
+        "黄花菜",
+        "木耳",
+        "香醋"
+      ],
+      "method": "煮",
+      "flavors": [
+        "酸辣",
+        "咸鲜"
+      ],
+      "spicy_level": 2,
+      "allergens": [
+        "含麸质谷物"
+      ],
+      "tags": [
+        "汤羹",
+        "含牛肉",
+        "高盐",
+        "中嘌呤"
+      ],
+      "reference_price": 10
+    },
+    {
+      "id": "dish_zhengzhou_03",
+      "name": "道口烧鸡",
+      "region": "豫菜",
+      "city": "郑州",
+      "ingredients": [
+        "童子鸡",
+        "八角",
+        "桂皮",
+        "砂仁",
+        "蜂蜜",
+        "酱油"
+      ],
+      "method": "卤",
+      "flavors": [
+        "五香",
+        "咸香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "大豆",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含禽肉",
+        "高盐",
+        "凉菜"
+      ],
+      "reference_price": 68
+    },
+    {
+      "id": "dish_zhengzhou_04",
+      "name": "鲤鱼焙面",
+      "region": "豫菜",
+      "city": "郑州",
+      "ingredients": [
+        "黄河鲤鱼",
+        "面粉",
+        "白糖",
+        "香醋",
+        "淀粉",
+        "姜"
+      ],
+      "method": "炸",
+      "flavors": [
+        "酸甜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "鱼类",
+        "含麸质谷物"
+      ],
+      "tags": [
+        "含海鲜",
+        "油炸",
+        "高糖",
+        "高油"
+      ],
+      "reference_price": 98
+    },
+    {
+      "id": "dish_zhengzhou_05",
+      "name": "炸紫酥肉",
+      "region": "豫菜",
+      "city": "郑州",
+      "ingredients": [
+        "五花肉",
+        "面粉",
+        "鸡蛋",
+        "花椒",
+        "甜面酱",
+        "大葱"
+      ],
+      "method": "酥炸",
+      "flavors": [
+        "咸香",
+        "五香"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "蛋类",
+        "大豆"
+      ],
+      "tags": [
+        "含猪肉",
+        "含蛋",
+        "油炸",
+        "高油",
+        "高盐"
+      ],
+      "reference_price": 48
+    },
+    {
+      "id": "dish_zhengzhou_06",
+      "name": "灌汤包",
+      "region": "豫菜",
+      "city": "郑州",
+      "ingredients": [
+        "面粉",
+        "猪肉馅",
+        "猪皮冻",
+        "姜",
+        "小葱",
+        "香油"
+      ],
+      "method": "蒸",
+      "flavors": [
+        "咸鲜"
+      ],
+      "spicy_level": 0,
+      "allergens": [
+        "含麸质谷物",
+        "芝麻"
+      ],
+      "tags": [
+        "小吃",
+        "主食",
+        "含猪肉",
+        "精制碳水"
+      ],
+      "reference_price": 26
+    },
+    {
+      "id": "dish_zhengzhou_07",
+      "name": "浆面条",
+      "region": "豫菜",
+      "city": "郑州",
+      "ingredients": [
+        "面条",
+        "绿豆酸浆",
+        "芹菜",
+        "黄豆",
+        "辣椒油",
+        "芝麻酱"
+      ],
+      "method": "煮",
+      "flavors": [
+        "酸辣",
+        "咸鲜"
+      ],
+      "spicy_level": 1,
+      "allergens": [
+        "含麸质谷物",
+        "大豆",
+        "芝麻"
+      ],
+      "tags": [
+        "主食",
+        "小吃",
+        "精制碳水"
+      ],
+      "reference_price": 12
+    },
+    {
+      "id": "dish_zhengzhou_08",
+      "name": "垛子羊肉",
+      "region": "豫菜",
+      "city": "郑州",
+      "ingredients": [
+        "羊肉",
+        "花椒",
+        "八角",
+        "姜",
+        "盐",
+        "香醋"
+      ],
+      "method": "卤",
+      "flavors": [
+        "五香",
+        "咸香"
+      ],
+      "spicy_level": 0,
+      "allergens": [],
+      "tags": [
+        "凉菜",
+        "含羊肉",
+        "高盐",
+        "高蛋白"
+      ],
+      "reference_price": 58
+    }
+  ]
+}

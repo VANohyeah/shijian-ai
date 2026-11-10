@@ -1,0 +1,404 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-11-09",
+  "count": 30,
+  "cities": [
+    {
+      "id": "beijing",
+      "name": "北京",
+      "province": "北京",
+      "area": "华北",
+      "region": "京菜",
+      "spicy_baseline": 1,
+      "aliases": [
+        "京城",
+        "北平"
+      ],
+      "intro": "宫廷菜与市井小吃并存，酱香、卤煮、爆炒是底色，重咸重酱。",
+      "dish_count": 9
+    },
+    {
+      "id": "tianjin",
+      "name": "天津",
+      "province": "天津",
+      "area": "华北",
+      "region": "津菜",
+      "spicy_baseline": 1,
+      "aliases": [
+        "津门"
+      ],
+      "intro": "河海两鲜加市井早点，讲究咸鲜与本味，小吃比大菜更出名。",
+      "dish_count": 8
+    },
+    {
+      "id": "taiyuan",
+      "name": "太原",
+      "province": "山西",
+      "area": "华北",
+      "region": "晋菜",
+      "spicy_baseline": 2,
+      "aliases": [
+        "并州"
+      ],
+      "intro": "面食王国，醋与杂粮是主角，咸酸厚实、碳水密度极高。",
+      "dish_count": 8
+    },
+    {
+      "id": "haerbin",
+      "name": "哈尔滨",
+      "province": "黑龙江",
+      "area": "东北",
+      "region": "东北菜",
+      "spicy_baseline": 1,
+      "aliases": [
+        "冰城"
+      ],
+      "intro": "俄式影响加东北大盘，熏酱、红肠、锅包肉，份量大、油盐足。",
+      "dish_count": 9
+    },
+    {
+      "id": "shenyang",
+      "name": "沈阳",
+      "province": "辽宁",
+      "area": "东北",
+      "region": "辽菜",
+      "spicy_baseline": 1,
+      "aliases": [
+        "盛京"
+      ],
+      "intro": "满族菜底子，烧扒熘炖见长，重油重酱，鸡架与烧烤是夜宵主角。",
+      "dish_count": 8
+    },
+    {
+      "id": "shanghai",
+      "name": "上海",
+      "province": "上海",
+      "area": "华东",
+      "region": "本帮菜",
+      "spicy_baseline": 0,
+      "aliases": [
+        "沪上",
+        "申城"
+      ],
+      "intro": "浓油赤酱与清鲜并重，糖是隐藏主角，红烧类普遍偏甜。",
+      "dish_count": 9
+    },
+    {
+      "id": "nanjing",
+      "name": "南京",
+      "province": "江苏",
+      "area": "华东",
+      "region": "金陵菜",
+      "spicy_baseline": 1,
+      "aliases": [
+        "金陵"
+      ],
+      "intro": "鸭馔之都，盐水鸭、鸭血粉丝，咸鲜为主，讲究刀工与汤功。",
+      "dish_count": 8
+    },
+    {
+      "id": "suzhou",
+      "name": "苏州",
+      "province": "江苏",
+      "area": "华东",
+      "region": "苏帮菜",
+      "spicy_baseline": 0,
+      "aliases": [
+        "姑苏"
+      ],
+      "intro": "甜出头、咸收口，时令与河鲜讲究，松鼠鳜鱼是门面。",
+      "dish_count": 8
+    },
+    {
+      "id": "yangzhou",
+      "name": "扬州",
+      "province": "江苏",
+      "area": "华东",
+      "region": "淮扬菜",
+      "spicy_baseline": 0,
+      "aliases": [
+        "广陵"
+      ],
+      "intro": "刀工与火候的教科书，清鲜平和，早茶点心自成体系。",
+      "dish_count": 9
+    },
+    {
+      "id": "hangzhou",
+      "name": "杭州",
+      "province": "浙江",
+      "area": "华东",
+      "region": "杭帮菜",
+      "spicy_baseline": 0,
+      "aliases": [
+        "临安",
+        "杭城"
+      ],
+      "intro": "清淡鲜甜，善用笋、火腿、河鲜，讲究原味与出品形态。",
+      "dish_count": 8
+    },
+    {
+      "id": "ningbo",
+      "name": "宁波",
+      "province": "浙江",
+      "area": "华东",
+      "region": "甬帮菜",
+      "spicy_baseline": 0,
+      "aliases": [
+        "甬城"
+      ],
+      "intro": "咸鲜到极致，腌渍海鲜是灵魂，咸得直白、鲜得彻底。",
+      "dish_count": 8
+    },
+    {
+      "id": "fuzhou",
+      "name": "福州",
+      "province": "福建",
+      "area": "华东",
+      "region": "闽菜",
+      "spicy_baseline": 0,
+      "aliases": [
+        "榕城"
+      ],
+      "intro": "汤菜见长，善用红糟与虾油，酸甜与糟香并行。",
+      "dish_count": 8
+    },
+    {
+      "id": "xiamen",
+      "name": "厦门",
+      "province": "福建",
+      "area": "华东",
+      "region": "闽南菜",
+      "spicy_baseline": 1,
+      "aliases": [
+        "鹭岛"
+      ],
+      "intro": "沙茶与海鲜当家，小吃密度极高，甜辣酱是标配蘸料。",
+      "dish_count": 8
+    },
+    {
+      "id": "qingdao",
+      "name": "青岛",
+      "province": "山东",
+      "area": "华东",
+      "region": "鲁菜",
+      "spicy_baseline": 1,
+      "aliases": [
+        "岛城"
+      ],
+      "intro": "胶东海鲜加鲁菜底子，咸鲜为主，葱烧与爆炒见功夫。",
+      "dish_count": 8
+    },
+    {
+      "id": "zhengzhou",
+      "name": "郑州",
+      "province": "河南",
+      "area": "华中",
+      "region": "豫菜",
+      "spicy_baseline": 1,
+      "aliases": [
+        "中原"
+      ],
+      "intro": "中和之味，汤面与烩菜发达，讲究『五味调和』不偏不倚。",
+      "dish_count": 8
+    },
+    {
+      "id": "wuhan",
+      "name": "武汉",
+      "province": "湖北",
+      "area": "华中",
+      "region": "楚菜",
+      "spicy_baseline": 2,
+      "aliases": [
+        "江城"
+      ],
+      "intro": "江湖气重，蒸煨见长，热干面与鸭脖定义了城市味觉。",
+      "dish_count": 8
+    },
+    {
+      "id": "changsha",
+      "name": "长沙",
+      "province": "湖南",
+      "area": "华中",
+      "region": "湘菜",
+      "spicy_baseline": 3,
+      "aliases": [
+        "星城"
+      ],
+      "intro": "香辣与烟熏并重，剁椒、腊味、小炒黄牛肉，辣得直接。",
+      "dish_count": 9
+    },
+    {
+      "id": "guangzhou",
+      "name": "广州",
+      "province": "广东",
+      "area": "华南",
+      "region": "粤菜",
+      "spicy_baseline": 0,
+      "aliases": [
+        "羊城",
+        "穗"
+      ],
+      "intro": "清鲜本味，老火汤与蒸菜为主，讲究镬气与食材新鲜度。",
+      "dish_count": 9
+    },
+    {
+      "id": "foshan",
+      "name": "佛山",
+      "province": "广东",
+      "area": "华南",
+      "region": "顺德菜",
+      "spicy_baseline": 0,
+      "aliases": [
+        "顺德"
+      ],
+      "intro": "『食在广州，厨出凤城』，蒸鱼、鱼生、双皮奶都是招牌。",
+      "dish_count": 8
+    },
+    {
+      "id": "chaozhou",
+      "name": "潮州",
+      "province": "广东",
+      "area": "华南",
+      "region": "潮州菜",
+      "spicy_baseline": 0,
+      "aliases": [
+        "潮汕"
+      ],
+      "intro": "清而不淡，卤水与海鲜见长，酱碟与功夫茶是仪式感的一部分。",
+      "dish_count": 9
+    },
+    {
+      "id": "guilin",
+      "name": "桂林",
+      "province": "广西",
+      "area": "华南",
+      "region": "桂菜",
+      "spicy_baseline": 2,
+      "aliases": [
+        "八桂"
+      ],
+      "intro": "酸辣开胃，米粉与酸笋是灵魂，啤酒鱼是头牌。",
+      "dish_count": 8
+    },
+    {
+      "id": "haikou",
+      "name": "海口",
+      "province": "海南",
+      "area": "华南",
+      "region": "琼菜",
+      "spicy_baseline": 1,
+      "aliases": [
+        "椰城"
+      ],
+      "intro": "原味清淡，椰子与海鲜为主，蘸料桔子汁配黄灯笼酱。",
+      "dish_count": 8
+    },
+    {
+      "id": "chengdu",
+      "name": "成都",
+      "province": "四川",
+      "area": "西南",
+      "region": "川菜",
+      "spicy_baseline": 3,
+      "aliases": [
+        "蓉城",
+        "锦官城"
+      ],
+      "intro": "麻辣鲜香，复合味型最多，红油与花椒是城市底色。",
+      "dish_count": 9
+    },
+    {
+      "id": "chongqing",
+      "name": "重庆",
+      "province": "重庆",
+      "area": "西南",
+      "region": "渝菜",
+      "spicy_baseline": 4,
+      "aliases": [
+        "山城",
+        "巴渝"
+      ],
+      "intro": "江湖菜与火锅发源地，麻辣厚重，重油重辣不讲客气。",
+      "dish_count": 9
+    },
+    {
+      "id": "guiyang",
+      "name": "贵阳",
+      "province": "贵州",
+      "area": "西南",
+      "region": "黔菜",
+      "spicy_baseline": 3,
+      "aliases": [
+        "筑城"
+      ],
+      "intro": "酸辣为主，酸汤与糊辣椒是灵魂，折耳根是分水岭。",
+      "dish_count": 8
+    },
+    {
+      "id": "kunming",
+      "name": "昆明",
+      "province": "云南",
+      "area": "西南",
+      "region": "滇菜",
+      "spicy_baseline": 2,
+      "aliases": [
+        "春城"
+      ],
+      "intro": "食材奇异丰富，菌子与鲜花入馔，酸辣与清鲜并存。",
+      "dish_count": 8
+    },
+    {
+      "id": "xian",
+      "name": "西安",
+      "province": "陕西",
+      "area": "西北",
+      "region": "陕菜",
+      "spicy_baseline": 2,
+      "aliases": [
+        "长安"
+      ],
+      "intro": "碳水与香料之都，泡馍、肉夹馍、油泼面，咸辣厚重。",
+      "dish_count": 9
+    },
+    {
+      "id": "lanzhou",
+      "name": "兰州",
+      "province": "甘肃",
+      "area": "西北",
+      "region": "陇菜",
+      "spicy_baseline": 2,
+      "aliases": [
+        "金城"
+      ],
+      "intro": "一碗牛肉面定江山，羊肉与面食为主，香料味突出。",
+      "dish_count": 8
+    },
+    {
+      "id": "wulumuqi",
+      "name": "乌鲁木齐",
+      "province": "新疆",
+      "area": "西北",
+      "region": "新疆菜",
+      "spicy_baseline": 2,
+      "aliases": [
+        "乌市",
+        "迪化"
+      ],
+      "intro": "孜然与羊肉的主场，大盘鸡、手抓饭、烤包子，分量豪迈。",
+      "dish_count": 8
+    },
+    {
+      "id": "lasa",
+      "name": "拉萨",
+      "province": "西藏",
+      "area": "西南",
+      "region": "藏餐",
+      "spicy_baseline": 1,
+      "aliases": [
+        "日光城"
+      ],
+      "intro": "高热量与奶制品为主，糌粑、酥油茶、牦牛肉，抗寒抗缺氧。",
+      "dish_count": 8
+    }
+  ]
+}
