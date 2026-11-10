@@ -35,7 +35,8 @@ export default defineEventHandler(async (event) => {
   }
 
   const { assessments, summary } = assessMenu(body.dishes, profile)
+  const enriched = enrichWithKnowledge(assessments, body.dishes, profile)
 
   setResponseHeader(event, 'Content-Type', 'application/json; charset=utf-8')
-  return { assessments, summary, profile }
+  return { assessments: enriched, summary, profile }
 })

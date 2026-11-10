@@ -46,5 +46,6 @@ export default defineEventHandler(async (event) => {
   }
 
   const { assessments, summary } = assessMenu(dishes, profile)
-  return { city, dishes, assessments, summary }
+  const enriched = enrichWithKnowledge(assessments, dishes, profile)
+  return { city, dishes, assessments: enriched, summary }
 })
