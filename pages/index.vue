@@ -93,6 +93,13 @@ async function onFileChange(e: Event) {
     dishes.value = data.dishes ?? []
     meta.value = `${data.provider} / ${data.model} · 识别到 ${data.count} 道`
     if (dishes.value.length === 0) dishError.value = '没有识别出菜品，换张更清晰的图试试'
+    else
+      await recordHistory(
+        'photo',
+        `${dishes.value[0]?.name ?? '菜单'} 等 ${dishes.value.length} 道`,
+        dishes.value,
+        null
+      )
   } catch (err) {
     dishError.value = String(err)
   } finally {
@@ -198,6 +205,8 @@ const cityLoading = ref(false)
 const cityError = ref('')
 
 onMounted(async () => {
+  ensureDeviceId()
+  await refreshUserData()
   try {
     const res = await fetch('/api/city/list')
     const data = (await res.json()) as { cities: CityInfo[]; areas: string[] }
@@ -225,6 +234,7 @@ async function loadCity() {
       return
     }
     const data = (await res.json()) as {
+      city: { name: string }
       dishes: Dish[]
       assessments: Assessment[] | null
       summary: typeof citySummary.value
@@ -234,12 +244,119 @@ async function loadCity() {
     for (const a of data.assessments ?? []) map[a.dish_id] = a
     cityAssessments.value = map
     citySummary.value = data.summary
+
+    await recordHistory(
+      'city',
+      `${data.city.name} · 本地特色菜`,
+      data.dishes,
+      data.summary ?? null
+    )
   } catch (err) {
     cityError.value = String(err)
   } finally {
     cityLoading.value = false
   }
 }
+
+/* ---------------- ⑤ 收藏与历史 ---------------- */
+
+interface FavoriteDish extends Dish {
+  favoritedAt: string
+}
+
+interface HistoryEntry {
+  id: string
+  createdAt: string
+  source: 'photo' | 'city'
+  title: string
+  dishes: Dish[]
+  summary: { total: number; safe: number; caution: number; forbidden: number } | null
+}
+
+const deviceId = ref('')
+const favorites = ref<FavoriteDish[]>([])
+const history = ref<HistoryEntry[]>([])
+const userError = ref('')
+const favBusy = ref('')
+
+/** 设备 ID 暂代账号：接真实登录后换成 userId，接口不用动 */
+function ensureDeviceId() {
+  let id = localStorage.getItem('shijian_device_id')
+  if (!id) {
+    id = 'dev_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36)
+    localStorage.setItem('shijian_device_id', id)
+  }
+  deviceId.value = id
+}
+
+async function refreshUserData() {
+  if (!deviceId.value) return
+  try {
+    const res = await fetch(`/api/user/data?deviceId=${encodeURIComponent(deviceId.value)}`)
+    if (!res.ok) return
+    const data = (await res.json()) as { favorites: FavoriteDish[]; history: HistoryEntry[] }
+    favorites.value = data.favorites ?? []
+    history.value = data.history ?? []
+  } catch (err) {
+    userError.value = String(err)
+  }
+}
+
+function isFav(id: string) {
+  return favorites.value.some((f) => f.id === id)
+}
+
+async function toggleFavorite(d: Dish) {
+  if (!deviceId.value || favBusy.value) return
+  favBusy.value = d.id
+  try {
+    const res = await fetch('/api/user/favorite', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        deviceId: deviceId.value,
+        dish: d,
+        action: isFav(d.id) ? 'remove' : 'add'
+      })
+    })
+    if (!res.ok) {
+      userError.value = `HTTP ${res.status}：${await res.text()}`
+      return
+    }
+    const data = (await res.json()) as { favorites: FavoriteDish[] }
+    favorites.value = data.favorites
+  } catch (err) {
+    userError.value = String(err)
+  } finally {
+    favBusy.value = ''
+  }
+}
+
+async function recordHistory(
+  source: 'photo' | 'city',
+  title: string,
+  dishList: Dish[],
+  s: { total: number; safe: number; caution: number; forbidden: number } | null
+) {
+  if (!deviceId.value || !dishList.length) return
+  try {
+    await fetch('/api/user/history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ deviceId: deviceId.value, source, title, dishes: dishList, summary: s })
+    })
+    await refreshUserData()
+  } catch {
+    /* 历史记录失败不影响主流程 */
+  }
+}
+
+function fmtTime(iso: string) {
+  const d = new Date(iso)
+  const pad = (n: number) => String(n).padStart(2, '0')
+  return `${d.getMonth() + 1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`
+}
+
 
 </script>
 
@@ -275,7 +392,12 @@ async function loadCity() {
             <strong>{{ i + 1 }}. {{ d.name_zh || d.name }}</strong>
             <span v-if="d.name_zh && d.name_zh !== d.name" class="orig">{{ d.name }}</span>
           </div>
-          <span v-if="d.reference_price !== null" class="price">¥{{ d.reference_price }}</span>
+          <div class="head-right">
+            <span v-if="d.reference_price !== null" class="price">¥{{ d.reference_price }}</span>
+            <button class="fav" :disabled="favBusy === d.id" @click="toggleFavorite(d)">
+              {{ isFav(d.id) ? '★ 已收藏' : '☆ 收藏' }}
+            </button>
+          </div>
         </div>
         <div class="tags">
           <span v-if="d.region" class="tag">{{ d.region }}</span>
@@ -381,7 +503,12 @@ async function loadCity() {
             <strong>{{ d.name }}</strong>
             <span class="orig">{{ d.region }} · {{ d.method }}</span>
           </div>
-          <span v-if="d.reference_price !== null" class="price">¥{{ d.reference_price }}</span>
+          <div class="head-right">
+            <span v-if="d.reference_price !== null" class="price">¥{{ d.reference_price }}</span>
+            <button class="fav" :disabled="favBusy === d.id" @click="toggleFavorite(d)">
+              {{ isFav(d.id) ? '★ 已收藏' : '☆ 收藏' }}
+            </button>
+          </div>
         </div>
         <p v-if="d.ingredients.length" class="line">食材：{{ d.ingredients.join('、') }}</p>
         <p v-if="d.allergens.length" class="line warn">⚠ 可能含：{{ d.allergens.join('、') }}</p>
@@ -394,6 +521,36 @@ async function loadCity() {
             <li v-for="r in cityAssessments[d.id].reasons" :key="r">{{ r }}</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>⑤ 我的收藏与历史</h2>
+      <p v-if="userError" class="err">{{ userError }}</p>
+
+      <h3>收藏（{{ favorites.length }}）</h3>
+      <p v-if="!favorites.length" class="hint">还没有收藏。在上面任意菜品卡片点「☆ 收藏」。</p>
+      <div v-for="f in favorites" :key="f.id" class="mini">
+        <div>
+          <strong>{{ f.name }}</strong>
+          <span class="orig">{{ f.region || '' }} {{ f.allergens.length ? '· 含 ' + f.allergens.join('、') : '' }}</span>
+        </div>
+        <button class="fav" @click="toggleFavorite(f)">移除</button>
+      </div>
+
+      <h3>历史记录（{{ history.length }}）</h3>
+      <p v-if="!history.length" class="hint">识别菜单或查看城市后，这里会自动留下记录。</p>
+      <div v-for="h in history" :key="h.id" class="mini">
+        <div>
+          <strong>{{ h.title }}</strong>
+          <span class="orig">
+            {{ h.source === 'city' ? '地域推荐' : '拍照识别' }} · {{ fmtTime(h.createdAt) }}
+            <template v-if="h.summary">
+              · 可吃 {{ h.summary.safe }} / 注意 {{ h.summary.caution }} / 别点 {{ h.summary.forbidden }}
+            </template>
+          </span>
+        </div>
+        <span class="cnt">{{ h.dishes.length }} 道</span>
       </div>
     </section>
   </main>
@@ -610,5 +767,45 @@ button:disabled {
   background: #f9fafb;
   padding: 8px 12px;
   border-radius: 8px;
+}
+
+/* ---- 收藏与历史 ---- */
+.head-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fav {
+  background: #fff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.fav:hover {
+  border-color: #9ca3af;
+}
+h3 {
+  font-size: 14px;
+  margin: 18px 0 8px;
+  color: #111827;
+}
+.mini {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid #eef0f3;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+.cnt {
+  color: #9ca3af;
+  font-size: 12px;
+  white-space: nowrap;
 }
 </style>
