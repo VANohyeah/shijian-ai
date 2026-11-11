@@ -43,7 +43,7 @@ const ALLERGEN_KEYWORDS: Record<Allergen, string[]> = {
 /** 各慢病 / 目标对应的禁忌关键词 */
 const CONDITION_KEYWORDS: Record<Condition, { words: string[]; note: string }> = {
   痛风: {
-    words: ['内脏', '肝', '腰花', '大肠', '沙丁', '凤尾', '贝', '蟹', '浓汤', '高汤', '老火汤', '啤酒'],
+    words: ['内脏', '肝', '腰花', '大肠', '牛杂', '猪杂', '羊杂', '杂碎', '沙丁', '凤尾', '贝', '蟹', '浓汤', '高汤', '老火汤', '啤酒'],
     note: '高嘌呤食物，痛风人群需限制'
   },
   高血压: {

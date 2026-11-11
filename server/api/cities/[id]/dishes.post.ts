@@ -36,13 +36,10 @@ export default defineEventHandler(async (event) => {
     weight_kg: 55,
     activity: 'light',
     goal: 'none',
-    allergens: [],
-    conditions: [],
-    dietary: [],
-    ...body.profile,
     allergens: body.profile?.allergens ?? [],
     conditions: body.profile?.conditions ?? [],
-    dietary: body.profile?.dietary ?? []
+    dietary: body.profile?.dietary ?? [],
+    ...body.profile
   }
 
   const { assessments, summary } = assessMenu(dishes, profile)

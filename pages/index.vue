@@ -206,7 +206,7 @@ const cityError = ref('')
 
 onMounted(async () => {
   ensureDeviceId()
-  await refreshUserData()
+  await Promise.all([refreshUserData(), loadProfileFromServer()])
   try {
     const res = await fetch('/api/cities')
     const data = (await res.json()) as { cities: CityInfo[]; areas: string[] }
@@ -351,6 +351,92 @@ async function recordHistory(
   }
 }
 
+/* ---------------- 档案持久化 ---------------- */
+
+const profileSaving = ref(false)
+const profileHint = ref('')
+
+async function loadProfileFromServer() {
+  if (!deviceId.value) return
+  try {
+    const res = await fetch('/api/profile?deviceId=' + encodeURIComponent(deviceId.value))
+    if (!res.ok) return
+    const data = (await res.json()) as { profile: any; complete: boolean }
+    if (data.complete && data.profile) {
+      profile.allergens = data.profile.allergens ?? []
+      profile.conditions = data.profile.conditions ?? []
+      profile.goal = data.profile.goal ?? 'none'
+      profileHint.value = '已读取上次保存的档案'
+    }
+  } catch {
+    /* 读不到不影响使用 */
+  }
+}
+
+async function saveProfileToServer() {
+  if (!deviceId.value || profileSaving.value) return
+  profileSaving.value = true
+  profileHint.value = ''
+  try {
+    const res = await fetch('/api/profile', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ deviceId: deviceId.value, profile })
+    })
+    if (!res.ok) {
+      profileHint.value = '保存失败：' + (await res.text())
+      return
+    }
+    profileHint.value = '档案已保存，换设备前记得同步'
+  } catch (err) {
+    profileHint.value = String(err)
+  } finally {
+    profileSaving.value = false
+  }
+}
+
+/* ---------------- 点菜组合 ---------------- */
+
+const people = ref(2)
+const budget = ref(200)
+const plan = ref<any>(null)
+const planning = ref(false)
+const planError = ref('')
+
+async function makePlan() {
+  const pool = cityDishes.value.length ? cityDishes.value : dishes.value
+  if (!pool.length || planning.value) return
+  planning.value = true
+  planError.value = ''
+  plan.value = null
+  try {
+    const res = await fetch('/api/plan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        deviceId: deviceId.value,
+        dishes: pool,
+        people: people.value,
+        budget: budget.value,
+        profile
+      })
+    })
+    if (!res.ok) {
+      planError.value = 'HTTP ' + res.status + '：' + (await res.text())
+      return
+    }
+    plan.value = await res.json()
+  } catch (err) {
+    planError.value = String(err)
+  } finally {
+    planning.value = false
+  }
+}
+
+function dishLink(d: Dish) {
+  return '/dish/' + d.id
+}
+
 function fmtTime(iso: string) {
   const d = new Date(iso)
   const pad = (n: number) => String(n).padStart(2, '0')
@@ -461,7 +547,11 @@ function fmtTime(iso: string) {
         <button :disabled="!dishes.length || assessing" @click="assess">
           {{ assessing ? '评估中…' : '评估这桌菜' }}
         </button>
+        <button class="ghost" :disabled="profileSaving" @click="saveProfileToServer">
+          {{ profileSaving ? '保存中…' : '保存档案' }}
+        </button>
       </div>
+      <p v-if="profileHint" class="hint">{{ profileHint }}</p>
 
       <p v-if="summary" class="summary">
         共 {{ summary.total }} 道：可以吃 {{ summary.safe }} · 注意 {{ summary.caution }} · 别点
@@ -491,6 +581,36 @@ function fmtTime(iso: string) {
         </button>
       </div>
 
+      <div class="group">
+        <span class="label">配一桌</span>
+        <input v-model.number="people" type="number" min="1" max="10" class="num" />
+        <span class="unit">人</span>
+        <input v-model.number="budget" type="number" min="0" step="20" class="num" />
+        <span class="unit">元以内</span>
+        <button :disabled="planning || (!cityDishes.length && !dishes.length)" @click="makePlan">
+          {{ planning ? '正在配…' : '帮我配一桌' }}
+        </button>
+      </div>
+      <p v-if="planError" class="err">{{ planError }}</p>
+
+      <div v-if="plan" class="plan">
+        <p class="summary">
+          配了 {{ plan.count }} 道 · 合计 ¥{{ plan.total }} · 可吃 {{ plan.summary.safe }} · 注意
+          {{ plan.summary.caution }}
+        </p>
+        <div v-for="p in plan.plan" :key="p.dish.id" class="mini">
+          <div>
+            <strong>{{ p.dish.name }}</strong>
+            <span class="orig">¥{{ p.dish.reference_price }} · {{ p.assessment.level }}</span>
+          </div>
+          <span class="cnt">{{ LEVEL_TEXT[p.assessment.level] }}</span>
+        </div>
+        <p v-if="plan.excluded.length" class="hint">
+          已剔除 {{ plan.excluded.length }} 道：命中过敏或忌口，不参与配菜
+        </p>
+        <p v-for="n in plan.notes" :key="n" class="hint">{{ n }}</p>
+      </div>
+
       <p v-if="citySummary" class="summary">
         共 {{ citySummary.total }} 道：可以吃 {{ citySummary.safe }} · 注意
         {{ citySummary.caution }} · 别点 {{ citySummary.forbidden }}
@@ -500,7 +620,7 @@ function fmtTime(iso: string) {
       <div v-for="d in cityDishes" :key="d.id" class="dish">
         <div class="dish-head">
           <div>
-            <strong>{{ d.name }}</strong>
+            <NuxtLink :to="dishLink(d)" class="dish-link">{{ d.name }}</NuxtLink>
             <span class="orig">{{ d.region }} · {{ d.method }}</span>
           </div>
           <div class="head-right">
@@ -807,5 +927,32 @@ h3 {
   color: #9ca3af;
   font-size: 12px;
   white-space: nowrap;
+}
+.ghost {
+  background: #fff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+.dish-link {
+  color: #111827;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dashed #d1d5db;
+}
+.dish-link:hover { border-bottom-color: #111827; }
+.num {
+  width: 72px;
+  padding: 6px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.unit { font-size: 13px; color: #6b7280; }
+.plan {
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid #eef0f3;
+  border-radius: 10px;
+  background: #fcfdfe;
 }
 </style>

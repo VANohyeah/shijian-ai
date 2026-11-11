@@ -105,3 +105,17 @@ export function getCityDishes(cityIdOrName: string): Dish[] {
 export function totalDishes(): number {
   return rawDishes.length
 }
+
+/** 按 id 取单道菜（菜品详情页用） */
+export function findDish(dishId: string): Dish | null {
+  for (const list of dishesByCity.values()) {
+    const hit = list.find((d) => d.id === dishId)
+    if (hit) return hit
+  }
+  return null
+}
+
+/** 全量菜品，点菜组合等需要跨城市取数时用 */
+export function allDishes(): Dish[] {
+  return rawDishes.map(toDish)
+}

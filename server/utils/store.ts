@@ -9,7 +9,7 @@
  */
 import { readFile, writeFile, mkdir, rename } from 'node:fs/promises'
 import { join } from 'node:path'
-import type { Dish } from '../../shared/types'
+import type { Dish, UserProfile } from '../../shared/types'
 
 export interface FavoriteDish extends Dish {
   favoritedAt: string
@@ -28,6 +28,9 @@ export interface HistoryEntry {
 interface UserRecord {
   favorites: FavoriteDish[]
   history: HistoryEntry[]
+  /** 身体档案：注册时填一次，之后每次评估都用它 */
+  profile?: UserProfile
+  profileUpdatedAt?: string
 }
 
 interface StoreShape {
@@ -127,3 +130,24 @@ export async function clearHistory(deviceId: string): Promise<void> {
   user.history = []
   await persist(store)
 }
+
+/** 读档案；没填过返回 null，前端据此跳到 onboarding */
+export async function getProfile(deviceId: string): Promise<UserProfile | null> {
+  const store = await load()
+  const user = store.users[deviceId]
+  return user?.profile ?? null
+}
+
+/** 存档案（注册/修改都走这里） */
+export async function saveProfile(
+  deviceId: string,
+  profile: UserProfile
+): Promise<{ profile: UserProfile; updatedAt: string }> {
+  const store = await load()
+  const user = getUser(store, deviceId)
+  user.profile = profile
+  user.profileUpdatedAt = new Date().toISOString()
+  await persist(store)
+  return { profile, updatedAt: user.profileUpdatedAt }
+}
+

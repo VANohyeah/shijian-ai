@@ -194,3 +194,37 @@ data: [DONE]
 **上限**：收藏 200 条、历史 50 条，超出丢最旧的。
 
 **写入时机**：识图成功自动记一条；每次查看城市特色菜记一条；收藏由用户手动点。
+
+## 10. 档案（profile）
+
+| 接口 | 说明 |
+|---|---|
+| `PUT /api/profile` | body `{ deviceId, profile }`，服务端做范围校验后落盘 |
+| `GET /api/profile?deviceId=` | 返回 `{ profile, complete }`；没填过 `profile: null` |
+
+校验规则：年龄 1–120、身高 80–250、体重 20–300，枚举非法值回落默认，数组去重。
+档案与收藏/历史存在同一个 `data/user-data.json` 里。
+
+## 11. 菜品详情（dishes）
+
+`GET /api/dishes/:id?deviceId=`
+
+返回 `{ dish, language, recipe, assessment, available }`：
+
+- `language`：C 的 250 条语言视角（这是什么 / 怎么点 / 文化）
+- `recipe`：C 的 25 道复刻菜谱（备料、步骤、过敏替代、要点）
+- `assessment`：传了 deviceId 且该设备有档案时，附带三色判定
+- `available`：前端据此禁用没有内容的 tab
+
+## 12. 点菜组合（plan）
+
+`POST /api/plan`，body `{ deviceId, dishes, people, budget, profile? }`
+
+策略：
+
+1. `forbidden` 的菜直接剔除，不参与配菜（硬约束）
+2. 其余按「风险等级 → 价格」排序
+3. 同一做法最多 2 道，保证多样性
+4. 超预算就停，并在 `notes` 里说明
+
+出参含 `plan[] / total / excluded[] / notes[] / summary`。
