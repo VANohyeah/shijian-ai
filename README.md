@@ -25,6 +25,23 @@
 
 ---
 
+## MCP：把能力暴露给任意 Agent
+
+除了自己的界面，食鉴还提供 **MCP Server**（mcp/server.mjs），把能力做成标准工具：
+
+| 工具 | 作用 |
+|---|---|
+| `list_cities` | 30 城与特色菜数量 |
+| `city_dishes` | 某城菜品 + 三色判定 |
+| `assess_dishes` | 任意菜品健康判定（含依据） |
+| `plan_meal` | 按人数预算配一桌 |
+| `dish_detail` | 语言视角 + 复刻菜谱 |
+
+接进 Claude Desktop 或 Cursor 后，可以直接问「成都有哪些菜我能吃」「帮我配一桌 3 人 200 元的川菜」。
+配置见 [mcp/README.md](mcp/README.md)。它是瘦适配器——业务逻辑只有一份，全在 Nuxt 服务里。
+
+---
+
 ## 快速开始
 
 ```bash
@@ -105,6 +122,7 @@ czb比赛/
 ├─ server/
 │  ├─ api/                      scan · evaluate · plan · profile · cities · dishes · user · chat · health
 │  └─ utils/                    ai · rules · retrieve · catalog · content · store
+├─ mcp/server.mjs               MCP Server（JSON-RPC over stdio，零依赖）
 ├─ seed/                        城市 / 菜品 / 知识 / 语言 / 菜谱数据
 ├─ shared/types.ts              前后端共用类型（唯一真源）
 ├─ docs/                        开发文档 · 接口契约 · 决策记录
