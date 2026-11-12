@@ -5,10 +5,14 @@ const props = defineProps<{
   dish: Dish
   assessment?: DishAssessment & { references?: { title: string; source: string }[] }
   faved?: boolean
+  editable?: boolean
   linkTo?: string
 }>()
 
-const emit = defineEmits<{ (e: 'toggle-fav', dish: Dish): void }>()
+const emit = defineEmits<{
+  (e: 'toggle-fav', dish: Dish): void
+  (e: 'edit', dish: Dish): void
+}>()
 
 const target = computed(() => props.linkTo ?? `/dish/${props.dish.id}`)
 const ingredients = computed(() =>
@@ -26,9 +30,12 @@ const ingredients = computed(() =>
           {{ dish.region }}<template v-if="dish.method"> · {{ dish.method }}</template>
         </span>
       </div>
-      <div class="row" style="gap: 10px">
+      <div class="row" style="gap: 8px">
         <span v-if="dish.reference_price !== null" class="price">¥{{ dish.reference_price }}</span>
-        <button v-if="faved !== undefined" class="star" @click="emit('toggle-fav', dish)">
+        <button v-if="editable" class="mini-btn" title="识别有误？手动改一下" @click="emit('edit', dish)">
+          改
+        </button>
+        <button v-if="faved !== undefined" class="mini-btn" @click="emit('toggle-fav', dish)">
           {{ faved ? '★' : '☆' }}
         </button>
       </div>
@@ -42,22 +49,20 @@ const ingredients = computed(() =>
       <ul v-if="assessment.reasons.length" class="reasons">
         <li v-for="r in assessment.reasons" :key="r">{{ r }}</li>
       </ul>
-      <p v-if="assessment.citations.length" class="cites">
-        依据：{{ assessment.citations.join('；') }}
-      </p>
+      <p v-if="assessment.citations.length" class="cites">依据：{{ assessment.citations.join('；') }}</p>
     </div>
   </div>
 </template>
 
 <style scoped>
-.star {
+.mini-btn {
   border: 1px solid #d1d5db;
   background: #fff;
   border-radius: 8px;
   padding: 2px 8px;
   cursor: pointer;
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 13px;
+  line-height: 1.5;
 }
 .assess {
   margin-top: 9px;

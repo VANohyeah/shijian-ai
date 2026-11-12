@@ -12,6 +12,11 @@ const error = ref('')
 const preview = ref('')
 const meta = ref('')
 
+/* 识别有误时允许手动修正：改完重新评估 */
+const editingId = ref('')
+const editName = ref('')
+const editIngredients = ref('')
+
 onMounted(async () => {
   ensure()
   await loadProfile()
@@ -39,6 +44,7 @@ async function onFile(e: Event) {
   assessments.value = {}
   error.value = ''
   meta.value = ''
+  editingId.value = ''
   busy.value = true
 
   try {
@@ -119,6 +125,45 @@ async function toggleFav(dish: Dish) {
   }
 }
 
+/* ---------------- 手动修正 ---------------- */
+
+function startEdit(d: Dish) {
+  editingId.value = d.id
+  editName.value = d.name_zh || d.name
+  editIngredients.value = d.ingredients.join('、')
+}
+
+function cancelEdit() {
+  editingId.value = ''
+}
+
+async function saveEdit() {
+  const d = dishes.value.find((x) => x.id === editingId.value)
+  if (!d) return
+
+  const name = editName.value.trim()
+  if (!name) {
+    error.value = '菜名不能为空'
+    return
+  }
+  const ings = editIngredients.value
+    .split(/[、,，;；\s]+/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+
+  d.name = name
+  d.name_zh = name
+  d.ingredients = ings
+  d.ingredients_zh = ings
+  // 清空旧的过敏原，让规则引擎按新食材重新推导，避免保留错误结论
+  d.allergens = []
+  d.confidence = 1
+
+  editingId.value = ''
+  error.value = ''
+  await evaluate()
+}
+
 async function compress(file: File): Promise<{ base64: string; mime: string }> {
   const bitmap = await createImageBitmap(file)
   const max = 1280
@@ -148,14 +193,36 @@ async function compress(file: File): Promise<{ base64: string; mime: string }> {
 
     <div v-if="dishes.length">
       <h2>识别结果</h2>
-      <DishCard
-        v-for="d in dishes"
-        :key="d.id"
-        :dish="d"
-        :assessment="assessments[d.id]"
-        :faved="favorites.some((f) => f.id === d.id)"
-        @toggle-fav="toggleFav"
-      />
+      <p class="hint">识别不准？点菜品右上角的「改」，改完会自动重新判定。</p>
+
+      <template v-for="d in dishes" :key="d.id">
+        <div v-if="editingId === d.id" class="card edit">
+          <p class="hint" style="margin-top: 0">修正菜名与食材（食材用顿号分隔）</p>
+          <div class="row" style="margin-bottom: 8px">
+            <input v-model="editName" class="input" style="flex: 1" placeholder="菜名" />
+          </div>
+          <div class="row">
+            <input
+              v-model="editIngredients"
+              class="input"
+              style="flex: 1"
+              placeholder="如：虾、蟹、奶酪"
+            />
+            <button class="btn" @click="saveEdit">保存并重新判定</button>
+            <button class="btn ghost" @click="cancelEdit">取消</button>
+          </div>
+        </div>
+
+        <DishCard
+          v-else
+          :dish="d"
+          :assessment="assessments[d.id]"
+          :faved="favorites.some((f) => f.id === d.id)"
+          editable
+          @toggle-fav="toggleFav"
+          @edit="startEdit"
+        />
+      </template>
     </div>
   </main>
 </template>
@@ -168,5 +235,9 @@ async function compress(file: File): Promise<{ base64: string; mime: string }> {
   max-height: 300px;
   border-radius: 10px;
   border: 1px solid #eee;
+}
+.edit {
+  border-color: #c7d2fe;
+  background: #fbfcff;
 }
 </style>

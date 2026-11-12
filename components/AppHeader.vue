@@ -3,6 +3,7 @@
     <NuxtLink to="/" class="brand">食鉴</NuxtLink>
     <nav>
       <NuxtLink to="/scan">拍菜单</NuxtLink>
+      <NuxtLink to="/chat">问食鉴</NuxtLink>
       <NuxtLink to="/cities">找地方菜</NuxtLink>
       <NuxtLink to="/favorites">我的</NuxtLink>
       <NuxtLink to="/profile" class="avatar" aria-label="档案">我</NuxtLink>
