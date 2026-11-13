@@ -39,6 +39,55 @@ const loading = ref(true)
 const error = ref('')
 const tab = ref<'language' | 'recipe'>('language')
 
+/* Agent：模型自己决定调哪些工具，trace 摊开给人看 */
+interface TraceRow {
+  round: number
+  tool: string
+  args: unknown
+  ok: boolean
+  ms: number
+  preview: string
+}
+const agentAnswer = ref('')
+const agentTrace = ref<TraceRow[]>([])
+const agentRounds = ref(0)
+const agentBusy = ref(false)
+const agentError = ref('')
+const showTrace = ref(true)
+
+async function askAgent() {
+  if (!dish.value || agentBusy.value) return
+  agentBusy.value = true
+  agentAnswer.value = ''
+  agentTrace.value = []
+  agentError.value = ''
+
+  try {
+    const deviceId = localStorage.getItem('shijian_device_id') ?? ''
+    const res = await fetch('/api/agent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        deviceId,
+        question: `这道「${dish.value.name_zh || dish.value.name}」我能不能吃？为什么？`,
+        dishes: [dish.value]
+      })
+    })
+    if (!res.ok) {
+      agentError.value = 'HTTP ' + res.status + '：' + (await res.text())
+      return
+    }
+    const data = (await res.json()) as { answer: string; trace: TraceRow[]; rounds: number }
+    agentAnswer.value = data.answer
+    agentTrace.value = data.trace ?? []
+    agentRounds.value = data.rounds ?? 0
+  } catch (err) {
+    agentError.value = String(err)
+  } finally {
+    agentBusy.value = false
+  }
+}
+
 const LEVEL_TEXT = { safe: '✅ 可以吃', caution: '⚠️ 注意', forbidden: '⛔ 别点' } as const
 
 onMounted(async () => {
@@ -86,6 +135,29 @@ onMounted(async () => {
           <li v-for="r in assessment.reasons" :key="r">{{ r }}</li>
         </ul>
         <p class="cites">依据：{{ assessment.citations.join('；') }}</p>
+      </div>
+
+      <div class="agent">
+        <button class="btn" :disabled="agentBusy" @click="askAgent">
+          {{ agentBusy ? '正在查…（它会自己决定查什么）' : '问问它为什么' }}
+        </button>
+
+        <p v-if="agentBusy" class="hint">模型正在决定调用哪个工具，通常 5–15 秒</p>
+        <p v-if="agentError" class="err">{{ agentError }}</p>
+
+        <div v-if="agentAnswer" class="agent-body">
+          <p class="answer">{{ agentAnswer }}</p>
+
+          <details :open="showTrace" class="trace">
+            <summary>调用链（{{ agentTrace.length }} 次工具调用 · {{ agentRounds }} 轮）</summary>
+            <div v-for="(t, i) in agentTrace" :key="i" class="trace-row">
+              <span class="idx">{{ i + 1 }}</span>
+              <code class="tool">{{ t.tool }}</code>
+              <span class="preview">{{ t.preview }}</span>
+              <span class="ms">{{ t.ms }}ms</span>
+            </div>
+          </details>
+        </div>
       </div>
 
       <p v-if="dish.ingredients.length" class="ing">
@@ -265,5 +337,58 @@ h3:first-child { margin-top: 0; }
   border-radius: 8px;
 }
 .hint { color: #6b7280; font-size: 13px; }
+.agent {
+  margin: 14px 0;
+}
+.agent-body {
+  margin-top: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: #fcfdfe;
+}
+.answer {
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.75;
+  margin: 0;
+}
+.trace {
+  margin-top: 10px;
+  font-size: 13px;
+}
+.trace summary {
+  cursor: pointer;
+  color: #6b7280;
+}
+.trace-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 0;
+  border-top: 1px dashed #eef0f3;
+  font-size: 12px;
+}
+.idx {
+  color: #9ca3af;
+  width: 14px;
+}
+.tool {
+  font-family: Consolas, monospace;
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+.preview {
+  flex: 1;
+  color: #6b7280;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ms {
+  color: #9ca3af;
+}
 .err { color: #b91c1c; font-size: 13px; white-space: pre-wrap; }
 </style>

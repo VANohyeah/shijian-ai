@@ -50,6 +50,8 @@ export interface Retrieved {
   title: string
   source: string
   category: string
+  /** 条目正文：Agent 回答「为什么」时需要，缺了只能念标题 */
+  body: string
 }
 
 /** 检索：给定自由文本，返回最相关的知识条目 */
@@ -73,7 +75,8 @@ export function retrieve(query: string, categoryHints: string[] = [], limit = 2)
     id: entry.id,
     title: entry.title,
     source: entry.source,
-    category: entry.category
+    category: entry.category,
+    body: entry.body
   }))
 }
 

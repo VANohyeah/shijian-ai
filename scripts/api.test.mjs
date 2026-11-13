@@ -144,3 +144,30 @@ test('档案：读写往返一致', async () => {
   assert.deepEqual(got.profile.allergens, ['甲壳类'])
   assert.equal(got.profile.age, 30)
 })
+
+test('Agent：问「能不能吃」必须调用档案与判定工具', { timeout: 120000 }, async () => {
+  // 先建一份档案，确保 agent 有东西可读
+  const deviceId = 'dev_agent_' + Date.now()
+  await fetch(`${BASE}/api/profile`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      deviceId,
+      profile: { allergens: ['大豆'], conditions: [], goal: 'fat_loss' }
+    })
+  })
+
+  const res = await fetch(`${BASE}/api/agent`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ deviceId, question: '我能吃麻婆豆腐吗？' })
+  })
+  assert.equal(res.ok, true, `agent 返回 ${res.status}`)
+
+  const data = await res.json()
+  const tools = data.trace.map((t) => t.tool)
+  assert.ok(tools.includes('get_profile'), '必须调用 get_profile')
+  assert.ok(tools.includes('assess_dishes'), '必须调用 assess_dishes')
+  assert.ok(data.answer.includes('别点'), '结论里必须出现「别点」')
+  assert.ok(data.answer.includes('大豆'), '必须指出具体过敏原')
+})

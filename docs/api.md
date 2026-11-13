@@ -228,3 +228,39 @@ data: [DONE]
 4. 超预算就停，并在 `notes` 里说明
 
 出参含 `plan[] / total / excluded[] / notes[] / summary`。
+
+## 13. ``POST /api/agent`` —— 真 Agent（工具调用 + 循环）
+
+与 ``/api/evaluate`` 的区别：evaluate 是代码写死的流程；agent 由**模型自己决定**调哪个工具、调几次。
+
+**入参**
+
+``````json
+{ "deviceId": "dev_xxx", "question": "成都有什么我能吃的？", "dishes": [ /* 可选，页面已有的菜 */ ] }
+``````
+
+**出参**
+
+``````json
+{
+  "answer": "⛔ 别点：麻婆豆腐（含大豆）……",
+  "trace": [
+    { "round": 1, "tool": "get_profile", "args": {}, "ok": true, "ms": 0, "preview": "…" },
+    { "round": 2, "tool": "list_dishes", "args": { "city": "成都" }, "ok": true, "ms": 0, "preview": "…" },
+    { "round": 4, "tool": "assess_dishes", "args": { "dishIds": ["dish_chengdu_01"] }, "ok": true, "ms": 1, "preview": "…" }
+  ],
+  "rounds": 5,
+  "usage": { "prompt": 812, "completion": 240 }
+}
+``````
+
+**四个工具**：``get_profile`` / ``list_dishes`` / ``assess_dishes`` / ``search_knowledge``
+
+**三道护栏**
+
+1. ``MAX_ROUNDS = 5``：防止模型来回调同一个工具
+2. **强制判定**：若模型想跳过 ``assess_dishes`` 直接回答，代码会把它打回去再要一轮（``tool_choice: required``）
+3. **结论兜底**：答案末尾由规则引擎追加「✅ 可以吃 / ⚠️ 注意 / ⛔ 别点」，**以规则引擎为准**
+
+``trace`` 必须返回并展示——调用链是「可观测」的证据，比口头说用了 Agent 有说服力。
+

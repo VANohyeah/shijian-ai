@@ -80,3 +80,16 @@ export interface DishAssessment {
 
 /** 视觉模型返回的原始结构（未补 id/source） */
 export type DishDraft = Omit<Dish, 'id' | 'source'>
+
+/** 默认档案：用户未填档时的兜底，评估接口与 Agent 共用 */
+export const DEFAULT_PROFILE: UserProfile = {
+  gender: 'female',
+  age: 25,
+  height_cm: 165,
+  weight_kg: 55,
+  activity: 'light',
+  goal: 'none',
+  allergens: [],
+  conditions: [],
+  dietary: []
+}
