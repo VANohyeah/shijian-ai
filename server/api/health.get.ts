@@ -1,11 +1,9 @@
-/**
- * 健康检查：一眼看出服务端配了哪家模型、走的是谁。
- * 不要把 Key 本身返回出去，只说有没有、长度对不对。
- */
+
 import type { H3Event } from 'h3'
+import { getDeepSeekProvider, getGlmProvider, resolveProvider } from '../utils/ai'
 
 export default defineEventHandler((event: H3Event) => {
-  // 显式声明 charset，浏览器之外的客户端才不会把中文读成乱码
+
   setResponseHeader(event, 'Content-Type', 'application/json; charset=utf-8')
 
   const glm = getGlmProvider()

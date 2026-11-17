@@ -1,8 +1,9 @@
-/**
- * 某城市的特色菜 + 健康评估。
- * 这是 M3 的核心：不用拍照、不用提问，进来就知道每道菜适不适合你。
- */
-import type { UserProfile } from '../../../shared/types'
+
+import type { UserProfile } from '../../../../shared/types'
+import { findCity, getCityDishes } from '../../../utils/catalog'
+import { assessMenu } from '../../../utils/rules'
+import { enrichWithKnowledge } from '../../../utils/retrieve'
+import { mergeProfile } from '../../../utils/profile'
 
 export default defineEventHandler(async (event) => {
   const cityKey = String(event.context.params?.id ?? '').trim()
@@ -29,18 +30,7 @@ export default defineEventHandler(async (event) => {
     return { city, dishes, assessments: null, summary: null }
   }
 
-  const profile: UserProfile = {
-    gender: 'female',
-    age: 25,
-    height_cm: 165,
-    weight_kg: 55,
-    activity: 'light',
-    goal: 'none',
-    allergens: body.profile?.allergens ?? [],
-    conditions: body.profile?.conditions ?? [],
-    dietary: body.profile?.dietary ?? [],
-    ...body.profile
-  }
+  const profile = mergeProfile(body.profile)
 
   const { assessments, summary } = assessMenu(dishes, profile)
   const enriched = enrichWithKnowledge(assessments, dishes, profile)

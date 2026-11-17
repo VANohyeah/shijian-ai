@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>食鉴 · 美食界面组件与设计思路</title>
+<style>
+/* ============================================================
+   食鉴 · 组件校样本
+   版式：四档字号（52 / 32 / 20 / 14），容器直角，只用横线分组
+   样张：规格取自附章「视觉规格速查」与 pages/*.vue，类名与代码一致
+   ============================================================ */
+
+@font-face {
+  font-family: 'Han Serif';
+  src: url('../public/fonts/han.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --sepia: #8b4513;
+  --sepia-deep: #6f3610;
+  --cream: #f5e6d3;
+  --lifted: #faf0e2;
+  --brick: #c94c4c;
+  --forest: #2e4a3f;
+  --sand: #d4a373;
+  --olive: #816904;
+  --ink: #3d2410;
+  --muted: #6b5644;
+  --line: rgba(139, 69, 19, .28);
+  --line-strong: rgba(139, 69, 19, .5);
+  --serif: 'Han Serif', Georgia, 'Songti SC', SimSun, serif;
+  --sans: Inter, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  --radius: 4px;
+  --ease: cubic-bezier(.33, 1, .68, 1);
+  --dur: 300ms;
+  --f1: 52px;   /* display */
+  --f2: 32px;   /* heading */
+  --f3: 20px;   /* subheading */
+  --f4: 14px;   /* 正文、表格、注释，全站最小 */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--f4);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 900;
+  color: var(--sepia);
+  margin: 0;
+  line-height: 1.25;
+}
+h4 { margin: 0; font-size: var(--f4); font-weight: 600; font-family: var(--sans); }
+p { margin: 0; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--sepia);
+  outline-offset: 3px;
+}
+
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+
+/* ---------------- 刊头 ---------------- */
+
+.masthead { padding: 56px 0 0; }
+
+.masthead h1 {
+  font-size: var(--f1);
+  letter-spacing: .06em;
+  margin-bottom: 18px;
+}
+
+.masthead__sub {
+  max-width: 34em;
+  line-height: 1.95;
+}
+
+.masthead__meta {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  color: var(--muted);
+  letter-spacing: .04em;
+}
+.masthead__meta b { color: var(--sepia); font-weight: 500; }
+
+/* ---------------- 目录 ---------------- */
+
+.toc {
+  margin-top: 26px;
+  padding: 14px 0 10px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  columns: 2;
+  column-gap: 48px;
+}
+.toc li { margin: 4px 0; break-inside: avoid; }
+.toc a {
+  display: flex;
+  gap: 10px;
+  text-decoration: none;
+  transition: color var(--dur) var(--ease);
+}
+.toc a:hover { color: var(--sepia); }
+.toc .no {
+  flex: none;
+  width: 1.4em;
+  font-family: var(--serif);
+  font-weight: 900;
+  color: var(--sand);
+}
+
+/* ---------------- 章节 ---------------- */
+
+section { padding: 52px 0 0; }
+
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  border-top: 2px solid var(--sepia);
+  padding-top: 10px;
+  margin-bottom: 24px;
+}
+.sec-head .no {
+  flex: none;
+  font-family: var(--serif);
+  font-size: var(--f3);
+  font-weight: 900;
+  color: var(--sepia);
+  opacity: .45;
+  letter-spacing: .1em;
+}
+.sec-head h2 { font-size: var(--f2); letter-spacing: .04em; }
+
+.lede { max-width: 42em; line-height: 1.95; margin-bottom: 12px; }
+.lede b { color: var(--sepia); font-weight: 600; }
+
+.muted { color: var(--muted); }
+.small { line-height: 1.95; max-width: 44em; margin-bottom: 10px; }
+section > :last-child, .spec__stage > :last-child { margin-bottom: 0; }
+
+h3.sub {
+  font-size: var(--f3);
+  letter-spacing: .04em;
+  margin: 40px 0 10px;
+}
+h3.sub:first-of-type { margin-top: 28px; }
+
+/* ---------------- 分组：靠空白与横线，不用卡片 ---------------- */
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 40px; }
+
+.panel { border-top: 2px solid var(--line-strong); padding-top: 12px; }
+.panel h4 { color: var(--sepia); letter-spacing: .06em; margin-bottom: 6px; }
+.panel p { line-height: 1.85; }
+.panel p + p { margin-top: 8px; }
+
+.quote {
+  border-left: 3px solid var(--sand);
+  padding: 2px 0 2px 16px;
+  margin: 18px 0;
+  line-height: 1.95;
+  max-width: 42em;
+}
+.quote cite {
+  display: block;
+  margin-top: 6px;
+  font-style: normal;
+  color: var(--muted);
+  letter-spacing: .04em;
+}
+
+/* ---------------- 页面树：缩进 + 竖线，不用图片 ---------------- */
+
+.map { list-style: none; margin: 16px 0 8px; padding: 0; }
+.map ol {
+  list-style: none;
+  margin: 0;
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+.map li { position: relative; padding: 5px 0 5px 15px; line-height: 1.75; }
+.map ol > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.95em;
+  width: 10px;
+  border-top: 1px solid var(--line);
+}
+.map .lv {
+  display: inline-block;
+  min-width: 2.6em;
+  color: var(--sand);
+  font-family: var(--serif);
+  font-weight: 900;
+}
+.map b { color: var(--sepia); font-weight: 600; }
+.map .note { color: var(--muted); }
+
+/* ---------------- 表格：只留横线 ---------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 6px;
+}
+th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--sepia);
+  letter-spacing: .06em;
+  border-bottom: 2px solid var(--sepia);
+  padding: 6px 14px 8px 0;
+  vertical-align: bottom;
+}
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 14px 12px 0;
+  vertical-align: top;
+  line-height: 1.85;
+}
+th:last-child, td:last-child { padding-right: 0; }
+td b { color: var(--sepia); font-weight: 600; }
+td code, p code, li code, dd code {
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-size: .92em;
+  background: rgba(139, 69, 19, .09);
+  padding: 1px 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.tw { overflow-x: auto; }
+
+/* ---------------- 校样条：一条横线上摆一件样张 ---------------- */
+
+.spec {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  border-top: 1px solid var(--line-strong);
+  padding-top: 22px;
+  margin: 0 0 34px;
+}
+.spec__stage {
+  padding-right: 32px;
+  border-right: 1px dashed var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+.spec__note { padding-left: 26px; }
+.spec__note dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 4.4em 1fr;
+  gap: 9px 14px;
+  line-height: 1.8;
+}
+.spec__note dt { color: var(--sepia); font-weight: 500; }
+.spec__note dd { margin: 0; }
+
+.dont {
+  border-left: 3px solid var(--brick);
+  padding: 2px 0 2px 16px;
+  margin: 14px 0;
+  line-height: 1.9;
+}
+.dont__tag {
+  display: block;
+  color: var(--brick);
+  font-weight: 500;
+  letter-spacing: .06em;
+  margin-bottom: 2px;
+}
+
+/* ============================================================
+   以下为产品组件实例：数值来自附章「视觉规格速查」/ pages/*.vue
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border: 2px solid var(--sepia);
+  border-radius: var(--radius);
+  background: var(--sepia);
+  color: var(--cream);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.btn:hover { background: var(--sepia-deep); border-color: var(--sepia-deep); }
+.btn:active { background: transparent; color: var(--sepia); }
+.btn--ghost { background: transparent; color: var(--sepia); }
+.btn--ghost:hover { background: var(--sepia); color: var(--cream); }
+.btn--sm { padding: 9px 16px; font-size: 13px; letter-spacing: .12em; }
+.btn[aria-disabled="true"] {
+  opacity: .45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+/* 邮戳标签：方戳，不做胶囊 */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius);
+  background: var(--forest);
+  color: var(--cream);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .14em;
+}
+.stamp--caution { background: var(--olive); }
+.stamp--forbidden { background: var(--brick); }
+.stamp--plain {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+
+/* 判定灯：颜色 + 形状 + 文字，三重编码 */
+.dot {
+  flex: none;
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: var(--forest);
+  border-radius: 50%;
+}
+.dot--caution {
+  background: var(--olive);
+  border-radius: 0;
+}
+.dot--forbidden {
+  background: var(--brick);
+  border-radius: 0;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+/* 菜品判定卡（结构照 pages/scan.vue） */
+.dish {
+  border-left: 2px solid var(--line-strong);
+  padding-left: 16px;
+  transition: border-color var(--dur) var(--ease);
+}
+.dish.is-safe { border-left-color: var(--forest); }
+.dish.is-caution { border-left-color: var(--olive); }
+.dish.is-forbidden { border-left-color: var(--brick); }
+.dish-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.dish-name {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--ink);
+  border-bottom: 1px dashed transparent;
+  padding-bottom: 2px;
+  transition: border-color var(--dur) var(--ease);
+}
+.dish:hover .dish-name { border-bottom-color: var(--line-strong); }
+.dish-price {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--sepia);
+  white-space: nowrap;
+}
+.dish-meta {
+  margin: 4px 0 12px;
+  font-size: 12px;
+  letter-spacing: .08em;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.dish-meta span:not(:last-child)::after {
+  content: '·';
+  margin-left: 10px;
+  color: var(--line-strong);
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  border-radius: var(--radius);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  color: var(--cream);
+  background: var(--forest);
+  margin-bottom: 8px;
+}
+.is-caution .badge { background: var(--olive); }
+.is-forbidden .badge { background: var(--brick); }
+.reasons {
+  margin: 0 0 6px;
+  padding-left: 16px;
+  line-height: 1.85;
+}
+.citations {
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+
+/* 可删食材片 */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px 6px 12px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.chip.is-on {
+  border-color: var(--sepia);
+  background: rgba(139, 69, 19, .1);
+  color: var(--sepia);
+}
+/* 删除键：视觉 22px，命中区补到 44px */
+.chip-x {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease);
+}
+.chip-x::after {
+  content: '';
+  position: absolute;
+  inset: -11px;
+}
+.chip-x:hover { color: var(--brick); }
+.chip--add {
+  border-style: dashed;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 6px 12px;
+}
+.chip--add:hover { border-color: var(--line-strong); color: var(--sepia); }
+
+/* 输入框 */
+.field {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 15px;
+  transition: border-color var(--dur) var(--ease);
+}
+.field:hover { border-color: var(--line-strong); }
+.field:focus { outline: none; border-color: var(--sepia); }
+.field[aria-invalid="true"] { border-color: var(--brick); }
+
+/* 分段控件 */
+.seg {
+  display: inline-flex;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.seg__btn {
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: .08em;
+  color: var(--muted);
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.seg__btn + .seg__btn { border-left: 1px solid var(--line); }
+.seg__btn.is-on { background: var(--sepia); color: var(--cream); }
+
+/* 步骤条（结构照 pages/profile.vue + components/ProfileForm.vue） */
+.steps {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.steps__item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+.steps__item + .steps__item { border-left: 1px solid var(--line); }
+.steps__no { font-family: var(--serif); font-weight: 900; color: var(--sand); }
+.steps__item.is-done { background: rgba(46, 74, 63, .1); color: var(--forest); }
+.steps__item.is-done .steps__no { color: var(--forest); }
+.steps__item.is-on { background: var(--sepia); color: var(--cream); }
+.steps__item.is-on .steps__no { color: var(--sand); }
+
+/* 识别进度（本文档提议新增，尚未落地） */
+.trace {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 13px;
+  background: var(--cream);
+}
+.trace li {
+  display: grid;
+  grid-template-columns: 1.5em 1fr;
+  gap: 10px;
+  padding: 8px 14px;
+  border-bottom: 1px dashed var(--line);
+  color: var(--muted);
+}
+.trace li:last-child { border-bottom: 0; }
+.trace .ok { color: var(--forest); }
+.trace .now { color: var(--sepia); }
+.trace li.is-now { color: var(--ink); background: rgba(212, 163, 115, .18); }
+
+/* 空 / 载 / 错 三态（本文档提议新增，尚未落地） */
+.state {
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.state b { display: block; color: var(--ink); font-weight: 500; margin-bottom: 2px; }
+.state--err { border-color: rgba(201, 76, 76, .55); color: var(--brick); }
+.state--err b { color: var(--brick); }
+
+/* 入口卡（结构照 pages/index.vue） */
+.entries { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--lifted);
+  text-decoration: none;
+  transition: border-color var(--dur) var(--ease);
+}
+.entry:hover { border-color: var(--line-strong); }
+.entry__no { font-family: var(--serif); font-weight: 900; color: var(--sand); font-size: 12px; }
+.entry__title { font-family: var(--serif); font-size: 19px; font-weight: 900; color: var(--sepia); }
+.entry__desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+.demo {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+}
+.demo--city { flex-direction: column; }
+/* 说明书里样张被压到半幅宽，横排会挤断菜名，改竖排 */
+.demo--scan { flex-direction: column; gap: 8px; }
+.demo__shot {
+  width: 100%;
+  height: 56px;
+  flex: none;
+  object-fit: cover;
+  object-position: center 30%;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  filter: sepia(.35);
+}
+.demo__list { list-style: none; margin: 0; padding: 0; font-size: 12px; line-height: 1.9; }
+.demo__list li { display: flex; align-items: baseline; gap: 7px; }
+.demo__list em { font-style: normal; color: var(--muted); margin-left: auto; }
+.entry__go {
+  margin-top: 14px;
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  color: var(--sepia);
+  border-bottom: 2px solid var(--sepia);
+  padding-bottom: 2px;
+}
+
+/* 参考来源 */
+.ref-list { margin: 0; padding-left: 1.4em; line-height: 2; }
+.ref-list li { margin: 4px 0; }
+.ref-list a {
+  border-bottom: 1px solid var(--line-strong);
+  text-decoration: none;
+  color: var(--sepia);
+}
+
+/* ---------------- 页脚 ---------------- */
+
+footer {
+  margin-top: 64px;
+  padding: 24px 0 64px;
+  border-top: 2px solid var(--sepia);
+  color: var(--muted);
+  line-height: 2;
+}
+footer b { color: var(--sepia); }
+
+/* ---------------- 响应式 ---------------- */
+
+@media (max-width: 880px) {
+  .wrap { padding: 0 20px; }
+  .masthead h1 { font-size: 36px; }
+  .sec-head h2 { font-size: 24px; }
+  .toc ol { columns: 1; }
+  .grid2, .grid3, .entries { grid-template-columns: 1fr; }
+  .spec { grid-template-columns: 1fr; }
+  .spec__stage { border-right: 0; padding-right: 0; padding-bottom: 20px; border-bottom: 1px dashed var(--line); }
+  .spec__note { padding: 20px 0 0; }
+  section { padding: 40px 0 0; }
+
+  /* 表格堆叠成条目，每格带表头标签 */
+  .tw { overflow: visible; }
+  thead { display: none; }
+  table, tbody, tr, td { display: block; width: 100%; }
+  tbody tr {
+    border-top: 1px solid var(--line-strong);
+    padding: 10px 0;
+    margin-bottom: 8px;
+  }
+  td { border-bottom: 0; padding: 4px 0; }
+  td::before {
+    content: attr(data-h);
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: .1em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 1ms !important; scroll-behavior: auto !important; }
+}
+
+/* ---------------- 打印 ---------------- */
+
+@media print {
+  body { background: #fff; font-size: 10.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .toc { display: none; }
+  section { padding: 0 0 6pt; }
+  .spec, table, .trace, .state, .entry { break-inside: avoid; }
+  .sec-head, h2, h3 { break-after: avoid; }
+  a { text-decoration: none; }
+  .ref-list a { color: inherit; border: 0; }
+  @page { margin: 16mm 14mm; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <h1>美食界面</h1>
+    <p class="masthead__sub">
+      把美食类界面拆到可复用的最小单位，写清每个组件为什么长这样、在什么状态下变成什么样，
+      再附上能在浏览器里直接核对规格的实物样张——不是图片，是真的 HTML。
+    </p>
+    <div class="masthead__meta">
+      <span>2026-11-10</span>
+      <span>适用 <b>食鉴 · 传智杯 AI WEB 赛项</b></span>
+      <span>视觉真源 <b>本文件附章「视觉规格速查」（复古怀旧风）</b></span>
+      <span>已对代码 <b>pages/*.vue</b></span>
+    </div>
+
+    <nav class="toc" aria-label="目录">
+      <ol>
+        <li><a href="#s1"><span class="no">壹</span>项目速读：三句话讲清食鉴</a></li>
+        <li><a href="#s2"><span class="no">贰</span>外部经验：被验证过的四件事</a></li>
+        <li><a href="#s3"><span class="no">叁</span>组件台账：五层分级与组件规格</a></li>
+        <li><a href="#s4"><span class="no">肆</span>现场打样：可核对的实物样张</a></li>
+        <li><a href="#s5"><span class="no">伍</span>页面地图：放哪些页、怎么排、怎么跳</a></li>
+        <li><a href="#s6"><span class="no">陆</span>设计思路：为什么这套皮相配这道菜</a></li>
+        <li><a href="#s7"><span class="no">柒</span>三条红线与六项自检</a></li>
+        <li><a href="#s8"><span class="no">捌</span>收尾顺序：按代价排，不按页面排</a></li>
+        <li><a href="#s9"><span class="no">玖</span>参考来源</a></li>
+        <li><a href="#s10"><span class="no">附</span>视觉规格速查：颜色、字号、组件</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <!-- ==================== 壹 ==================== -->
+  <section id="s1">
+    <div class="sec-head">
+      <span class="no">壹</span>
+      <h2>项目速读：三句话讲清食鉴</h2>
+    </div>
+
+    <p class="lede">
+      用户填一次身体档案（性别、年龄、身高体重、过敏原、慢病、孕期、减脂目标），之后无论是
+      <b>拍一张菜单</b>还是<b>挑一座城市</b>，系统逐道回答：「这道菜我能不能吃、为什么、依据是什么」。
+    </p>
+    <p class="lede">
+      它和大众点评、美团不是同一类产品。那些平台解决「去哪吃」，食鉴解决「<b>你能不能吃</b>」——
+      一个过敏体质的孕妇站在一桌菜前面，没有人替她把这句话说出来，这就是缺口。
+    </p>
+
+    <table>
+      <thead>
+        <tr><th style="width:22%">要记住的事</th><th>内容</th><th style="width:28%">对界面的直接影响</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>判定不在模型手里</td>
+          <td><code>evaluateRules(dish, profile)</code> 是纯函数，等级靠 <code>raise()</code> <b>只升不降</b>（<code>safe 0 &lt; caution 1 &lt; forbidden 2</code>），最终取所有命中项里最高的那个。<br>
+            能把一道菜判成 <code>forbidden</code> 的只有四种来源：<b>过敏、孕期生食、素食、清真</b>；<b>慢病与减脂目标最高只到 <code>caution</code></b>。</td>
+          <td>结论必须由界面<b>盖章式</b>给出，不能是「AI 觉得」的软话；理由与依据要和结论分开摆。<br>也别把「高血压」画成红色炸弹——按引擎它只够「注意」。</td>
+        </tr>
+        <tr>
+          <td>模型只干两件事</td>
+          <td>① <b>读图认菜</b>：vision 模型抽菜名、食材、置信度，<code>temperature: 0</code>，多 provider × 多模型 × 多图变体最多试 8 次；② <b>把结论写成人话</b>。<br>它不参与判定，也改不了等级。</td>
+          <td>界面上凡是「模型可能错」的地方都要留后路：低置信标注、菜名可改、食材可删补。<br>凡是「规则算出来的」地方不给改：结论、依据。</td>
+        </tr>
+        <tr>
+          <td>数据底数</td>
+          <td>30 座城市、250 道菜（<b>250 / 250 都带 <code>reference_price</code></b>）、310 条知识、12 类过敏原。</td>
+          <td>有价就显示 <code>¥</code>，没有就不摆占位框；空字段一律不占行。</td>
+        </tr>
+        <tr>
+          <td>只有三档结论</td>
+          <td><code>safe</code> / <code>caution</code> / <code>forbidden</code>，对应三色：Forest / Olive / Brick。</td>
+          <td>三色必须一眼可分，且<b>不能只靠颜色</b>——色盲用户与黑白打印都要能读。</td>
+        </tr>
+        <tr>
+          <td>识别一定会有错</td>
+          <td>菜品可改：菜名用 input 直改，食材用可删 chip 补录（决策 F6）。</td>
+          <td>「可修正」是主交互，不是兜底按钮：改完的结论就地重算。</td>
+        </tr>
+        <tr>
+          <td>视觉已定调</td>
+          <td>复古怀旧：<code>#f5e6d3</code> 泛黄纸、<code>#8b4513</code> 棕褐、圆角 4px、边框 2px、无阴影、过渡 300ms。</td>
+          <td>所有新组件必须在这套约束里生长，不许冒出玻璃态、大圆角、现代渐变。</td>
+        </tr>
+        <tr>
+          <td>八个路由、四条线</td>
+          <td><code>/</code> 分流 → 现场线 <code>/scan</code>；闲逛线 <code>/cities</code> → <code>/city/[id]</code> → <code>/dish/[id]</code>；个人线 <code>/profile</code>、<code>/favorites</code>、<code>/chat</code>。</td>
+          <td>复用率必须高——八个路由撑不起一套冗余组件库；排列与跳转见第伍章页面地图。</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 贰 ==================== -->
+  <section id="s2">
+    <div class="sec-head">
+      <span class="no">贰</span>
+      <h2>外部经验：被验证过的四件事</h2>
+    </div>
+
+    <p class="lede">
+      做美食界面不是从零发明。下面四条是查证过的行业结论，后面每个组件的规格都能追到其中一条。
+    </p>
+
+    <h3 class="sub">一、组件要分层，别按页面切</h3>
+    <p class="small">
+      美团技术团队复盘外卖近百个页面后，把组件按粒度分成四层：<b>基础控件</b>（标签、按钮、开关）→
+      <b>业务组件</b>（商品卡片）→ <b>复杂组件</b>（多个业务组件拼合）→ <b>模板</b>（商家列表、菜品列表）→
+      <b>页面</b>。他们的结论是：先按「使用频率」排序再逐个替换，否则组件库做得很全，实际一大半用不上。
+    </p>
+    <div class="quote">
+      复用性较高的组件大体可分为两类：第一类是「基础控件」……第二类是「业务组件」，由基础控件组成，
+      同时业务组件还能相互组合，成为更高阶的「复杂组件」。
+      <cite>美团技术团队《移动端 UI 一致性解决方案》，2020-11-26</cite>
+    </div>
+    <p class="small">
+      这条直接决定了本文档第叁章的组织方式：<b>不按页面列组件，按粒度分层</b>。八个路由共用一套组件，
+      比八个路由各写一套划算得多。
+    </p>
+
+    <h3 class="sub">二、菜品卡只有半秒，顺序不能乱</h3>
+    <p class="small">
+      食物类产品卡片的元素有固定的注意力顺序：<b>图片 → 名称 → 价格 → 评分/徽章 → 可定制信号</b>。
+      拇指滑过一张卡的时间大致就是半秒，价格和图片要先于评分被识别，评分又要先于徽章。
+      另有研究显示菜单单品加照片后销量平均提升 6.5%（Cornell 菜单研究），外卖平台则给商家开出「加图能提升 30% 以上订单」的建议。
+    </p>
+    <div class="quote">
+      A product card has about half a second to make its case before someone's thumb scrolls past it.
+      <cite>Design Your Way《Food App Design: Half a Second to Make the Sale》</cite>
+    </div>
+    <p class="small">
+      食鉴<b>有参考价</b>（<code>seed/dishes.json</code> 里 250 道菜全部带 <code>reference_price</code>，
+      <code>scan.vue</code> 已渲染 <code>.dish-price</code>），<b>没有评分</b>。那半秒要争夺的东西因此变成：
+      <b>结论 → 菜名 → 参考价 → 理由</b>。判定必须顶在菜名同一行，而不是藏在卡片底部；
+      价格用衬线 17 落在菜名右侧，读到就停，不用横扫。
+    </p>
+
+    <h3 class="sub">三、过敏原信息「只靠颜色」是安全缺陷</h3>
+    <p class="small">
+      这是本项目最不能妥协的一条。把饮食禁忌编码成小色点，在 WCAG 里同时踩两处：
+      <b>1.4.1 不只用颜色</b> 与 <b>1.1.1 非文本内容需有替代文本</b>。约 8% 的男性存在不同程度的色觉障碍，
+      红绿色盲最常见；对严重过敏的用户，这不是审美问题，是安全问题。行业给出的做法一致：
+    </p>
+    <table>
+      <thead><tr><th style="width:32%">要做的</th><th>具体做法</th></tr></thead>
+      <tbody>
+        <tr><td>颜色 + 文字 + 形状，三重编码</td><td>每个标记都带文字（「含虾」）或 <code>aria-label</code>（"Contains shellfish"）；色块只是加速识别，不能是唯一线索。</td></tr>
+        <tr><td>灰阶自测</td><td>把界面截图转成灰度，如果信息变得含糊或消失，说明存在颜色依赖。</td></tr>
+        <tr><td>明度也要拉开</td><td>即使色相看不出，深绿与浅橙的明度差也能区分；三色不要选明度相近的。</td></tr>
+        <tr><td>触控目标 ≥ 44×44</td><td>手机上的筛选项、可删 chip 的关闭按钮都要留足手指面积（视觉可以做小，命中区不行）。</td></tr>
+        <tr><td>对比度 ≥ 4.5:1</td><td>标签文字与底色之间，三个状态都要达标（含选中态）。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">四、AI 的不确定性要设计出来，而不是藏起来</h3>
+    <p class="small">
+      模型输出是概率性的，界面若用同一种「确定的字体」渲染所有结果，用户会学会不信任全部结果。可用的四条做法：
+    </p>
+    <div class="grid2">
+      <div class="panel">
+        <h4>别甩裸数字</h4>
+        <p>「置信度 0.72」对人没有意义。换成能判断的说法：「照片偏暗，两道菜名需核对」。</p>
+      </div>
+      <div class="panel">
+        <h4>按风险分档呈现</h4>
+        <p>低风险高置信 → 直接给结论；高风险低置信 → 放进「待核对」，要求人确认后才生效。</p>
+      </div>
+      <div class="panel">
+        <h4>改比重来便宜</h4>
+        <p>输入要留在输出旁边：能在原处改一个字，就不要让人重新拍一张。部分结果应可保留。</p>
+      </div>
+      <div class="panel">
+        <h4>等待要变成证据</h4>
+        <p>转圈只消耗时间。分步播报「正在读菜单 → 识别到 8 道 → 正在比对禁忌」会把等待变成可信度。</p>
+      </div>
+    </div>
+    <div class="quote">
+      Confidence is a design decision, not a number. … The failure mode to avoid is a product that renders
+      every output with the same typographic certainty.
+      <cite>Farba Digital《Designing for the AI that gets it wrong》</cite>
+    </div>
+  </section>
+
+  <!-- ==================== 叁 ==================== -->
+  <section id="s3">
+    <div class="sec-head">
+      <span class="no">叁</span>
+      <h2>组件台账：五层分级与组件规格</h2>
+    </div>
+
+    <p class="lede">
+      下表是本项目全部前端组件的台账。归类依据是第贰章第一条的分层法。「落地」列写的是真实类名：
+      标 <code>main.css</code> 的是全局样式，标页面名的是该页 scoped 样式。写代码照这里抄，不要再发明第二套。
+    </p>
+
+    <p class="small">
+      <b>这份台账是「目标态 + 现状对照」。</b>
+      <code>components/</code> 目录现在有 4 个组件：<code>AppHeader</code>、<code>DishCard</code>、<code>VerdictBadge</code>、<code>ProfileForm</code>。
+      下表列的 15 个是完整分层；<b>还没抽成组件的，按类名落在页面 scoped 样式里</b>——所以「落地」列写的是类名或文件。
+      照着抄能保证样式一致，但同一条样式散在三处时，改一处要改三处。
+    </p>
+
+    <h3 class="sub">基础控件（5）</h3>
+    <table>
+      <thead>
+        <tr><th style="width:16%">组件</th><th style="width:30%">结构与规格</th><th style="width:30%">状态</th><th>落地</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Letterpress 按钮</b></td>
+          <td>棕褐实底 + 奶油字 + 2px 同色描边 + 4px 圆角；内边距 14/28，字号 15，字距 .14em。</td>
+          <td>hover 加深一档棕且<b>不位移</b>；active 反白为透明底；disabled 透明度 .45；focus-visible 2px 外描边偏移 3px。</td>
+          <td><code>main.css</code><br><code>.btn</code> <code>.btn--ghost</code> <code>.btn--sm</code></td>
+        </tr>
+        <tr>
+          <td><b>Stamp 邮戳标签</b></td>
+          <td>4px 圆角方戳（不做胶囊），内边距 4/12，字号 12 / 字重 500 / 字距 .14em。</td>
+          <td>三色语义：Forest 可吃、Olive 注意、Brick 别点；<code>--plain</code> 为中性信息标签（透明底 + 1px 边）。</td>
+          <td><code>main.css</code><br><code>.stamp</code> 及三个修饰类</td>
+        </tr>
+        <tr>
+          <td><b>输入框</b></td>
+          <td>cream 底 + 2px 棕边 + 4px 圆角，内边距 12/14，字号 15。</td>
+          <td>hover 边框加深；focus 边框转实棕并去掉默认 outline；错误态 <code>aria-invalid</code> 换 Brick 边。</td>
+          <td><code>main.css</code> <code>.field</code></td>
+        </tr>
+        <tr>
+          <td><b>分段控件</b></td>
+          <td>2px 外框包住 2–3 个等宽按钮，中间 1px 竖分隔；选中项实棕底奶油字。</td>
+          <td>选中 / 未选中 / 键盘焦点三态；保持 <code>role="group"</code> 可播报。</td>
+          <td><code>profile</code><br><code>.seg</code> <code>.seg__btn</code></td>
+        </tr>
+        <tr>
+          <td><b>选择片 Chip</b></td>
+          <td>2px 边框 + 4px 圆角；可带删除叉，可做成虚线「+ 补一个」。</td>
+          <td>默认 / 选中 <code>.is-on</code>（棕边 + 10% 棕底）/ 可删（叉 hover 转 Brick）/ 新增（虚线）。</td>
+          <td><code>.chip</code> <code>.chip-x</code> <code>.chip--add</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">业务组件（5）</h3>
+    <table>
+      <thead>
+        <tr><th style="width:16%">组件</th><th style="width:30%">结构与规格</th><th style="width:30%">状态</th><th>落地</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>判定灯</b></td>
+          <td>9px 小标记，<b>颜色 + 形状 + 紧随其后的文字</b>三重编码：可吃＝实心圆（Forest）、注意＝方块（Olive）、别点＝菱形（Brick）。</td>
+          <td>三态固定，不可新增第四态；灰阶下靠形状仍可分。</td>
+          <td><code>index.vue</code><br><code>.dot</code> + <code>--caution</code> / <code>--forbidden</code></td>
+        </tr>
+        <tr>
+          <td><b>菜品判定卡</b></td>
+          <td>左侧 2px 竖条表状态；菜名（衬线 22 / 900，可点改）+ 参考价（衬线 17）；下行 meta（城市 · 类别 · 辣度）；胶囊 badge + 理由列表 + 依据。</td>
+          <td>正常 / 低置信（<code>.low-conf</code> 一行提示）/ 已修改 / 无结论（无 <code>.verdict</code> 时不显示）。</td>
+          <td><code>scan.vue</code><br><code>.dish-head</code> <code>.dish-name</code> <code>.dish-price</code> <code>.dish-meta</code> <code>.verdict</code> <code>.badge</code> <code>.reasons</code> <code>.citations</code></td>
+        </tr>
+        <tr>
+          <td><b>可改菜名</b></td>
+          <td>外观即菜名，悬停或聚焦时出现虚线下划线；点开改成宽度自适应的输入，回车保存、Esc 还原。</td>
+          <td>只读 / 编辑中 / 已保存 / 校验失败（空名不准存）。</td>
+          <td><code>scan.vue</code> <code>.dish-name:hover</code></td>
+        </tr>
+        <tr>
+          <td><b>城市条目</b></td>
+          <td>左侧城市名（衬线、900），右侧小字代表菜，行间 1px 细线，末行去线。</td>
+          <td>默认 / hover（只加深分隔线，不位移）/ 当前选中。</td>
+          <td><code>index.vue</code> <code>.city</code>、<code>scan.vue</code> 城市选择</td>
+        </tr>
+        <tr>
+          <td><b>历史记录行</b></td>
+          <td>左标题、右时间，两端对齐，行间 1px 细线，时间用 <code>tabular-nums</code> 防跳动。</td>
+          <td>加载中 / 空（<code>.recent__empty</code>）/ 有数据；点击进对应结果页。</td>
+          <td><code>index.vue</code><br><code>.item</code> <code>.item__title</code> <code>.item__meta</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">复杂组件（3）</h3>
+    <table>
+      <thead>
+        <tr><th style="width:16%">组件</th><th style="width:30%">结构与规格</th><th style="width:30%">状态</th><th>落地</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>三步档案向导</b></td>
+          <td>顶部壹贰叁步骤条（横排、等宽，当前步实棕底），下方单面板切换；每步 3–5 个字段，不超一屏。</td>
+          <td>当前 <code>.is-on</code> / 已完成 <code>.is-done</code> / 未到；字段级校验失败就地标红 + 文字说明。</td>
+          <td><code>profile</code><br><code>.steps</code> <code>.steps__item</code> <code>.steps__no</code> <code>.steps__label</code></td>
+        </tr>
+        <tr>
+          <td><b>识别进度</b>（待做）</td>
+          <td>纵向清单，每行「状态符号 + 动作」，做完的行转 Forest，正在做的行加底色。</td>
+          <td>四行典型播报：读图 → 识别菜品 → 比对禁忌 → 生成理由；失败时该行转 Brick 并给重试入口。</td>
+          <td>新增 <code>.trace</code>（第肆章有样张）</td>
+        </tr>
+        <tr>
+          <td><b>空 / 载 / 错 三态块</b>（待做）</td>
+          <td>统一虚线框 + 居中一行主句 + 一行下一步动作；错误态换 Brick 边框与文字。</td>
+          <td>三种固定文案模板，禁止「出错了，请稍后再试」这类无信息量句子。</td>
+          <td>新增 <code>.state</code> <code>.state--err</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">模板（2）</h3>
+    <table>
+      <thead>
+        <tr><th style="width:16%">模板</th><th style="width:30%">结构与规格</th><th style="width:30%">状态</th><th>落地</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>双入口首页</b></td>
+          <td>两列等宽卡片；卡内必须带<b>真实内容示意区</b>：拍菜单放菜单缩略图 + 三条识别结果，选城市放城市 + 代表菜。禁止「高盒子 + 三行字」。</td>
+          <td>hover 只加深边框；移动端折成单列；示意内容取自 <code>seed/</code> 与 <code>public/menu-sample.png</code>。</td>
+          <td><code>index.vue</code><br><code>.entries</code> <code>.entry__title</code> <code>.entry__go</code> <code>.demo--scan</code> / <code>.demo--city</code></td>
+        </tr>
+        <tr>
+          <td><b>结果页骨架</b></td>
+          <td>刊头（场景 + 时间 + 档案摘要）→ 结论汇总条（三类计数）→ 菜品卡列表 → 页脚免责声明。扫描页与城市页共用。</td>
+          <td>加载（骨架占位）/ 部分成功（有菜没识别出来时标注）/ 全部失败（保留原图 + 手动输入入口）。</td>
+          <td><code>scan.vue</code><br><code>.summary</code> <code>.sum-item</code> <code>.disclaimer</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">台账体检：五处文档与代码对不上</h3>
+    <p class="small">
+      台账不能只写在纸上。交稿前拿它去对了一遍 <code>pages/*.vue</code> 与 <code>main.css</code>，查出五处，
+      前两处是硬伤，必须动代码。
+    </p>
+    <table>
+      <thead><tr><th style="width:6%">#</th><th style="width:26%">文档/设计说</th><th style="width:36%">代码实际</th><th>怎么办</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>判定＝颜色 + 形状 + 文字</td>
+          <td><code>index.vue</code> 里三档 <code>.dot</code> 全是 8px 圆点，<b>只有颜色不同，形状一样</b>。</td>
+          <td><b>补形状</b>：caution 改方块、forbidden 改菱形（第肆章样张已按此画）。不改的话，黑白打印和红绿色盲看到的是一排灰点。</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>菜品卡带判定灯</td>
+          <td><code>scan.vue</code> 的 <code>.dish</code> 用 2px <b>左竖条</b>上色 + 胶囊 badge，没有 <code>.dot</code>。</td>
+          <td>二选一，别并存：要么徽章前补 <code>.dot</code> 统一，要么承认「位置即状态」，把 badge 做成有形状差异的方形戳。</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>组件写一次，八个路由复用</td>
+          <td><code>.chip</code> 在 <code>profile</code>、<code>scan</code>、<code>dish/[id]</code> <b>各写了一份</b>；<code>main.css</code> 里的 <code>.stamp</code> <b>零引用</b>。</td>
+          <td>把 <code>.chip</code> 收进 <code>main.css</code>；<code>.stamp</code> 要么在结果页用起来，要么删掉——没人用的全局样式是负担。</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>落地列写真实类名</td>
+          <td>初稿写成 <code>.dish__name</code>、<code>.chip__x</code>（下划线 BEM），代码是 <code>.dish-name</code>、<code>.chip-x</code>（连字符）。</td>
+          <td>本文档已按代码改正。以后改代码先改台账，别让两份名字漂移。</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>「食鉴没有价格」</td>
+          <td>250 / 250 道菜都带 <code>reference_price</code>，<code>scan.vue</code> 已在渲染 <code>¥</code>。</td>
+          <td>初稿这句是错的，已改：有参考价、没有评分。半秒里的元素顺序也跟着改。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">界面状态从哪来：十一个接口的字段对照</h3>
+    <p class="small">
+      组件画的每一个状态，背后都得有字段撑着。下面这张表是「界面上的字 ↔ 接口里的字段」，写页面时照这个填，
+      别自己造状态。<code>server/api/</code> 现在一共 11 个接口。
+    </p>
+    <table>
+      <thead><tr><th style="width:26%">界面上看到的</th><th style="width:34%">字段</th><th>来源接口</th></tr></thead>
+      <tbody>
+        <tr><td>三档结论 / 颜色 / 左竖条</td><td><code>level: 'safe' | 'caution' | 'forbidden'</code></td><td><code>evaluate</code>、<code>scan</code>、<code>cities/[id]/dishes</code></td></tr>
+        <tr><td>理由行（几条列几条）</td><td><code>reasons: string[]</code></td><td>同上（<code>assessDish</code> 产出）</td></tr>
+        <tr><td>灰字「依据：…」</td><td><code>citations: string[]</code>，空数组则整行不渲染</td><td>同上</td></tr>
+        <tr><td>「可以吃，但建议控制份量…」</td><td><code>suggestion: string | null</code>（<code>safe</code> 时为 <code>null</code>）</td><td>同上（<code>suggestionOf()</code>）</td></tr>
+        <tr><td>「识别可能不准，请核对菜名和食材」</td><td><code>confidence &lt; 0.5</code> → <code>.low-conf</code></td><td><code>scan</code>（模型返回的逐菜置信度）</td></tr>
+        <tr><td>顶部三类计数汇总条</td><td><code>assessMenu()</code> 的汇总结果</td><td><code>scan</code>、<code>cities/[id]/dishes</code></td></tr>
+        <tr><td>首页「最近看过」</td><td><code>history[]</code></td><td><code>user/history</code></td></tr>
+        <tr><td>收藏按钮的两种字</td><td><code>favorite</code></td><td><code>user/favorite</code></td></tr>
+        <tr><td>档案有没有填</td><td><code>profile</code> 是否为空</td><td><code>/api/user/data</code>；<b>目前没有守卫拦截</b>，缺口见第伍章</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 肆 ==================== -->
+  <section id="s4">
+    <div class="sec-head">
+      <span class="no">肆</span>
+      <h2>现场打样</h2>
+    </div>
+
+    <p class="lede">
+      下面每件样张都是<b>真的 HTML/CSS</b>，类名与数值取自 <code>main.css</code> 与 <code>pages/*.vue</code>，
+      不是图片。鼠标移上去、按 Tab 键，看到的就是最终效果；怀疑某个尺寸对不上，直接打开这个文件改一个数字再刷新。
+    </p>
+    <p class="small muted">
+      说明一句：样张内部的 19 / 22 / 17 / 12px 来自附章的产品规格，属于「展品」，
+      不受本文件版式四档字号（52 / 32 / 20 / 14）的限制。
+    </p>
+
+    <h3 class="sub">按钮四态</h3>
+    <div class="spec">
+      <div class="spec__stage">
+        <div class="row">
+          <button class="btn" type="button">开始识别</button>
+          <button class="btn btn--ghost" type="button">换一张</button>
+          <button class="btn btn--sm" type="button">身体档案</button>
+          <button class="btn" type="button" aria-disabled="true">正在识别</button>
+        </div>
+        <p class="small muted">从左到右：主按钮、次按钮、小号、禁用。悬停看加深，按下看反白。</p>
+      </div>
+      <div class="spec__note">
+        <dl>
+          <dt>用途</dt><dd>页面上唯一的主行动（开始识别 / 保存档案），其余一律次要样式。</dd>
+          <dt>不许做</dt><dd>不加阴影、不加圆角放大、悬停不上浮——纸张不会浮起。</dd>
+          <dt>文案</dt><dd>写动作不写「提交」：开始识别、保存档案、重新拍一张。</dd>
+          <dt>依据</dt><dd>第贰章一；附章 Letterpress。</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 class="sub">判定灯与邮戳：三色 + 形状 + 文字</h3>
+    <div class="spec">
+      <div class="spec__stage">
+        <div class="row">
+          <span><span class="dot"></span> 可以吃</span>
+          <span><span class="dot dot--caution"></span> 注意</span>
+          <span><span class="dot dot--forbidden"></span> 别点</span>
+        </div>
+        <div class="row">
+          <span class="stamp">可吃</span>
+          <span class="stamp stamp--caution">注意</span>
+          <span class="stamp stamp--forbidden">禁食</span>
+          <span class="stamp stamp--plain">含虾</span>
+        </div>
+        <p class="small muted">把这一条截图转成灰度再看：圆 / 方 / 菱依然分得开，这就是三重编码的意义。</p>
+      </div>
+      <div class="spec__note">
+        <dl>
+          <dt>用途</dt><dd>列表里用判定灯（省空间）；详情页结论用邮戳（有仪式感，像给菜单盖章）。</dd>
+          <dt>编码</dt><dd>颜色＝Forest / Olive / Brick；形状＝圆 / 方 / 菱；文字＝可吃 / 注意 / 别点。<b>三者缺一不可。</b></dd>
+          <dt>现状</dt><dd>代码里三档形状相同（见第叁章台账体检第 1 条），照这张样张补。</dd>
+          <dt>依据</dt><dd>第贰章三（WCAG 1.4.1 与 1.1.1）。</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 class="sub">菜品判定卡：三种结论</h3>
+    <div class="spec">
+      <div class="spec__stage">
+        <div class="dish is-forbidden">
+          <div class="dish-head">
+            <span class="dish-name">爆肚</span>
+            <span class="dish-price">¥45</span>
+          </div>
+          <p class="dish-meta"><span>北京</span><span>含内脏</span><span>含羊肉</span></p>
+          <span class="badge"><span class="dot dot--forbidden" style="background:#f5e6d3"></span>别点</span>
+          <ul class="reasons">
+            <li>含「芝麻」，与你档案中的过敏原冲突</li>
+            <li>含「腐乳」：高钠食物，高血压人群需控制</li>
+          </ul>
+          <p class="citations">依据：八大类过敏原清单 · 交叉检测；慢病饮食限制（项目自建规则库 C-高血压）</p>
+        </div>
+
+        <div class="dish is-caution">
+          <div class="dish-head">
+            <span class="dish-name">炸酱面</span>
+            <span class="dish-price">¥28</span>
+          </div>
+          <p class="dish-meta"><span>北京</span><span>主食</span><span>含猪肉</span></p>
+          <span class="badge"><span class="dot dot--caution" style="background:#f5e6d3"></span>注意</span>
+          <ul class="reasons">
+            <li>含「炸」：油脂偏高，减脂期建议控制</li>
+          </ul>
+          <p class="citations">依据：饮食目标匹配（项目自建规则库 G-fat_loss）</p>
+        </div>
+
+        <div class="dish is-safe">
+          <div class="dish-head">
+            <span class="dish-name">豌豆黄</span>
+            <span class="dish-price">¥18</span>
+          </div>
+          <p class="dish-meta"><span>北京</span><span>甜品</span><span>小吃</span></p>
+          <span class="badge"><span class="dot" style="background:#f5e6d3"></span>可吃</span>
+          <p class="citations">依据：（无命中项，此行不渲染）</p>
+        </div>
+      </div>
+      <div class="spec__note">
+        <dl>
+          <dt>样张档案</dt><dd>过敏原：甲壳类、芝麻；慢病：高血压；目标：减脂。三张卡的结论、理由、依据都是按这份档案跑 <code>evaluateRules()</code> 得到的<b>真实输出</b>（只有菜价做示意）。</dd>
+          <dt>信息顺序</dt><dd>左竖条 → 菜名 → 参考价 → meta → 结论 → 理由 → 依据。<b>结论必须在菜名之后紧接着</b>，不能沉底。</dd>
+          <dt>理由条数</dt><dd>命中几条列几条，上不封顶。过敏 + 慢病同时命中就是两行，<b>不许合并成一句</b>——合并会让人以为过敏只是「建议少吃」。</dd>
+          <dt>理由写法</dt><dd>先说「哪一条命中了」，再说人话后果；不写「本品可能不适合您」。引擎原文是 <code>含「X」：{note}</code>，界面照抄，别润色掉那个「含」。</dd>
+          <dt>没命中就不写</dt><dd><code>safe</code> 卡不渲染理由行，也不渲染依据行——<code>v-if="citations.length"</code> 直接不出现。别为了卡片对称编一句占位话。</dd>
+          <dt>状态</dt><dd>低置信时插一行 <code>.low-conf</code>「识别可能不准，请核对菜名和食材」；用户改过就就近标「已改」。</dd>
+          <dt>依据</dt><dd>只有五种合法写法：<code>八大类过敏原清单 · 交叉检测</code>、<code>孕期饮食禁忌（项目自建规则库 P-0x）</code>、<code>慢病饮食限制（项目自建规则库 C-病症）</code>、<code>饮食目标匹配（项目自建规则库 G-目标）</code>、<code>用户忌口设置</code>。以 <code>server/utils/rules.ts</code> 的 <code>citations.push</code> 为准。</dd>
+          <dt>配色提示</dt><dd>卤煮火烧这类「高血压 + 卤」只到 <code>caution</code>，别画成红色。</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 class="sub">可删食材与补录：识别错了能改</h3>
+    <div class="spec">
+      <div class="spec__stage">
+        <div class="chips">
+          <span class="chip">鸭肉 <button class="chip-x" type="button" aria-label="删除鸭肉">×</button></span>
+          <span class="chip is-on">甜面酱 <button class="chip-x" type="button" aria-label="删除甜面酱">×</button></span>
+          <span class="chip">荷叶饼 <button class="chip-x" type="button" aria-label="删除荷叶饼">×</button></span>
+          <button class="chip chip--add" type="button">+ 补一个食材</button>
+        </div>
+        <p class="small muted">删掉或补上一个食材，下面的结论立刻重算——判定是纯函数，改输入就改输出。</p>
+      </div>
+      <div class="spec__note">
+        <dl>
+          <dt>为什么必须有</dt><dd>识别错一次，现场演示就翻车；「允许人工修正」本身也是 AI 安全评分项。</dd>
+          <dt>交互</dt><dd>删除无二次确认（可撤销）；补录用虚线 chip，点开就地变输入框。</dd>
+          <dt>触控</dt><dd>删除键视觉 22px，<code>::after</code> 把命中区撑到 44×44——两边都要，不能只做大按钮。</dd>
+          <dt>依据</dt><dd>决策 F6；第贰章四（改比重来便宜）；第贰章三（44px）。</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 class="sub">三步档案向导</h3>
+    <div class="spec">
+      <div class="spec__stage">
+        <ol class="steps">
+          <li class="steps__item is-done"><span class="steps__no">壹</span><span class="steps__label">身体基础</span></li>
+          <li class="steps__item is-on"><span class="steps__no">贰</span><span class="steps__label">过敏与慢病</span></li>
+          <li class="steps__item"><span class="steps__no">叁</span><span class="steps__label">目标与忌口</span></li>
+        </ol>
+        <div>
+          <p class="small muted" style="margin-bottom:6px;letter-spacing:.1em">过敏原 · 命中就是「别点」，不会降级</p>
+          <div class="chips">
+            <span class="chip is-on">甲壳类</span>
+            <span class="chip">花生</span>
+            <span class="chip is-on">芝麻</span>
+            <span class="chip">蛋类</span>
+            <span class="chip">乳制品</span>
+          </div>
+        </div>
+        <div class="row" style="align-items:flex-end;gap:24px">
+          <div>
+            <p class="small muted" style="letter-spacing:.1em;margin-bottom:6px">性别</p>
+            <div class="seg">
+              <button type="button" class="seg__btn is-on">男</button>
+              <button type="button" class="seg__btn">女</button>
+            </div>
+          </div>
+          <div>
+            <p class="small muted" style="letter-spacing:.1em;margin-bottom:6px">身高（cm）</p>
+            <input class="field" style="width:140px" value="168" aria-label="身高，厘米" />
+          </div>
+        </div>
+      </div>
+      <div class="spec__note">
+        <dl>
+          <dt>为什么分三步</dt><dd>九个字段一屏塞不下，拆成三屏，每屏一个心智主题；步骤条回答「还剩多少」。真正的实现是 <code>profile.vue</code> 的 <code>step = ref(1)</code> + <code>ProfileForm</code> 的三段 <code>v-if</code>，一次只有一屏 <code>v-if</code> 渲染。</dd>
+          <dt>退出</dt><dd>档案是所有判定的尺子，但<b>现在的代码没有守卫</b>——<code>/profile</code> 随时可进可退，不填也能直接去 <code>/scan</code>，那时会用默认档案算结论。这是要补的第一优先项。</dd>
+          <dt>校验</dt><dd>身高体重一变就 <code>computed</code> 出 BMI 并就地显示数值与档位（<code>.bmi</code>），不等最后一步才报错。</dd>
+          <dt>依据</dt><dd><code>ProfileForm.vue</code> 的三屏结构。<b>F9 说的是「先档案、后首页」（流程顺序），不是「为什么分三步」</b>——这两件事别混着引。</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 class="sub">识别进度：把等待变成证据</h3>
+    <div class="spec">
+      <div class="spec__stage">
+        <ul class="trace">
+          <li><span class="ok">✓</span><span>压缩照片 3200×2000 → 1600px，用时 0.4s</span></li>
+          <li><span class="ok">✓</span><span>识别到 8 道菜，其中 2 道字迹模糊</span></li>
+          <li class="is-now"><span class="now">…</span><span>正在比对过敏原与慢病清单</span></li>
+          <li><span>·</span><span>生成每道菜的理由</span></li>
+        </ul>
+      </div>
+      <div class="spec__note">
+        <dl>
+          <dt>替代什么</dt><dd>替代转圈与「AI 正在思考」。四行播报把 5–15 秒的黑箱变成过程。</dd>
+          <dt>现状（差得最远的一处）</dt><dd>代码里只有 <code>.pulse</code> 圆点 + 一句滚动的 <code>busyText</code>（「正在压缩图片…」→「正在读菜单，大约 10 秒…」→「正在对照你的档案…」）。<b>三句话其实就是三行进度，只是没被留下来。</b>把 <code>busyText</code> 换成数组、每步 push 一行置 ✓，这章样张就落地了，不用改结构。</dd>
+          <dt>失败</dt><dd>某一行失败就地把该行转 Brick 并给「重试这一步」，不要整页归零。</dd>
+          <dt>文案</dt><dd>说做了什么，不说「努力加载中」。数量要真实（8 道 ≠ 若干道）——<b>上面四行是按一张真实菜单写的示意</b>，实际跑起来数字随图变。</dd>
+          <dt>依据</dt><dd>第贰章四（等待要变成证据）；AGENTS.md 智谱延迟坑。</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 class="sub">空态与错误态</h3>
+    <div class="spec">
+      <div class="spec__stage">
+        <div class="state">
+          <b>还没有记录</b>
+          拍一张菜单，或者挑一座城市试试。
+        </div>
+        <div class="state state--err">
+          <b>这张照片没读出菜名</b>
+          光线太暗或反光。重拍一张，或手动输入菜名。
+        </div>
+      </div>
+      <div class="spec__note">
+        <dl>
+          <dt>结构</dt><dd>一句说明「现在是什么情况」+ 一句「下一步做什么」，第二行必须可执行。</dd>
+          <dt>语气</dt><dd>不道歉、不卖萌、不甩锅给网络：「没读出菜名」比「系统繁忙」有用十倍。</dd>
+          <dt>颜色</dt><dd>空态用中性虚线框；错误态才用 Brick，避免处处报警。</dd>
+          <dt>依据</dt><dd>附章状态节；第贰章四（软失败）。</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 class="sub">入口卡：空盒子 vs 有内容</h3>
+    <div class="spec">
+      <div class="spec__stage">
+        <div class="dont">
+          <span class="dont__tag">不要这样</span>
+          一个 320px 高的盒子，中间三行字：「拍菜单 / 识别菜品 / 开始」。像没做完，评委一眼看不出产品在干什么。
+        </div>
+        <div class="entries">
+          <a class="entry" href="#s4">
+            <span class="entry__no">壹</span>
+            <span class="entry__title">拍菜单</span>
+            <span class="entry__desc">对着一桌菜拍一张，逐道核对。</span>
+            <span class="demo demo--scan">
+              <img class="demo__shot" src="../public/menu-sample.png" alt="菜单照片示例" />
+              <ul class="demo__list">
+                <li><span class="dot dot--forbidden"></span>白灼虾<em>甲壳类过敏</em></li>
+                <li><span class="dot dot--caution"></span>麻婆豆腐<em>高盐</em></li>
+                <li><span class="dot"></span>白切鸡<em>可以吃</em></li>
+              </ul>
+            </span>
+            <span class="entry__go">开始识别 →</span>
+          </a>
+          <a class="entry" href="#s4">
+            <span class="entry__no">贰</span>
+            <span class="entry__title">选城市</span>
+            <span class="entry__desc">先挑去哪，再看那儿的菜能不能吃。</span>
+            <span class="demo demo--city">
+              <ul class="demo__list">
+                <li>成都<em>麻婆豆腐 · 28 道</em></li>
+                <li>广州<em>白切鸡 · 34 道</em></li>
+                <li>北京<em>炸酱面 · 31 道</em></li>
+              </ul>
+            </span>
+            <span class="entry__go">挑一座城 →</span>
+          </a>
+        </div>
+      </div>
+      <div class="spec__note">
+        <dl>
+          <dt>规矩</dt><dd>每张入口卡必须带一块真实内容示意：菜单缩略图 + 三条识别结果，或三座城市 + 代表菜。</dd>
+          <dt>内容来源</dt><dd>地名菜名取自 <code>seed/</code>，缩略图用 <code>public/menu-sample.png</code>，不许写「示例菜名 A」。</dd>
+          <dt>为什么</dt><dd>空盒子像没做完；示意区让评委在 3 秒内看懂产品在干什么。</dd>
+          <dt>依据</dt><dd>附章「内容密度」（主人 11-10 指出「入口卡是空盒子」）。</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 伍 ==================== -->
+  <section id="s5">
+    <div class="sec-head">
+      <span class="no">伍</span>
+      <h2>页面地图：放哪些页、怎么排、怎么跳</h2>
+    </div>
+
+    <p class="lede">
+      一共<b>八个路由、四条线</b>。这张表不是设想，是 <code>pages/</code> 目录现在的样子（2026-11-13 逐文件对过）。
+      拍菜单和挑城市是两条平行的腿，谁都不依赖谁；档案、收藏、对话挂在个人线上。
+    </p>
+
+    <h3 class="sub">一、八个路由的真身</h3>
+    <table>
+      <thead>
+        <tr><th style="width:7%">层</th><th style="width:17%">路由</th><th style="width:19%">文件</th><th style="width:31%">干什么</th><th>从哪进</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>L0</b></td>
+          <td><code>/</code></td>
+          <td><code>index.vue</code></td>
+          <td>岔路口：两张入口卡（拍菜单 / 找地方菜）+ 最近看过（最多 3 条，失败不报错）。</td>
+          <td>直接访问。</td>
+        </tr>
+        <tr>
+          <td><b>L1</b></td>
+          <td><code>/scan</code></td>
+          <td><code>scan.vue</code></td>
+          <td>拍一张、识别、逐道判定。改菜名、补食材都在本页完成，改完就地重算。</td>
+          <td>首页左卡。</td>
+        </tr>
+        <tr>
+          <td><b>L1</b></td>
+          <td><code>/cities</code></td>
+          <td><code>cities.vue</code></td>
+          <td>30 座城市按地区分组，每张卡写省份与菜品数。</td>
+          <td>首页右卡。</td>
+        </tr>
+        <tr>
+          <td><b>L2</b></td>
+          <td><code>/city/[id]</code></td>
+          <td><code>city/[id].vue</code></td>
+          <td>这座城的菜，逐道判定，顶部有四色汇总条。</td>
+          <td>城市列表点卡。</td>
+        </tr>
+        <tr>
+          <td><b>L2</b></td>
+          <td><code>/dish/[id]</code></td>
+          <td><code>dish/[id].vue</code></td>
+          <td>单菜详情：理由、依据、替代建议齐备，带收藏。</td>
+          <td>城市页点菜名 / 收藏页。</td>
+        </tr>
+        <tr>
+          <td><b>L0</b></td>
+          <td><code>/profile</code></td>
+          <td><code>profile.vue</code></td>
+          <td>身体档案：<code>ProfileForm</code>，三段式表单 + BMI 实时反馈。</td>
+          <td>顶栏。</td>
+        </tr>
+        <tr>
+          <td><b>L1</b></td>
+          <td><code>/favorites</code></td>
+          <td><code>favorites.vue</code></td>
+          <td>收藏的菜，空态给下一步。</td>
+          <td>顶栏。</td>
+        </tr>
+        <tr>
+          <td><b>L1</b></td>
+          <td><code>/chat</code></td>
+          <td><code>chat.vue</code></td>
+          <td>流式对话问答，SSE 逐字输出。</td>
+          <td>顶栏。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="small">
+      <b>和设计稿的差异，如实写：</b>
+      设计稿是「<code>/onboarding</code> 三步向导 + 全局守卫强制填完」，代码现在是「<code>/profile</code> 单页表单，
+      <b>不填也能进</b>」——没有 <code>middleware/</code> 目录。这一条是本次要补的第一优先项：
+      没档案时 <code>/scan</code> 与 <code>/city/[id]</code> 会退回默认档案（女 / 25 / 165 / 55 / 无过敏原）去算，
+      「我能不能吃」直接算错。
+      <br>
+      另外 <code>/login</code>、<code>/register</code> 不做，<code>deviceId</code> 暂代账号；<code>/plan</code> 已做进 <code>plan.post.ts</code>，未单开页面。
+    </p>
+
+    <h3 class="sub">二、四条线怎么排</h3>
+    <ol class="map">
+      <li><span class="lv">L0</span><b>入口</b> <code>/</code> <span class="note">— 只做分流，不承载内容</span>
+        <ol>
+          <li><span class="lv">L1</span><b>现场线</b> <code>/scan</code> <span class="note">— 站着用：拍完就地出结论</span>
+            <ol>
+              <li><span class="lv">L2</span><b>结果</b> 就地展开 <span class="note">— 不跳页，详情能力内联在卡里</span></li>
+            </ol>
+          </li>
+          <li><span class="lv">L1</span><b>闲逛线</b> <code>/cities</code> <span class="note">— 坐着用：慢慢挑</span>
+            <ol>
+              <li><span class="lv">L2</span><b>一座城</b> <code>/city/[id]</code> <span class="note">— 这座城的清单</span></li>
+              <li><span class="lv">L2</span><b>一道菜</b> <code>/dish/[id]</code> <span class="note">— 深页</span></li>
+            </ol>
+          </li>
+          <li><span class="lv">L1</span><b>个人线</b> <code>/profile</code> <code>/favorites</code> <code>/chat</code> <span class="note">— 顶栏三处，互不串联</span></li>
+        </ol>
+      </li>
+    </ol>
+
+    <table>
+      <thead><tr><th style="width:26%">为什么这么放</th><th>理由</th></tr></thead>
+      <tbody>
+        <tr><td><code>/</code> 只做分流</td><td>首页不塞推荐流、不塞榜单。它的全部工作是让人在两秒内决定「拍一张」还是「挑座城」；多一块内容就多一个分心点。</td></tr>
+        <tr><td>两条臂并列，互不依赖</td><td>拍菜单不需要先选城市，选城市也不需要先拍照。两个入口平权，用户从哪个场景进来都能走到底。</td></tr>
+        <tr><td>档案挂顶栏而不是挡在门口</td><td>现状如此，但代价要认：不填档案就用默认值算，结论会错。补 <code>middleware</code> 是当前第一优先项。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">三、为什么拍完菜单不跳详情页</h3>
+    <p class="lede">
+      这是整套路由里唯一一个「反直觉」的决定：<code>/scan</code> 出了结论，<b>不跳</b> <code>/dish/[id]</code>。
+    </p>
+    <p class="small">
+      因为使用场景不一样。<b>拍菜单是站着用的</b>：人站在餐厅里，举着手机，刚拍完一张，眼前是一桌菜和一位服务员。
+      这时候跳页意味着丢掉那张照片、丢掉整桌菜的上下文，想再看第二道菜得退回重来。
+      所以 scan 的结论必须<b>就地展开</b>——菜名可改、食材可补、理由和依据都写在卡里，改完立刻重算。
+    </p>
+    <p class="small">
+      <b>挑城市是坐着用的</b>：人在家、在办公室，愿意点进去看一道菜的来龙去脉。这种场景才配一个独立详情页，装得下理由、依据、替代建议三段。
+      一句话：<b>越是现场，越不能跳页；越是闲逛，越可以深进去。</b>
+    </p>
+
+    <h3 class="sub">四、跳转表</h3>
+    <table>
+      <thead>
+        <tr><th style="width:24%">从</th><th style="width:16%">到</th><th style="width:20%">触发</th><th>条件与兜底</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>顶栏「档案」</td><td><code>/profile</code></td><td>点顶栏</td><td>随时可改，保存后写回当前 <code>deviceId</code> 的档案。</td></tr>
+        <tr><td><code>/profile</code></td><td>停在本页</td><td>保存成功</td><td>提示「已保存」，不强制跳转。</td></tr>
+        <tr><td><code>/</code></td><td><code>/scan</code></td><td>点「拍菜单」卡</td><td>—</td></tr>
+        <tr><td><code>/</code></td><td><code>/cities</code></td><td>点「找地方菜」卡</td><td>—</td></tr>
+        <tr><td><code>/cities</code></td><td><code>/city/[id]</code></td><td>点城市卡</td><td>—</td></tr>
+        <tr><td><code>/city/[id]</code></td><td><code>/dish/[id]</code></td><td>点菜名</td><td>结果页只读，详情页才是可改可查的地方。</td></tr>
+        <tr><td><code>/city/[id]</code></td><td><code>/cities</code></td><td>「← 所有城市」</td><td>固定返回上一级，不依赖历史。</td></tr>
+        <tr><td><code>/city/[id]</code></td><td><code>/profile</code></td><td>无档案提示里的「去补一下档案」</td><td>补完回首页，不自动回到原来的城——回来走一遍更快。</td></tr>
+        <tr><td><code>/dish/[id]</code></td><td>上一页</td><td>「← 返回」</td><td><code>history.length &gt; 1</code> 用 <code>router.back()</code>，否则兜底到 <code>/cities</code>。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">五、三条跳转原则</h3>
+    <div class="grid3">
+      <div class="panel">
+        <h4>守卫收口，页面不收口</h4>
+        <p>判档案只在一个全局 <code>middleware</code> 里做。八个路由各自判，迟早漏一个——漏了就是用默认档案算出一堆错结论。</p>
+      </div>
+      <div class="panel">
+        <h4>就地优先，跳页要付代价</h4>
+        <p>同一屏能解决的不跳。非跳不可，回来要能恢复现场：照片还在、滚动位置还在、改过的菜名还在。</p>
+      </div>
+      <div class="panel">
+        <h4>返回必须有兜底</h4>
+        <p>分享链接直接打开时历史是空的，<code>router.back()</code> 会把人退出站点。每个返回都要有确定的一页接住。</p>
+      </div>
+    </div>
+
+    <h3 class="sub">六、现在有五个缺口</h3>
+    <p class="small">
+      拿这张地图去对了一遍代码（2026-11-13），五处对不上。前两条影响走查，后三条影响验收与合规。
+    </p>
+    <table>
+      <thead><tr><th style="width:5%">#</th><th style="width:24%">缺口</th><th style="width:36%">具体表现</th><th>怎么补</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><b>没有档案守卫</b></td>
+          <td>没有 <code>middleware/</code> 目录。用户不填档案也能直接进 <code>/scan</code>、<code>/city/[id]</code>，判定会退回默认档案（女 / 25 / 165 / 55 / 无过敏原）。</td>
+          <td>补 <code>middleware/onboarding.global.ts</code>：无档案跳 <code>/profile</code>，接口异常放行。</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><code>/scan</code> 没有回首页的入口</td>
+          <td>页头只有标题，拍完只能靠浏览器后退；移动端从相机回来最容易迷路。</td>
+          <td>补一个「← 返回」，落在 <code>/</code>。</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><code>/dish/[id]</code> 的返回没兜底</td>
+          <td>只有 <code>router.back()</code>。分享链接直接打开时历史为空，按下去会退出站点。</td>
+          <td>判断 <code>history.length &gt; 1</code>，否则落到 <code>/cities</code>。</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>「最近看过」不可点</td>
+          <td><code>index.vue</code> 里是 <code>div.mini</code> + <code>strong</code>，没有链接，标题和日期都是死的。</td>
+          <td>历史记录里存了 <code>dishes</code>，要么补跳转，要么把标题改成「记录」不暗示可点。</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>免责声明只有 <code>/chat</code> 有</td>
+          <td>其余七个页面都没有「不构成医疗建议」。这是 AI 安全评分项的明面要求。</td>
+          <td>统一页脚组件，一句话：「判断依据是你填的档案和公开的食材禁忌资料，不构成医疗建议。」</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="small">
+      <b>说明</b>：第 1 条不是「文档写得比代码好」，而是<b>代码确实缺一块</b>。文档先写清目标，代码随后补上——比反过来强。
+    </p>
+
+    <h3 class="sub">七、以后加页面，先过两道关</h3>
+    <p class="small">
+      <b>第一关：它是第几层。</b> L0 和 L1 各只许有一个。想再加一个「首页级别」的页面，先问是不是首页没想清楚。
+      L2 是入口（拍 / 挑），L3 是结果与详情——新页面要么是新的臂，要么是新的层，不能模棱两可。
+    </p>
+    <p class="small">
+      <b>第二关：深链能不能直达。</b> <code>/city/beijing</code> 复制出去，别人打开要能直接看到那座城。
+      现在守卫跑在客户端（<code>import.meta.server</code> 时直接返回），冷启动会先渲染一帧再判断，
+      可接受，但要知道有这一帧——做加载骨架时别让它闪出首页内容。
+    </p>
+  </section>
+
+  <!-- ==================== 柒 ==================== -->
+<section id="s6">
+    <div class="sec-head">
+      <span class="no">陆</span>
+      <h2>设计思路：为什么这套皮相配这道菜</h2>
+    </div>
+
+    <p class="lede">
+      美食类界面最容易滑向两种默认：暖橙色的外卖流，或奶油底 + 大衬线的「生活方式」风。前者在催你下单，
+      后者在卖氛围。食鉴两样都不是——它是一张<b>被人反复核对过的纸</b>：点菜之前，先看一眼有没有踩雷。
+      复古怀旧刚好长在这个动作上。
+    </p>
+
+    <h3 class="sub">三条根：设计不是从审美开始的</h3>
+    <table>
+      <thead><tr><th style="width:24%">约束</th><th>它决定了什么</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>它是工具，不是内容站</b></td>
+          <td>用户只在餐厅坐下时打开它，三十秒内要答案。所以一屏扫完，不做滚动叙事，不在首屏讲品牌故事。</td>
+        </tr>
+        <tr>
+          <td><b>判定是硬的，视觉就得硬</b></td>
+          <td>结论只有三档、由 <code>server/utils/rules.ts</code> 的纯函数算出，不经过模型发挥。界面要是用软话、用弹窗说「AI 认为可能……」，等于把硬结论又还给了猜测。所以：盖章、粗描边、无圆角、无阴影。</td>
+        </tr>
+        <tr>
+          <td><b>10 天、3 个人</b></td>
+          <td>组件每多一套，联调就多一处错。所以同类信息共用一个组件：<code>DishCard</code>（识别 / 城市 / 收藏三处共用）、<code>VerdictBadge</code>（三色判定）、<code>ProfileForm</code>（档案三屏）。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">四条从产品长出来的映射</h3>
+    <table>
+      <thead><tr><th style="width:18%">产品的真实动作</th><th style="width:26%">视觉对应</th><th>为什么成立</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>对着菜单逐道核对</td>
+          <td>纸张质感、印刷字体、2px 细边框、虚线分隔</td>
+          <td>用户本来就在看一张纸（纸质菜单、菜单照片）。界面接管的是同一张纸，认知不用切换。</td>
+        </tr>
+        <tr>
+          <td>给出「能不能吃」的结论</td>
+          <td>邮戳标签 + 判定灯，像给菜单盖一个章</td>
+          <td>盖章是「已经核对过」的动作隐喻；比弹窗、比彩色胶囊更符合「结论」这件事的分量。</td>
+        </tr>
+        <tr>
+          <td>规则引擎当场算出三档</td>
+          <td>三色只取 Forest / Olive / Brick，不用现代红绿</td>
+          <td>印刷油墨的红绿比屏幕红绿更沉，既有警示力又不刺眼；同时避开「红灯停绿灯行」的廉价感。</td>
+        </tr>
+        <tr>
+          <td>识别需要 5–15 秒</td>
+          <td>过渡统一 300ms、不位移、不缩放；旧纸不浮动</td>
+          <td>这套动效观本身就是「慢而不慌」的承诺——慢是可以的，但每一步都要有交代。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">纸的四条物理规则</h3>
+    <ol class="map">
+      <li><span class="lv">01</span><b>旧纸张不会浮起</b> <span class="note">— 没有阴影、没有 hover 位移、没有 scale，一切平贴在桌面上</span></li>
+      <li><span class="lv">02</span><b>纸会氧化，但很慢</b> <span class="note">— 过渡 300ms，最短不低于 150ms；快过这个数就像塑料</span></li>
+      <li><span class="lv">03</span><b>纸没有大圆角</b> <span class="note">— 圆角 4px，边框 2px 起；圆角越大越像塑料卡片</span></li>
+      <li><span class="lv">04</span><b>纸只靠线条和留白分层</b> <span class="note">— 不用渐变做层次，靠 1px 虚线、2px 实线、以及空白</span></li>
+    </ol>
+
+    <h3 class="sub">判定怎么落：两层编码</h3>
+    <p class="small">
+      <b>判定灯</b>：9px 小标记，<b>颜色 + 形状 + 文字</b>三重编码——可以吃＝实心圆（Forest）、注意＝方块（Olive）、别点＝菱形（Brick）。
+      三态固定，不可新增第四态；灰阶下靠形状仍可分。这正对应第二章那条外部经验：<b>过敏原信息只靠颜色，是安全缺陷</b>。
+    </p>
+    <p class="small">
+      <b>徽章用方戳</b>（4px 圆角）而不是胶囊：胶囊里再塞形状标记会糊。三色仍是森林绿 / 橄榄 / 砖红，不用现代红绿——那是交通灯，不是食物。
+    </p>
+
+    <h3 class="sub">克制点：只在一处用力</h3>
+    <p class="small">
+      整套界面只允许一个地方「使劲」——<b>判定结果</b>。菜名是衬线 900，理由是无衬线常规，页面其余部分一律安静：
+      没有插画、没有渐变、没有装饰性图标、没有 hover 位移。评委记住的应该是「这菜我不能吃」，
+      而不是「这个页面动效真花」。
+    </p>
+    <div class="dont">
+      <span class="dont__tag">四条禁令</span>
+      不做 <code>transform: scale()</code> / <code>translateY()</code>；不做渐变与玻璃态；不做大圆角（一律 4px）；过渡不短于 150ms、组件统一 300ms ease-out。
+    </div>
+
+    <h3 class="sub">文案七条</h3>
+    <table>
+      <thead><tr><th style="width:26%">规矩</th><th>例子</th></tr></thead>
+      <tbody>
+        <tr><td><b>结论与依据分开摆</b></td><td>结论用盖章口吻（「别点」），依据写清出处（「八大类过敏原清单」）。不许混成「本品可能不适合您」。</td></tr>
+        <tr><td><b>按钮写动作</b></td><td>「开始识别」不是「提交」，「保存档案」不是「确定」。</td></tr>
+        <tr><td><b>标题直接说内容</b></td><td>「同样一桌菜，答案因人而异」，不是「欢迎使用食鉴」。</td></tr>
+        <tr><td><b>人称统一</b></td><td>对用户称「你」，产品自称「食鉴」。</td></tr>
+        <tr><td><b>空列表给下一步</b></td><td>「还没有记录。先去填一份档案，再去拍一张菜单。」</td></tr>
+        <tr><td><b>无依据时明说</b></td><td>「不确定，建议问店员」——禁止生成听起来合理的推测。</td></tr>
+        <tr><td><b>不出现</b></td><td>「治疗」「预防疾病」「根治」。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">踩过的四个坑</h3>
+    <table>
+      <thead><tr><th style="width:26%">坑</th><th>现象 → 结论</th></tr></thead>
+      <tbody>
+        <tr><td><b>负 z-index 被父级背景盖住</b></td><td>首屏照片完全不显示，只剩底色 → 背景图用正序层级（0/1/2），别依赖负值</td></tr>
+        <tr><td><b>系统字体不可靠</b></td><td>本机装了思源宋体好看，评委机器没装就回退系统宋体 + 伪粗，大字糊成一团 → 字体必须打包子集随项目走</td></tr>
+        <tr><td><b>单一 900 字重撑不起大刊头</b></td><td>60px 的 900 重得像块砖，400 才像旧书题签 → 换可变字体子集（200–900 字重轴），不用二选一</td></tr>
+        <tr><td><b>参考站的 CSS 不能直接抄</b></td><td>抄了渐变遮罩、玻璃导航、999px 胶囊，跟附章的规格冲突，整页像另一个产品 → 借骨架，材料自己定</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">具体取值去哪查</h3>
+    <p class="small">
+      颜色、字体、圆角、间距的数字见文末附章「视觉规格速查」（六档字号、一套色板）；本章只讲「为什么」。
+      字体是打包的思源宋体可变子集（<code>public/fonts/han.woff2</code>，719 KB，200–900 字重轴），
+      不用系统宋体——Windows 自带宋体没有 900 字重，浏览器会伪粗描边，大字糊成一团。
+    </p>
+  </section>
+
+  <!-- ==================== 柒 ==================== -->
+  <section id="s7">
+    <div class="sec-head">
+      <span class="no">捌</span>
+      <h2>三条红线与六项自检</h2>
+    </div>
+
+    <div class="grid3">
+      <div class="panel">
+        <h4>一 · 判定归代码</h4>
+        <p>过敏一命中就是 <code>forbidden</code>，界面不许出现「建议少吃」这类软化。模型只写解释，不改结论。三档不许新增第四档。</p>
+      </div>
+      <div class="panel">
+        <h4>二 · 不能只靠颜色</h4>
+        <p>每个判定都要颜色 + 形状 + 文字三重编码；提交前把界面转灰度看一遍；标签对比度 ≥ 4.5:1；触控目标 ≥ 44×44。</p>
+      </div>
+      <div class="panel">
+        <h4>三 · 不编造、不越界</h4>
+        <p>知识条目必须有来源；没把握就说「建议询问店员」。任何界面不出现「治疗」「预防疾病」；页脚固定免责声明。</p>
+      </div>
+    </div>
+
+    <h3 class="sub">交付前的六项自检</h3>
+    <table>
+      <thead><tr><th style="width:6%">#</th><th style="width:32%">检查项</th><th>合格标准</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>灰阶可读</td><td>整页截图转灰度，三档结论仍能分辨——这一条现在<b>过不了</b>，见台账体检第 1 条。</td></tr>
+        <tr><td>2</td><td>键盘可达</td><td>Tab 能走完主流程，焦点始终可见（2px 棕描边 + 3px 偏移）。</td></tr>
+        <tr><td>3</td><td>移动端 390px</td><td>单列不横向滚动，主行动按钮在拇指区，删除叉可点中。</td></tr>
+        <tr><td>4</td><td>三态齐全</td><td>每个列表有空态、加载态、错误态；每个可点元素有 hover / active / disabled。</td></tr>
+        <tr><td>5</td><td>文案无空话</td><td>没有「系统繁忙」「请稍后再试」；每个错误都告诉用户下一步做什么。</td></tr>
+        <tr><td>6</td><td>无禁忌词</td><td>全站搜索「治疗」「预防」「根治」，零命中。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">别用手点：跑一遍 <code>scripts/verify.ps1</code></h3>
+    <p class="small">
+      仓库里有现成的端到端校验，四步串起来跑：健康检查 → 上传一张菜单图 → 逐道评估 → 打印三档计数。
+      交作业前一天跑一次，比在浏览器里手点十遍可靠——它能抓到的正是手点容易漏的那种错（接口活着但规则没命中）。
+    </p>
+    <p class="small muted">
+      用法：<code>powershell -File scripts/verify.ps1 -Base http://localhost:3000 -Image test-menu.png</code>。
+      第二个参数可换任意测试图，不传就用仓库根目录的 <code>test-menu.png</code>。
+    </p>
+
+    <h3 class="sub">两个容易被问倒的实现细节</h3>
+    <div class="grid2">
+      <div class="panel">
+        <h4>过敏原有双保险</h4>
+        <p>
+          模型报回来的 <code>allergens</code> 不一定全。<code>inferAllergens()</code> 会拿 12 类过敏原的关键词表
+          在「菜名 + 食材 + 标签」里再扫一遍，与模型结果<b>取并集</b>。
+        </p>
+        <p>
+          还专门处理了一个坑：<b>鱼香肉丝没有鱼</b>——只有「鱼」这一个证据且来自「鱼香」时，剔除「鱼类」。
+          这条兜底意味着界面上的判定比模型更稳：模型漏报，规则补上。
+        </p>
+      </div>
+      <div class="panel">
+        <h4>等级只升不降</h4>
+        <p>
+          <code>raise()</code> 只比较不覆盖（<code>safe 0 &lt; caution 1 &lt; forbidden 2</code>），
+          所以「过敏命中后又被减脂目标算了一遍」不会把结论降回去。
+        </p>
+        <p>
+          这也是为什么理由可能是<b>多行</b>的：一道菜同时踩过敏与高血压，就两条理由、两条依据，等级取高的那个。
+          <code>citations</code> 最后还做了一次 <code>new Set()</code> 去重。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 捌 ==================== -->
+  <section id="s8">
+    <div class="sec-head">
+      <span class="no">玖</span>
+      <h2>收尾顺序：按代价排，不按页面排</h2>
+    </div>
+
+    <p class="lede">
+      六个页面全做完了，「分四批做」那张表已经过期。现在要排的不是「先做哪页」，而是
+      <b>「哪个洞必须堵、哪个可以带着上答辩」</b>——排序依据换成「改一句 CSS，还是改数据流」。
+    </p>
+
+    <h3 class="sub">P0 · 半天内能改完，但直接影响现场演示</h3>
+    <table>
+      <thead><tr><th style="width:28%">改什么</th><th style="width:38%">为什么是 P0</th><th>代价</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>判定徽章补形状</td>
+          <td>灰阶自检现在过不了；红绿色盲在现场看到的是三个一样的深色胶囊。</td>
+          <td>一个 <code>::before</code>，三行 CSS</td>
+        </tr>
+        <tr>
+          <td>删掉 <code>.dish-name:focus</code> 里的 <code>outline: none</code></td>
+          <td>键盘走到菜名上完全看不出焦点在哪，直接违反自家第 2 条自检。</td>
+          <td>删一句</td>
+        </tr>
+        <tr>
+          <td>删除叉撑到 44×44</td>
+          <td>手机上按不中，演示时会连续点三次才删掉一个食材。</td>
+          <td>一个 <code>::after</code>，<code>inset: -12px</code></td>
+        </tr>
+        <tr>
+          <td>统一空档案的行为</td>
+          <td>扫描页拿默认档案照算、城市页拒绝判定，同一个产品两套态度。</td>
+          <td>扫描页去掉 <code>?? {}</code> 兜底，改成和城市页一样的提示</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">P1 · 一两天，决定「这个产品讲不讲得通」</h3>
+    <table>
+      <thead><tr><th style="width:28%">改什么</th><th>为什么</th></tr></thead>
+      <tbody>
+        <tr><td>识别进度改成四行</td><td>5–15 秒的黑箱是演示里最难受的一段。数据本来就有，只是没留下来。</td></tr>
+        <tr><td>扫描结果加一行「看这道菜 →」</td><td><code>/dish/[id]</code> 现在只有城市页能进，扫描链路够不着「说清楚为什么」的那一页。</td></tr>
+        <tr><td>收藏要么给入口、要么先撤</td><td>存了没处看，比没有更伤。首页加一段「收藏的菜」成本最低。</td></tr>
+        <tr><td>首页「最近看过」可点</td><td>列表点了没反应，等于告诉用户历史不重要；<code>summary</code> 字段也该渲出来。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">P2 · 有空再动，动之前先想清楚值不值</h3>
+    <table>
+      <thead><tr><th style="width:28%">改什么</th><th>为什么排最后</th></tr></thead>
+      <tbody>
+        <tr><td>把 <code>.badge</code> / <code>.chip</code> / <code>.error</code> 抽成共用组件</td><td>收益是「以后改一处」，不是「现在更好看」。评分不看组件化——除非答辩要讲工程性，那就只抽 <code>.badge</code> 一个，十分钟能讲完。</td></tr>
+        <tr><td><code>.stamp</code> 用起来或删掉</td><td>零引用的全局样式是负担，但不影响任何页面。</td></tr>
+        <tr><td>补「替代菜」建议</td><td>要动后端（得先知道同城还有哪些 <code>safe</code> 的菜），前端单方面做不了。</td></tr>
+        <tr><td>城市浏览写进 history</td><td>类型里有 <code>'city'</code> 却永不产生，属于「别让类型撒谎」的洁癖，不影响演示。</td></tr>
+      </tbody>
+    </table>
+
+    <p class="small muted" style="margin-top:14px">
+      排序原则一句话：<b>先改「不花钱就能改对」的，再改「要多写代码」的，最后改「要动后端」的。</b>
+      每个 P0 都不超过半天，但每一个都落在评委看得见的地方。
+    </p>
+
+    <h3 class="sub">明确不做的四件事（答辩时主动说）</h3>
+    <p class="small">
+      比「做了什么」更能说明你懂取舍的是「知道该不做什么」。下面四条在 <code>docs/decisions-frontend.md</code> 里
+      记的是「未完成（明确不做）」，不是来不及，是想清楚了不做。评委问起，照这张表答，别临时编理由。
+    </p>
+    <table>
+      <thead><tr><th style="width:30%">不做的</th><th>为什么不做</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>语言视角 / 复刻视角 + <code>/api/dish/explain</code></td>
+          <td>需要后端补一个模型接口，属另一个人（A）的目录。时间优先给「档案 → 拍菜单 → 结论」这条主线。</td>
+        </tr>
+        <tr>
+          <td><code>/plan</code> 点菜组合</td>
+          <td>原方案里本来就排在 P1。它依赖先有可靠的逐道判定，本级还没到那一步。</td>
+        </tr>
+        <tr>
+          <td>登录 / 注册</td>
+          <td>用 <code>deviceId</code> 代账号，演示场景够用。真做登录会多出会话、找回、注销三个页面，收益配不上成本。</td>
+        </tr>
+        <tr>
+          <td>MCP server</td>
+          <td>评分里占 4%，但是独立工程，不影响主流程与界面质量。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">最后一句：这份文档的地位</h3>
+    <p class="small">
+      它是<b>说明书</b>，不是设计稿。写页面前查它，改规格后回写它。真正的真源只有两处：
+      视觉看文末附章，判定看 <code>server/utils/rules.ts</code>。
+      本文件里凡是与这两处冲突的地方，以那两处为准，并且回来改本文件——别让第三份真源长出来。
+    </p>
+  </section>
+
+  <!-- ==================== 玖 ==================== -->
+  <section id="s9">
+    <div class="sec-head">
+      <span class="no">拾</span>
+      <h2>参考来源</h2>
+    </div>
+
+    <ol class="ref-list">
+      <li>美团技术团队《移动端 UI 一致性解决方案》，2020-11-26 — 组件四层分级与按频率替换。
+        <a href="https://tech.meituan.com/2020/11/26/Consistency-in-UI-Design.html">tech.meituan.com</a></li>
+      <li>Design Your Way《Food App Design: Half a Second to Make the Sale》— 产品卡元素注意力顺序、菜单配图与销量。
+        <a href="https://www.designyourway.net/blog/food-app-design">designyourway.net</a></li>
+      <li>《Why Digital Menus Are More Inclusive for Guests With Disabilities》— WCAG 对比度、色盲比例、灰阶自测。
+        <a href="https://scan2order.app/en/blog/why-digital-menus-are-more-inclusive-for-guests-with-disabilities">scan2order.app</a></li>
+      <li>《Catering Company Website Accessibility Guide》— 过敏原只靠颜色违反 WCAG 1.4.1 / 1.1.1 的具体判据。
+        <a href="https://blog.a11yfix.dev/guide/catering-services">a11yfix.dev</a></li>
+      <li>Farba Digital《Designing for the AI that gets it wrong》— 置信度是设计决策、修正成本、等待即界面。
+        <a href="https://farba.digital/blog/designing-ai-that-gets-it-wrong">farba.digital</a></li>
+      <li>Field Guide to AI《User Experience for AI Products》— 置信度光谱、分步进度、预期管理。
+        <a href="https://fieldguidetoai.com/courses/ai-powered-products/ux-ai-products">fieldguidetoai.com</a></li>
+      <li>项目内部：本文件附章（视觉规格）、<code>docs/decisions-frontend.md</code>（F1–F9）、
+        <code>AGENTS.md</code>（目录边界与铁律）、<code>assets/css/main.css</code> 与 <code>pages/*.vue</code>（组件实物）。</li>
+    </ol>
+  </section>
+
+  <!-- ==================== 附 ==================== -->
+  <section id="s10">
+    <div class="sec-head">
+      <span class="no">附</span>
+      <h2>视觉规格速查：所有数字都在这一页</h2>
+    </div>
+
+    <p class="lede">
+      前面几章讲「为什么」。这一章是「具体多少」——颜色、字号、圆角、间距、组件样式。
+      改样式之前先在这里查数，别凭感觉填。
+    </p>
+
+    <h3 class="sub">一句话</h3>
+    <p><b>旧纸张不会浮起</b>——一切安静地待着，只有颜色在缓慢氧化。</p>
+
+    <h3 class="sub">技术约定</h3>
+    <ul>
+      <li>项目<b>没有 Tailwind</b>，样式手写：全局在 <code>assets/css/main.css</code>，页面内用 scoped style。</li>
+      <li>字体不引外部 CDN（中国大陆加载不稳），用系统回退栈。</li>
+      <li>圆角一律 4px，<b>邮戳标签也不例外</b>（不做胶囊）；边框 2px 起；<b>没有阴影</b>。</li>
+      <li>过渡一律 <code>var(--dur) var(--ease)</code>（300ms），最短不低于 150ms。</li>
+      <li><b>禁止</b> <code>transform: scale()</code>、<code>translateY()</code>、渐变、玻璃态（<code>backdrop-filter</code>）、霓虹色、大圆角。</li>
+      <li>标题只用打包的 <code>Han Serif</code> 子集，<b>不许引系统里的 Noto Serif SC</b>——评委机器上没装，会退回宋体并伪粗。新增文案后重跑 <code>python scripts/subset-font.py</code>。</li>
+    </ul>
+
+    <h3 class="sub">色板</h3>
+    <table>
+      <thead><tr><th style="width:16%">名称</th><th style="width:18%">值</th><th style="width:20%">变量</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td>Sepia</td><td><code>#8b4513</code></td><td><code>--sepia</code></td><td>标题、边框、主强调</td></tr>
+        <tr><td>Cream</td><td><code>#f5e6d3</code></td><td><code>--cream</code></td><td>页面画布</td></tr>
+        <tr><td>Lifted</td><td><code>#faf0e2</code></td><td><code>--lifted</code></td><td>卡片、面板</td></tr>
+        <tr><td>Brick</td><td><code>#c94c4c</code></td><td><code>--brick</code></td><td>警示、禁止</td></tr>
+        <tr><td>Forest</td><td><code>#2e4a3f</code></td><td><code>--forest</code></td><td>深色区块、可以吃</td></tr>
+        <tr><td>Sand</td><td><code>#d4a373</code></td><td><code>--sand</code></td><td>暖色区块、分隔</td></tr>
+        <tr><td>Olive</td><td><code>#816904</code></td><td><code>--olive</code></td><td>邮戳标签、注意</td></tr>
+      </tbody>
+    </table>
+    <p class="small">
+      派生：<code>--ink: #3d2410</code>（正文重色）、<code>--muted: #7a6350</code>（次要文字）、
+      <code>--line: rgba(139,69,19,.25)</code>、<code>--line-strong: rgba(139,69,19,.4)</code>。<br>
+      <b>语义映射</b>：<code>safe</code> → Forest；<code>caution</code> → Olive；<code>forbidden</code> → Brick。
+      三色都不许用现代红绿。
+    </p>
+
+    <h3 class="sub">字阶：同一页只准出现六个值</h3>
+    <table>
+      <thead><tr><th style="width:18%">档位</th><th style="width:34%">值</th><th>用在哪</th></tr></thead>
+      <tbody>
+        <tr><td>display</td><td><code>clamp(34px, 4.6vw, 60px)</code></td><td>刊头主标题</td></tr>
+        <tr><td>heading</td><td><code>clamp(26px, 3vw, 40px)</code></td><td>区块标题</td></tr>
+        <tr><td>sub</td><td><code>clamp(19px, 2vw, 26px)</code></td><td>引文、次级标题</td></tr>
+        <tr><td>lead</td><td><code>17px</code></td><td>导语、主张段落</td></tr>
+        <tr><td>body</td><td><code>15px</code></td><td>正文、列表、按钮</td></tr>
+        <tr><td>label</td><td><code>13px</code></td><td>小字、标签、页脚</td></tr>
+      </tbody>
+    </table>
+    <p class="small">
+      中文不做 uppercase；标题字距 <code>0.08em</code>（<code>0.16em</code> 是给拉丁全大写的）。
+      层级靠字重、颜色、间距拉开，不靠多造尺寸。正文行高 1.65。
+    </p>
+
+    <h3 class="sub">字体</h3>
+    <p>
+      标题用打包的思源宋体可变子集：<code>public/fonts/han.woff2</code>（约 700 KB，约 1900 字），
+      CSS 名 <code>Han Serif</code>，字重轴 <b>200–900</b>。
+      为什么打包：评委机器上没装 Noto Serif SC，CSS 会回退到宋体并伪粗描边，大字糊成一团。
+      为什么用可变版：单一 900 撑不起大刊头——60px 的 900 重得像块砖，400 才有旧书题签的轻。
+      无衬线栈：<code>Inter, -apple-system, 'Microsoft YaHei', sans-serif</code>。
+    </p>
+
+    <h3 class="sub">布局</h3>
+    <ul>
+      <li>最大宽度 <b>1120px</b>，容器内边距 <b>32px</b>；区块间距 <b>96px</b>（移动端 48px）</li>
+      <li>卡片内边距 32px，元素间距 24px，基础单位 8px</li>
+      <li>移动端（&lt; 768px）：单列，容器内边距 20px，卡片内边距 20px</li>
+      <li>最小字号 12px</li>
+    </ul>
+
+    <h3 class="sub">首页规矩</h3>
+    <p>
+      首页是全站唯一的叙事页：可以有摄影、可以铺满屏幕、可以留大片空。<b>但材质规矩一条都不放宽。</b>
+    </p>
+    <ul>
+      <li><b>首屏</b>：全幅照片 + 居中叠字。遮罩只用单色 <code>rgba(61,36,16,.34)</code>，<b>不用渐变</b>；底图先在 <code>public/hero-table.jpg</code> 里压暗，靠图本身变暗，不靠 CSS 叠层。原图留在 <code>assets/pictures/</code>。</li>
+      <li><b>导航</b>：默认浅色字（压在照片上），滚过 120px 转不透明奶油底、深色字。不用 <code>backdrop-filter</code>。</li>
+      <li><b>悬停</b>：只改边框色。不位移、不缩放、不加阴影。</li>
+      <li><b>删掉的装饰</b>：全大写英文小标签、卡片上的壹贰叁编号、英文菜名行、三栏数字下的拉丁文。删掉它们，信息一点不少。</li>
+    </ul>
+
+    <h3 class="sub">组件</h3>
+
+    <h4>Button（Letterpress）</h4>
+    <pre><code>padding: 14px 28px; background: var(--sepia); color: var(--cream);
+border: 2px solid var(--sepia); border-radius: 4px; font: 500 15px/1 var(--sans);
+letter-spacing: .14em;
+transition: background-color 300ms ease-out, border-color 300ms ease-out;</code></pre>
+    <ul>
+      <li>hover：<code>background: #6f3610</code>，位置不动</li>
+      <li>active：<code>background: transparent; color: var(--sepia)</code></li>
+      <li>次要按钮：透明底 + 2px 棕边</li>
+      <li>禁用：<code>opacity: .45; cursor: not-allowed</code></li>
+    </ul>
+
+    <h4>Card（Paper）</h4>
+    <pre><code>background: var(--lifted);
+border: 2px solid var(--line);
+border-radius: 4px;
+padding: 32px;</code></pre>
+    <p class="small">hover 只改 <code>border-color: var(--line-strong)</code>。内部可用 <code>1px dashed var(--line)</code> 分隔。</p>
+
+    <h4>Stamp / Badge（邮戳）</h4>
+    <pre><code>padding: 4px 12px;
+border: 2px solid currentColor;
+border-radius: 4px;
+background: transparent;
+font-size: 13px; font-weight: 500; letter-spacing: .14em;</code></pre>
+    <p class="small">颜色用 Forest / Olive / Brick，不做 999px 胶囊。<b>判定不只靠颜色</b>：色 + 形 + 字三重编码。</p>
+
+    <h4>Divider（Ticker）</h4>
+    <p><code>height: 2px; background: var(--line-strong);</code> 或 32px 高的点阵条纹。</p>
+
+    <h3 class="sub">内容密度</h3>
+    <p>
+      入口卡不许做成「高盒子 + 三行字」。每张卡必须带一块<b>真实内容的示意区</b>：
+    </p>
+    <ul>
+      <li>拍菜单 → 菜单缩略图 + 三条识别结果（带三色圆点）</li>
+      <li>选城市 → 三座城市 + 各自的代表菜</li>
+    </ul>
+    <p class="small">理由：空盒子像没做完，评委一眼看不出产品在干什么。示意内容要用 <code>seed/</code> 里真实存在的地名和菜名。</p>
+
+    <h3 class="sub">文案</h3>
+    <ul>
+      <li>按钮写动作：「开始识别」「保存档案」，不写「提交」</li>
+      <li>标题直接说内容，不写「欢迎来到……」</li>
+      <li>空列表给一句说明 + 下一步</li>
+      <li>任何地方不出现「治疗」「预防疾病」</li>
+      <li>身体设置那一页统一叫 <b>「你的情况」</b>。不叫「身体档案」（太僵硬，像体检单），也不叫「忌口」（名不副实——第一步填的是身高体重）</li>
+    </ul>
+
+    <h3 class="sub">状态</h3>
+    <ul>
+      <li>每个可点元素必须有：hover / active / disabled / loading</li>
+      <li>列表必须有：空态 / 加载态 / 出错态</li>
+      <li>判定结果必须三色区分，<code>forbidden</code> 不许和 <code>caution</code> 长得像</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p><b>怎么用这份文档</b></p>
+    <p>
+      加页面前：先翻第伍章页面地图，答出「它是第几层、从哪进、返回落到哪」；写界面前：翻第叁章找现成组件，别新造；
+      定样式前：翻第肆章样张核对数值；交付前：过第捌章六项自检，
+      并重跑一遍第叁章末尾的台账体检。改任何一处规格，只改本文件附章这一处，别让规格散落在代码里。
+    </p>
+    <p style="margin-top:12px">
+      判断依据是你填的档案和公开的食材禁忌资料，不构成医疗建议。
+    </p>
+    <p class="small muted">
+      ↑ 这句是产品现在的原文，<code>scan</code> / <code>city</code> / <code>dish</code> 三页都这么写。
+      <code>index.vue</code> 页脚还是旧版「本工具只做饮食禁忌提示……」，两版并存算一处待修，见第伍章缺口表。
+    </p>
+  </footer>
+
+</div>
+
+<script>
+// 表格窄屏堆叠时，把表头文字写到每个格子的 data-h 上
+document.querySelectorAll('table').forEach(function (t) {
+  var heads = [].map.call(t.querySelectorAll('thead th'), function (th) {
+    return th.textContent.trim();
+  });
+  t.querySelectorAll('tbody tr').forEach(function (tr) {
+    [].forEach.call(tr.children, function (td, i) {
+      if (heads[i]) td.setAttribute('data-h', heads[i]);
+    });
+  });
+  if (t.parentElement.classList.contains('tw')) return;
+  var w = document.createElement('div');
+  w.className = 'tw';
+  t.parentNode.insertBefore(w, t);
+  w.appendChild(t);
+});
+</script>
+</body>
+</html>

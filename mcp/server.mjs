@@ -1,25 +1,11 @@
 #!/usr/bin/env node
-/**
- * 食鉴 MCP Server —— 把「查菜、判菜、配一桌」暴露成 MCP 工具，
- * 让 Claude Desktop / Cursor / 任何 MCP 客户端直接调用。
- *
- * 设计取舍：
- *   - 不引第三方 SDK（@modelcontextprotocol/sdk 会多一层依赖与版本风险），
- *     直接实现 JSON-RPC 2.0 over stdio，协议本身很小。
- *   - 不复制业务逻辑：本进程是「瘦适配器」，所有判断都委托给本地运行的
- *     Nuxt 服务（默认 http://localhost:3000）。这样规则只有一份。
- *
- * 启动：node mcp/server.mjs
- * 依赖：食鉴 Web 服务需在运行（npm run dev）
- */
+
 import { createInterface } from 'node:readline'
 
 const API = process.env.SHIJIAN_API || 'http://localhost:3000'
 
 const PROTOCOL_VERSION = '2024-11-05'
 const SERVER_INFO = { name: 'shijian-food-guard', version: '1.0.0' }
-
-/* ----------------------------- 工具定义 ----------------------------- */
 
 const TOOLS = [
   {
@@ -102,8 +88,6 @@ const TOOLS = [
   }
 ]
 
-/* ----------------------------- HTTP 调用 ----------------------------- */
-
 async function post(path, body) {
   const res = await fetch(`${API}${path}`, {
     method: 'POST',
@@ -130,7 +114,6 @@ function profileOf(args = {}) {
   }
 }
 
-/** 返回给 MCP 客户端的文本：人类可读为主，附原始 JSON 便于模型二次处理 */
 async function callTool(name, args) {
   switch (name) {
     case 'list_cities': {
@@ -206,8 +189,6 @@ async function callTool(name, args) {
       throw new Error(`未知工具：${name}`)
   }
 }
-
-/* ----------------------------- JSON-RPC 主循环 ----------------------------- */
 
 function send(msg) {
   process.stdout.write(JSON.stringify(msg) + '\n')

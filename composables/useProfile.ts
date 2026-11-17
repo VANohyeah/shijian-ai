@@ -1,7 +1,4 @@
-/**
- * 档案与设备 ID 的共享逻辑。
- * 页面多了以后每个页面都写一遍 fetch 会失控，收敛到这里。
- */
+
 import type { UserProfile } from '~/shared/types'
 
 const DEVICE_KEY = 'shijian_device_id'
@@ -68,7 +65,8 @@ export function defaultProfile(): ProfileState {
 export function useProfile() {
   const { deviceId, ensure } = useDeviceId()
   const profile = useState<ProfileState>('profile', defaultProfile)
-  const loaded = useState<boolean>('profileLoaded', () => false)
+
+  const filled = useState<boolean>('profileFilled', () => false)
   const saving = useState<boolean>('profileSaving', () => false)
 
   async function load() {
@@ -80,12 +78,14 @@ export function useProfile() {
         const data = (await res.json()) as { profile: UserProfile | null; complete: boolean }
         if (data.complete && data.profile) {
           Object.assign(profile.value, data.profile)
+          filled.value = true
+
+          localStorage.setItem('shijian_profile_ok', '1')
         }
       }
     } catch {
-      /* 读不到就用默认档案 */
+
     } finally {
-      loaded.value = true
     }
   }
 
@@ -99,6 +99,8 @@ export function useProfile() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ deviceId: deviceId.value, profile: profile.value })
       })
+
+      if (res.ok) localStorage.removeItem('shijian_profile_ok')
       return { ok: res.ok, message: res.ok ? '已保存' : await res.text() }
     } catch (err) {
       return { ok: false, message: String(err) }
@@ -107,5 +109,5 @@ export function useProfile() {
     }
   }
 
-  return { profile, loaded, saving, load, save }
+  return { profile, filled, saving, load, save }
 }

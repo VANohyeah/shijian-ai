@@ -1,4 +1,5 @@
-/** 读档案；没填过返回 profile: null */
+import { getProfile } from '../utils/store'
+
 export default defineEventHandler(async (event) => {
   const { deviceId } = getQuery(event) as { deviceId?: string }
 

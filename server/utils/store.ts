@@ -1,12 +1,4 @@
-/**
- * 用户数据（收藏 / 历史）持久化。
- *
- * 取舍：用 JSON 文件而不是 SQLite。
- *   - 不引入原生模块（better-sqlite3 在没装 VS Build Tools 的机器上编译会炸）
- *   - 单实例演示场景，写入频率很低，文件锁风险可忽略
- *   - 数据可以直接打开看，答辩时能当场展示
- * 后续要上多用户/并发，把这一层换成 SQLite 即可，接口不变。
- */
+
 import { readFile, writeFile, mkdir, rename } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { Dish, UserProfile } from '../../shared/types'
@@ -18,7 +10,7 @@ export interface FavoriteDish extends Dish {
 export interface HistoryEntry {
   id: string
   createdAt: string
-  /** photo = 拍菜单识别，city = 地域推荐 */
+
   source: 'photo' | 'city'
   title: string
   dishes: Dish[]
@@ -28,7 +20,7 @@ export interface HistoryEntry {
 interface UserRecord {
   favorites: FavoriteDish[]
   history: HistoryEntry[]
-  /** 身体档案：注册时填一次，之后每次评估都用它 */
+
   profile?: UserProfile
   profileUpdatedAt?: string
 }
@@ -61,7 +53,6 @@ async function load(): Promise<StoreShape> {
   return cache
 }
 
-/** 原子写：先写临时文件再 rename，避免写一半断电把文件写坏 */
 async function persist(store: StoreShape): Promise<void> {
   await mkdir(DATA_DIR, { recursive: true })
   const tmp = `${DATA_FILE}.tmp`
@@ -124,21 +115,12 @@ export async function addHistory(
   return record
 }
 
-export async function clearHistory(deviceId: string): Promise<void> {
-  const store = await load()
-  const user = getUser(store, deviceId)
-  user.history = []
-  await persist(store)
-}
-
-/** 读档案；没填过返回 null，前端据此跳到 onboarding */
 export async function getProfile(deviceId: string): Promise<UserProfile | null> {
   const store = await load()
   const user = store.users[deviceId]
   return user?.profile ?? null
 }
 
-/** 存档案（注册/修改都走这里） */
 export async function saveProfile(
   deviceId: string,
   profile: UserProfile

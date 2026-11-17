@@ -1,8 +1,6 @@
-/**
- * 写一条历史记录（每次识别 / 每次看城市都算一次）。
- * body: { deviceId, source, title, dishes, summary? }
- */
+
 import type { Dish } from '../../../shared/types'
+import { addHistory } from '../../utils/store'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<{

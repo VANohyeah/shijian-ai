@@ -1,0 +1,113 @@
+{
+  "version": "1.0.1",
+  "updated": "2026-11-09",
+  "owner": "C（数据/交付）",
+  "kind": "drug_food",
+  "note": "药物-食物相互作用。档案里不强制收集用药信息（涉及隐私），但用户可自愿填写当前用药；命中时在卡片底部单独展示一条提示。",
+  "level_note": "药物相互作用只做『附加提示』，不参与菜品三色定级：未服药的用户不该因为一道菜被标红。因此本文件的 level 仅表示提示强度（forbid=强烈建议避免 / caution=注意间隔或限量），渲染时应走独立的提示条，不要并入 level 计算。",
+  "privacy_note": "用药信息属于敏感个人信息，不入日志、不进模型上下文原文，只在服务端做一次规则匹配后丢弃。",
+
+  "interactions": [
+    {
+      "id": "drug_cephalosporin",
+      "drug": "头孢类抗生素",
+      "aliases": ["头孢", "头孢克肟", "头孢呋辛", "头孢曲松", "cef"],
+      "match": { "tags_all": ["含酒精"] },
+      "level": "forbid",
+      "message": "你正在服用头孢类抗生素，{name} 含酒精（{ingredients}），可能引发双硫仑样反应（面红、心悸、呼吸困难），用药期间及停药 7 天内都不要吃。",
+      "evidence": ["kb_drug_01"]
+    },
+    {
+      "id": "drug_metronidazole",
+      "drug": "甲硝唑 / 替硝唑",
+      "aliases": ["甲硝唑", "替硝唑", "灭滴灵"],
+      "match": { "tags_all": ["含酒精"] },
+      "level": "forbid",
+      "message": "你正在服用甲硝唑类，{name} 含酒精（{ingredients}），可能引发双硫仑样反应，用药期间及停药 3 天内避免。",
+      "evidence": ["kb_drug_01"]
+    },
+    {
+      "id": "drug_warfarin",
+      "drug": "华法林",
+      "aliases": ["华法林", "warfarin"],
+      "match": { "ingredients_any": ["猪肝", "鸡肝", "菠菜", "西兰花", "羽衣甘蓝", "纳豆"] },
+      "level": "caution",
+      "message": "{name} 富含维生素 K（{ingredients}），会削弱华法林抗凝效果；关键是保持每天摄入量稳定，不要忽多忽少。",
+      "evidence": ["kb_drug_02"]
+    },
+    {
+      "id": "drug_statin",
+      "drug": "他汀类降脂药",
+      "aliases": ["他汀", "阿托伐他汀", "辛伐他汀", "瑞舒伐他汀"],
+      "match": { "ingredients_any": ["西柚", "葡萄柚", "柚子"] },
+      "level": "caution",
+      "message": "{name} 含西柚类（{ingredients}），会抑制他汀代谢、升高肌病风险，服药期间避免。",
+      "evidence": ["kb_drug_03"]
+    },
+    {
+      "id": "drug_maoi",
+      "drug": "单胺氧化酶抑制剂（MAOI）",
+      "aliases": ["MAOI", "吗氯贝胺", "司来吉兰"],
+      "match": { "ingredients_any": ["奶酪", "芝士", "腌鱼", "腐乳", "腊肉", "香肠"] },
+      "level": "forbid",
+      "message": "{name} 含高酪胺食物（{ingredients}），与 MAOI 同服可能引发高血压危象。",
+      "evidence": ["kb_drug_04"]
+    },
+    {
+      "id": "drug_levothyroxine",
+      "drug": "左甲状腺素",
+      "aliases": ["优甲乐", "左甲状腺素", "levothyroxine"],
+      "match": { "ingredients_any": ["豆浆", "豆腐", "牛奶", "咖啡", "高钙"] },
+      "level": "caution",
+      "message": "{name} 含影响左甲状腺素吸收的成分（{ingredients}），与服药时间至少间隔 4 小时。",
+      "evidence": ["kb_drug_05"]
+    },
+    {
+      "id": "drug_metformin",
+      "drug": "二甲双胍",
+      "aliases": ["二甲双胍", "metformin"],
+      "match": { "tags_all": ["含酒精"] },
+      "level": "caution",
+      "message": "你正在服用二甲双胍，{name} 含酒精（{ingredients}），会升高乳酸酸中毒风险，建议避开。",
+      "evidence": ["kb_drug_06"]
+    },
+    {
+      "id": "drug_aspirin",
+      "drug": "阿司匹林 / 非甾体抗炎药",
+      "aliases": ["阿司匹林", "布洛芬", "双氯芬酸", "NSAIDs"],
+      "match": { "tags_all": ["含酒精"] },
+      "level": "caution",
+      "message": "你正在服用阿司匹林或非甾体抗炎药，{name} 含酒精（{ingredients}），会叠加胃黏膜损伤与出血风险。",
+      "evidence": ["kb_drug_07"]
+    },
+    {
+      "id": "drug_acei",
+      "drug": "ACEI / ARB 类降压药",
+      "aliases": ["依那普利", "缬沙坦", "氯沙坦", "ACEI", "ARB"],
+      "match": { "tags_all": ["高钾"] },
+      "level": "caution",
+      "message": "{name} 为高钾菜品（{tags}），这类降压药会升高血钾，长期大量同食需监测。",
+      "evidence": ["kb_drug_08"]
+    },
+    {
+      "id": "drug_allopurinol",
+      "drug": "别嘌醇 / 非布司他",
+      "aliases": ["别嘌醇", "非布司他"],
+      "match": { "tags_any": ["高嘌呤", "含酒精"] },
+      "level": "caution",
+      "message": "你正在服用降尿酸药，{name} 含高嘌呤或酒精（{tags}），会抵消药效并可能诱发发作。",
+      "evidence": ["kb_drug_09"]
+    },
+    {
+      "id": "drug_iron",
+      "drug": "铁剂",
+      "aliases": ["硫酸亚铁", "铁剂", "补铁"],
+      "match": { "ingredients_any": ["茶", "咖啡", "奶茶"] },
+      "level": "caution",
+      "message": "{name} 含茶或咖啡（{ingredients}），单宁会抑制铁吸收，与铁剂间隔 2 小时以上。",
+      "evidence": ["kb_drug_10"]
+    }
+  ],
+
+  "disclaimer": "以上为常见相互作用的点菜提示，不是用药指导。具体请咨询药师或医生。"
+}

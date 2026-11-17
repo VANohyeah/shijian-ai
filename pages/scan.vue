@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { describeError } from '~/composables/errors'
+import { useDeviceId, useProfile } from '~/composables/useProfile'
 import type { Dish, DishAssessment } from '~/shared/types'
 
 const { deviceId, ensure } = useDeviceId()
@@ -12,7 +14,6 @@ const error = ref('')
 const preview = ref('')
 const meta = ref('')
 
-/* 识别有误时允许手动修正：改完重新评估 */
 const editingId = ref('')
 const editName = ref('')
 const editIngredients = ref('')
@@ -31,7 +32,7 @@ async function refreshFavs() {
       favorites.value = data.favorites ?? []
     }
   } catch {
-    /* 收藏读不到不影响识别 */
+
   }
 }
 
@@ -55,21 +56,21 @@ async function onFile(e: Event) {
       body: JSON.stringify({ imageBase64: base64, mime })
     })
     if (!res.ok) {
-      error.value = 'HTTP ' + res.status + '：' + (await res.text())
+      error.value = describeError(res, '识别这张菜单')
       return
     }
     const data = (await res.json()) as { dishes: Dish[]; count: number; model: string }
     dishes.value = data.dishes ?? []
-    meta.value = `识别到 ${data.count} 道 · ${data.model}`
+    meta.value = `认出 ${data.count} 道菜`
     if (!dishes.value.length) {
-      error.value = '没有识别出菜品，换张更清晰的图试试'
+      error.value = '这一张没认出来。换个角度，或者手端稳一点再按一次。'
       return
     }
 
     await evaluate()
     await record()
   } catch (err) {
-    error.value = String(err)
+    error.value = describeError(err, '识别这张菜单')
   } finally {
     busy.value = false
   }
@@ -104,7 +105,7 @@ async function record() {
       })
     })
   } catch {
-    /* 历史失败不影响主流程 */
+
   }
 }
 
@@ -125,8 +126,6 @@ async function toggleFav(dish: Dish) {
   }
 }
 
-/* ---------------- 手动修正 ---------------- */
-
 function startEdit(d: Dish) {
   editingId.value = d.id
   editName.value = d.name_zh || d.name
@@ -143,7 +142,7 @@ async function saveEdit() {
 
   const name = editName.value.trim()
   if (!name) {
-    error.value = '菜名不能为空'
+    error.value = '好歹给个菜名'
     return
   }
   const ings = editIngredients.value
@@ -155,7 +154,7 @@ async function saveEdit() {
   d.name_zh = name
   d.ingredients = ings
   d.ingredients_zh = ings
-  // 清空旧的过敏原，让规则引擎按新食材重新推导，避免保留错误结论
+
   d.allergens = []
   d.confidence = 1
 
@@ -179,25 +178,33 @@ async function compress(file: File): Promise<{ base64: string; mime: string }> {
 </script>
 
 <template>
-  <main class="wrap">
-    <h1>拍菜单</h1>
-    <p class="muted">拍一张菜单或外卖截图，识别后会自动按你的档案分级。</p>
+  <main class="wrap wrap--read">
+    <PageHead
+      back-to="/"
+      back-label="回首页"
+      kicker="视觉识别"
+      title="拍菜单"
+    />
 
-    <div class="card">
+    <label class="drop" :class="{ 'is-busy': busy }">
       <input type="file" accept="image/*" :disabled="busy" @change="onFile" />
-      <p v-if="busy" class="hint">识别中…（大模型看图，通常 5–15 秒）</p>
-      <p v-if="meta" class="hint">{{ meta }}</p>
-      <p v-if="error" class="err">{{ error }}</p>
-      <img v-if="preview" :src="preview" class="preview" alt="菜单预览" />
-    </div>
 
-    <div v-if="dishes.length">
-      <h2>识别结果</h2>
-      <p class="hint">识别不准？点菜品右上角的「改」，改完会自动重新判定。</p>
+      <img v-if="preview" :src="preview" class="drop__shot" alt="菜单预览" />
+      <template v-else>
+        <span class="drop__main">{{ busy ? '正在认这张照片…' : '点一下，选张菜单' }}</span>
+        <span class="drop__sub">手机拍的、外卖截图都行，十几秒出结果</span>
+      </template>
+    </label>
+
+    <p v-if="meta" class="drop__meta">{{ meta }}</p>
+    <p v-if="error" class="err">{{ error }}</p>
+
+    <section v-if="dishes.length" class="result">
+      <h2 class="result__title">这一桌，逐道看</h2>
 
       <template v-for="d in dishes" :key="d.id">
         <div v-if="editingId === d.id" class="card edit">
-          <p class="hint" style="margin-top: 0">修正菜名与食材（食材用顿号分隔）</p>
+          <p class="hint" style="margin-top: 0">菜名或料不对？几样之间用顿号隔开。</p>
           <div class="row" style="margin-bottom: 8px">
             <input v-model="editName" class="input" style="flex: 1" placeholder="菜名" />
           </div>
@@ -208,7 +215,7 @@ async function compress(file: File): Promise<{ base64: string; mime: string }> {
               style="flex: 1"
               placeholder="如：虾、蟹、奶酪"
             />
-            <button class="btn" @click="saveEdit">保存并重新判定</button>
+            <button class="btn" @click="saveEdit">保存，重看一遍</button>
             <button class="btn ghost" @click="cancelEdit">取消</button>
           </div>
         </div>
@@ -223,21 +230,89 @@ async function compress(file: File): Promise<{ base64: string; mime: string }> {
           @edit="startEdit"
         />
       </template>
-    </div>
+    </section>
   </main>
 </template>
 
 <style scoped>
-.preview {
-  display: block;
-  margin-top: 12px;
-  max-width: 100%;
-  max-height: 300px;
-  border-radius: 10px;
-  border: 1px solid #eee;
+
+.drop {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 300px;
+  padding: 36px 24px;
+  border: 2px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--lifted);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
 }
+
+.drop:hover,
+.drop:focus-within {
+  border-color: var(--sepia);
+  background: var(--cream);
+}
+
+.drop.is-busy {
+  cursor: progress;
+}
+
+.drop input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.drop__main {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--sepia);
+}
+
+.drop__sub {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.drop__shot {
+  max-width: 100%;
+  max-height: 320px;
+  border-radius: var(--radius);
+}
+
+.drop__meta {
+  margin-top: 12px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.result {
+  margin-top: 40px;
+}
+
+.result__title {
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid var(--line);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+
 .edit {
-  border-color: #c7d2fe;
-  background: #fbfcff;
+  border-color: var(--sepia);
+  background: var(--lifted);
 }
 </style>

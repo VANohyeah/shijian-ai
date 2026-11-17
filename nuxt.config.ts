@@ -6,9 +6,11 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: '食鉴 · 看得懂菜单的 AI 美食助手',
+      link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: '拍菜单，看懂食材与风险；选城市，知道哪道本地菜你能吃' }
+        { name: 'description', content: '拍菜单，看懂食材与风险；选城市，知道哪道本地菜你能吃' },
+        { name: 'theme-color', content: '#8b4513' }
       ]
     }
   }

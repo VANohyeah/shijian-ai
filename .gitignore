@@ -14,3 +14,7 @@ test-*.png
 
 # 运行时用户数据（收藏/历史）
 data/
+.npm-cache/
+
+# 本地打包文件
+*.zip

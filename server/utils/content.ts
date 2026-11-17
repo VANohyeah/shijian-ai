@@ -1,7 +1,4 @@
-/**
- * 菜品内容库：语言视角（250 条）与复刻视角（25 条）。
- * 数据来自 C 交付包 04_内容库，构建期打包。
- */
+
 import languageRaw from '../../seed/language.json'
 import recipeRaw from '../../seed/recipe.json'
 
@@ -52,9 +49,4 @@ export function getLanguageView(dishId: string): LanguageView | null {
 
 export function getRecipeView(dishId: string): RecipeView | null {
   return recipes.get(dishId) ?? null
-}
-
-/** 有多少菜有语言视角 / 复刻菜谱，用于验收与文档 */
-export function contentStats() {
-  return { language: languages.size, recipe: recipes.size }
 }

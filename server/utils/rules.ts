@@ -1,14 +1,4 @@
-/**
- * 健康评估规则引擎（纯函数，无框架依赖，便于测试与复用）
- *
- * 判定优先级（写死，不允许模型自由发挥）：
- *   过敏  >  孕期  >  慢病  >  目标
- *
- * 过敏命中一律 forbidden，不允许降级 —— 这是产品底线。
- *
- * 数据来源：八大类过敏原（公开标准）、常见膳食禁忌常识（项目自建规则库）。
- * 输出必须带依据，禁止编造。
- */
+
 import type {
   Allergen,
   Condition,
@@ -17,8 +7,8 @@ import type {
   RiskLevel,
   UserProfile
 } from '../../shared/types'
+import { GOAL_LABEL } from '../../shared/types'
 
-/** 关键词 → 过敏原。模型漏报时的兜底推断。12 类与 C 的 allergens.json 对齐。 */
 const ALLERGEN_KEYWORDS: Record<Allergen, string[]> = {
   含麸质谷物: [
     '面粉', '饼底', '面团', '面包', '面条', '小麦', '酥皮', '拉面', '馒头', '饺子皮',
@@ -40,7 +30,6 @@ const ALLERGEN_KEYWORDS: Record<Allergen, string[]> = {
   亚硫酸盐: ['红酒', '果干', '话梅', '蜜饯', '干白']
 }
 
-/** 各慢病 / 目标对应的禁忌关键词 */
 const CONDITION_KEYWORDS: Record<Condition, { words: string[]; note: string }> = {
   痛风: {
     words: ['内脏', '肝', '腰花', '大肠', '牛杂', '猪杂', '羊杂', '杂碎', '沙丁', '凤尾', '贝', '蟹', '浓汤', '高汤', '老火汤', '啤酒'],
@@ -64,7 +53,6 @@ const CONDITION_KEYWORDS: Record<Condition, { words: string[]; note: string }> =
   }
 }
 
-/** 目标相关的高油 / 高蛋白关键词 */
 const GOAL_KEYWORDS = {
   fat_loss: { words: ['油炸', '炸', '干锅', '红烧', '五花肉', '酥', '爆炒', '奶油', '芝士'], note: '油脂偏高，减脂期建议控制' },
   muscle_gain: { words: ['鸡胸', '牛肉', '鱼', '虾', '蛋', '豆腐'], note: '蛋白质来源，适合增肌' },
@@ -79,10 +67,6 @@ function textOf(dish: Dish): string {
     .toLowerCase()
 }
 
-/**
- * 推断该菜品含有的过敏原。
- * 模型返回的 + 关键词兜底推断，取并集。
- */
 export function inferAllergens(dish: Dish): Allergen[] {
   const text = textOf(dish)
   const found = new Set<Allergen>(dish.allergens)
@@ -96,7 +80,7 @@ export function inferAllergens(dish: Dish): Allergen[] {
     }
   }
 
-  // 陷阱：「鱼香肉丝」没有鱼。只有当「鱼」的唯一证据是「鱼香」时才剔除
+
   if (text.includes('鱼香') && found.has('鱼类') && !dish.allergens.includes('鱼类')) {
     const otherFishWord = ALLERGEN_KEYWORDS.鱼类.filter((w) => w !== '鱼' && text.includes(w))
     if (otherFishWord.length === 0) found.delete('鱼类')
@@ -112,9 +96,6 @@ function hit(words: readonly string[], text: string): string | null {
   return null
 }
 
-/**
- * 评估单道菜。
- */
 export function assessDish(dish: Dish, profile: UserProfile): DishAssessment {
   const text = textOf(dish)
   const inferred = inferAllergens(dish)
@@ -126,31 +107,31 @@ export function assessDish(dish: Dish, profile: UserProfile): DishAssessment {
     if (LEVEL_ORDER[next] > LEVEL_ORDER[level]) level = next
   }
 
-  // ---- 1. 过敏（最高优先级，命中即 forbidden）----
+
   const allergyHits = inferred.filter((a) => profile.allergens.includes(a))
   if (allergyHits.length > 0) {
     raise('forbidden')
     reasons.push(`含「${allergyHits.join('、')}」，与你档案中的过敏原冲突`)
-    citations.push('八大类过敏原清单 · 交叉检测')
+    citations.push('八大类过敏原清单')
   }
 
-  // ---- 2. 孕期 ----
+
   if (profile.conditions.includes('孕期')) {
     const w = hit(CONDITION_KEYWORDS.孕期.words, text)
     if (w) {
       raise('forbidden')
       reasons.push(`含「${w}」：${CONDITION_KEYWORDS.孕期.note}`)
-      citations.push('孕期饮食禁忌（项目自建规则库 P-01）')
+      citations.push('孕期饮食禁忌')
     }
     const heavyMetal = hit(['金枪鱼', '剑鱼', '鲨鱼', '方头鱼'], text)
     if (heavyMetal) {
       raise('caution')
       reasons.push(`含「${heavyMetal}」，汞含量偏高，孕期建议限量`)
-      citations.push('孕期饮食禁忌（项目自建规则库 P-02）')
+      citations.push('孕期饮食禁忌')
     }
   }
 
-  // ---- 3. 慢病 ----
+
   for (const condition of profile.conditions) {
     if (condition === '孕期') continue
     const rule = CONDITION_KEYWORDS[condition]
@@ -159,29 +140,29 @@ export function assessDish(dish: Dish, profile: UserProfile): DishAssessment {
     if (w) {
       raise('caution')
       reasons.push(`含「${w}」：${rule.note}`)
-      citations.push(`慢病饮食限制（项目自建规则库 C-${condition}）`)
+      citations.push(`${condition}饮食限制`)
     }
   }
 
-  // ---- 4. 饮食目标 ----
+
   if (profile.goal !== 'none') {
     const rule = GOAL_KEYWORDS[profile.goal as keyof typeof GOAL_KEYWORDS]
     if (rule) {
       const w = hit(rule.words, text)
       if (w) {
-        // 增肌目标是正向信息，不提升风险等级
+
         if (profile.goal === 'muscle_gain') {
           reasons.push(`含「${w}」：${rule.note}`)
         } else {
           raise('caution')
           reasons.push(`含「${w}」：${rule.note}`)
-          citations.push(`饮食目标匹配（项目自建规则库 G-${profile.goal}）`)
+          citations.push(`${GOAL_LABEL[profile.goal] ?? ''}目标`)
         }
       }
     }
   }
 
-  // ---- 5. 忌口（宗教戒律 / 素食）----
+
   if (profile.dietary.includes('素食') && hit(['肉', '猪', '牛', '羊', '鸡', '鸭', '鱼', '虾', '蟹'], text)) {
     raise('forbidden')
     reasons.push('含动物性食材，与素食忌口冲突')
@@ -209,7 +190,6 @@ export function assessDish(dish: Dish, profile: UserProfile): DishAssessment {
   }
 }
 
-/** 评估整桌菜，并给出汇总 */
 export function assessMenu(dishes: Dish[], profile: UserProfile) {
   const assessments = dishes.map((d) => assessDish(d, profile))
   const summary = {

@@ -1,0 +1,465 @@
+{
+  "version": "1.0.0",
+  "method": "按 id 排序后每隔 5 条取 1 条，共 50 条（20% 抽样）",
+  "checked_items": [
+    "菜名真实性",
+    "城市与菜系归属",
+    "配料通行度",
+    "过敏原与荤腥标签自洽"
+  ],
+  "reviewer": "C（数据）",
+  "reviewed_at": "2026-11-09",
+  "count": 50,
+  "items": [
+    {
+      "dish_id": "dish_beijing_01",
+      "name": "北京烤鸭",
+      "city": "北京",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_beijing_06",
+      "name": "豌豆黄",
+      "city": "北京",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_changsha_02",
+      "name": "小炒黄牛肉",
+      "city": "长沙",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_changsha_07",
+      "name": "擂辣椒皮蛋",
+      "city": "长沙",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_chaozhou_03",
+      "name": "生腌虾",
+      "city": "潮州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_chaozhou_08",
+      "name": "潮州鱼饭",
+      "city": "潮州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_chengdu_04",
+      "name": "麻辣兔头",
+      "city": "成都",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": "兔头标「含内脏」属保守口径，嘌呤不低，保留"
+    },
+    {
+      "dish_id": "dish_chengdu_09",
+      "name": "开水白菜",
+      "city": "成都",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_chongqing_05",
+      "name": "口水鸡",
+      "city": "重庆",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_foshan_01",
+      "name": "顺德鱼生",
+      "city": "佛山",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_foshan_06",
+      "name": "顺德拆鱼羹",
+      "city": "佛山",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_fuzhou_03",
+      "name": "福州鱼丸",
+      "city": "福州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_fuzhou_08",
+      "name": "醉糟鸡",
+      "city": "福州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_guangzhou_05",
+      "name": "白灼虾",
+      "city": "广州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_guilin_01",
+      "name": "阳朔啤酒鱼",
+      "city": "桂林",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_guilin_06",
+      "name": "桂林酸嘢",
+      "city": "桂林",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_guiyang_03",
+      "name": "丝娃娃",
+      "city": "贵阳",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_guiyang_08",
+      "name": "花溪牛肉粉",
+      "city": "贵阳",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": "酸菜未标「腌制」，但已标「高盐」，高血压结论不变，记录不修"
+    },
+    {
+      "dish_id": "dish_haerbin_05",
+      "name": "马迭尔冰棍",
+      "city": "哈尔滨",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": "method 受词表限制只能写「煮」，已知局限"
+    },
+    {
+      "dish_id": "dish_haikou_01",
+      "name": "文昌鸡",
+      "city": "海口",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_haikou_06",
+      "name": "清补凉",
+      "city": "海口",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_hangzhou_03",
+      "name": "龙井虾仁",
+      "city": "杭州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_hangzhou_08",
+      "name": "葱包桧",
+      "city": "杭州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_kunming_05",
+      "name": "火夹乳饼",
+      "city": "昆明",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_lanzhou_02",
+      "name": "手抓羊肉",
+      "city": "兰州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_lanzhou_07",
+      "name": "黄焖羊肉",
+      "city": "兰州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_lasa_04",
+      "name": "手抓牦牛肉",
+      "city": "拉萨",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_nanjing_01",
+      "name": "盐水鸭",
+      "city": "南京",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_nanjing_06",
+      "name": "炖生敲",
+      "city": "南京",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_ningbo_03",
+      "name": "冰糖甲鱼",
+      "city": "宁波",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_ningbo_08",
+      "name": "宁波汤圆",
+      "city": "宁波",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_qingdao_05",
+      "name": "海菜凉粉",
+      "city": "青岛",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_shanghai_02",
+      "name": "腌笃鲜",
+      "city": "上海",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_shanghai_07",
+      "name": "草头圈子",
+      "city": "上海",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_shenyang_03",
+      "name": "白肉血肠",
+      "city": "沈阳",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_shenyang_08",
+      "name": "西塔冷面",
+      "city": "沈阳",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_suzhou_05",
+      "name": "苏式焖肉面",
+      "city": "苏州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_taiyuan_02",
+      "name": "刀削面",
+      "city": "太原",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_taiyuan_07",
+      "name": "荞面灌肠",
+      "city": "太原",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": "菜名含「肠」实为荞面制品，未误标内脏，命名陷阱处理正确"
+    },
+    {
+      "dish_id": "dish_tianjin_04",
+      "name": "罾蹦鲤鱼",
+      "city": "天津",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_wuhan_01",
+      "name": "热干面",
+      "city": "武汉",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_wuhan_06",
+      "name": "鸭脖",
+      "city": "武汉",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_wulumuqi_03",
+      "name": "烤包子",
+      "city": "乌鲁木齐",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_wulumuqi_08",
+      "name": "包尔萨克",
+      "city": "乌鲁木齐",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_xiamen_05",
+      "name": "同安封肉",
+      "city": "厦门",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_xian_02",
+      "name": "羊肉泡馍",
+      "city": "西安",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_xian_07",
+      "name": "肉丸胡辣汤",
+      "city": "西安",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_yangzhou_03",
+      "name": "扬州炒饭",
+      "city": "扬州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_yangzhou_08",
+      "name": "千层油糕",
+      "city": "扬州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    },
+    {
+      "dish_id": "dish_zhengzhou_04",
+      "name": "鲤鱼焙面",
+      "city": "郑州",
+      "reviewer": "C",
+      "reviewed_at": "2026-11-09",
+      "result": "通过",
+      "note": null
+    }
+  ]
+}

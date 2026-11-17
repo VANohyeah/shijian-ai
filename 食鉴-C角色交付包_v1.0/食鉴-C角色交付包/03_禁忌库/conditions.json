@@ -1,0 +1,200 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-11-09",
+  "owner": "C（数据/交付）",
+  "kind": "conditions",
+  "purpose": "慢病限制规则。M2 规则引擎读这份文件，不改代码就能加规则。",
+
+  "level_definition": {
+    "forbid": "别点（红）。该菜对这类人群属于明确禁忌，不是『少吃点』的问题。",
+    "caution": "注意（黄）。可以吃，但需要限量、换做法或问清配料。",
+    "info": "提示（灰）。不影响安全，只做目标/营养层面的提醒。",
+    "ok": "安全（绿）。无命中规则。"
+  },
+
+  "dsl": {
+    "match": {
+      "tags_any": "菜品 tags 与之取交集，非空即命中",
+      "tags_all": "菜品 tags 必须全部包含",
+      "allergens_any": "菜品 allergens 与之取交集，非空即命中",
+      "ingredients_any": "菜品 ingredients 任一元素包含其中之一（子串）即命中",
+      "spicy_level_gte": "辣度下限",
+      "name_contains": "菜名包含任一关键词即命中"
+    },
+    "combine": "同一 rule 内，各 match 字段之间是 AND；数组内部是 OR。因此『标签 A 或 食材 B 命中就拦截』这类需求必须拆成两条 rule，不能写成一条（写成一条会变成 AND，几乎永远不命中）。",
+    "placeholder": "message 支持 {name}（菜名）、{tags}（命中的标签）、{ingredients}（命中的食材）三个占位符。"
+  },
+
+  "conditions": [
+    {
+      "id": "hyperuricemia",
+      "name": "高尿酸 / 痛风",
+      "aliases": ["痛风", "高尿酸", "高尿酸血症", "尿酸高"],
+      "priority": 3,
+      "severity_note": "急性发作期与缓解期口径不同，本库按『缓解期也需严格限制』的保守口径给规则；急性期应在 UI 上额外提示『本菜不建议，请遵医嘱』。",
+      "rules": [
+        {
+          "id": "gout_forbid_purine_tag",
+          "match": { "tags_all": ["高嘌呤"] },
+          "level": "forbid",
+          "message": "{name} 属于高嘌呤食物（命中：{tags}），痛风或高尿酸人群应避免。",
+          "evidence": ["kb_purine_01", "kb_purine_02"]
+        },
+        {
+          "id": "gout_forbid_purine_food",
+          "match": { "ingredients_any": ["浓汤", "老火汤", "高汤", "火锅底料", "沙丁鱼", "凤尾鱼", "带鱼", "鱼籽", "虾干", "鱼干"] },
+          "level": "forbid",
+          "message": "{name} 用了高嘌呤食材（命中：{ingredients}），连汤底一起吃等于把嘌呤全喝下去。",
+          "evidence": ["kb_purine_02", "kb_soup_01"]
+        },
+        {
+          "id": "gout_forbid_organ",
+          "match": { "tags_all": ["含内脏"] },
+          "level": "forbid",
+          "message": "{name} 含动物内脏（命中：{ingredients}），嘌呤含量在常见食物中最高一档，建议不要点。",
+          "evidence": ["kb_purine_02"]
+        },
+        {
+          "id": "gout_caution_mid",
+          "match": { "tags_any": ["中嘌呤", "含海鲜"] },
+          "level": "caution",
+          "message": "{name} 含中等嘌呤食材（命中：{tags}），可以少量尝，别配酒、别喝汤底。",
+          "evidence": ["kb_purine_02"]
+        },
+        {
+          "id": "gout_caution_alcohol",
+          "match": { "tags_all": ["含酒精"] },
+          "level": "caution",
+          "message": "{name} 含酒精（命中：{ingredients}），酒精会抑制尿酸排泄，比同等嘌呤的食物更危险。",
+          "evidence": ["kb_purine_03"]
+        }
+      ],
+      "goal_advice": "优先选清蒸、白灼的蔬菜与蛋类；肉类控制在 1 个手掌大小；每天饮水 2000ml 以上。",
+      "disclaimer": "急性发作期请以医生意见为准，本提示不构成治疗建议。"
+    },
+    {
+      "id": "hypertension",
+      "name": "高血压",
+      "aliases": ["高血压", "血压高"],
+      "priority": 3,
+      "rules": [
+        {
+          "id": "htn_caution_salt",
+          "match": { "tags_any": ["高盐", "腌制"] },
+          "level": "caution",
+          "message": "{name} 口味偏咸（命中：{tags}），建议要求少盐、不蘸酱汁、不喝汤底。",
+          "evidence": ["kb_sodium_01"]
+        },
+        {
+          "id": "htn_caution_processed",
+          "match": { "tags_any": ["加工肉"] },
+          "level": "caution",
+          "message": "{name} 含加工肉制品（命中：{tags}），钠与亚硝酸盐都偏高，尽量少吃。",
+          "evidence": ["kb_sodium_02"]
+        },
+        {
+          "id": "htn_caution_spicy",
+          "match": { "spicy_level_gte": 4 },
+          "level": "caution",
+          "message": "{name} 辣度较高（{tags}），重辣常伴随重油重盐，且会刺激血压波动。",
+          "evidence": ["kb_sodium_01"]
+        }
+      ],
+      "goal_advice": "全天食盐控制在 5g 以内；外食时把『少盐、酱汁另放』说在前面；多吃高钾蔬菜（但肾病者相反）。",
+      "disclaimer": "若正在服用降压药，请同时参考药物-食物相互作用提示。"
+    },
+    {
+      "id": "diabetes",
+      "name": "糖尿病",
+      "aliases": ["糖尿病", "血糖高", "糖耐量异常"],
+      "priority": 3,
+      "rules": [
+        {
+          "id": "dm_caution_sugar",
+          "match": { "tags_any": ["高糖", "甜品"] },
+          "level": "caution",
+          "message": "{name} 含糖量偏高（命中：{tags}），建议浅尝即止，并相应减少主食。",
+          "evidence": ["kb_sugar_01"]
+        },
+        {
+          "id": "dm_caution_refined",
+          "match": { "tags_any": ["精制碳水", "主食"] },
+          "level": "caution",
+          "message": "{name} 以精制碳水为主（命中：{tags}），升糖较快，建议搭配蛋白质与蔬菜同吃。",
+          "evidence": ["kb_sugar_02"]
+        },
+        {
+          "id": "dm_info_fat",
+          "match": { "tags_any": ["高油", "油炸"] },
+          "level": "info",
+          "message": "{name} 油脂偏高（命中：{tags}），长期高脂饮食会加重胰岛素抵抗。",
+          "evidence": ["kb_sugar_02"]
+        }
+      ],
+      "goal_advice": "先吃菜、再吃肉、最后吃主食；主食减半；避免含糖饮料与甜汤。",
+      "disclaimer": "血糖控制目标因人而异，具体请遵医嘱。"
+    },
+    {
+      "id": "ckd",
+      "name": "慢性肾病",
+      "aliases": ["慢性肾病", "肾功能不全", "CKD", "肾衰"],
+      "priority": 3,
+      "rules": [
+        {
+          "id": "ckd_caution_potassium",
+          "match": { "tags_any": ["高钾"] },
+          "level": "caution",
+          "message": "{name} 含较多高钾食材（命中：{tags}），中晚期肾病患者需限钾，建议少量或焯水后食用。",
+          "evidence": ["kb_ckd_01"]
+        },
+        {
+          "id": "ckd_caution_phosphorus",
+          "match": { "tags_any": ["高磷"] },
+          "level": "caution",
+          "message": "{name} 含较多高磷食材（命中：{tags}），肾病患者需限磷。",
+          "evidence": ["kb_ckd_01"]
+        },
+        {
+          "id": "ckd_caution_protein",
+          "match": { "tags_any": ["高蛋白"] },
+          "level": "caution",
+          "message": "{name} 蛋白质含量高（命中：{tags}），需按医生给的蛋白配额折算份量。",
+          "evidence": ["kb_ckd_02"]
+        },
+        {
+          "id": "ckd_caution_salt",
+          "match": { "tags_any": ["腌制"] },
+          "level": "caution",
+          "message": "{name} 为腌制品（命中：{tags}），钠负荷高，会加重水肿与血压负担。",
+          "evidence": ["kb_ckd_01"]
+        }
+      ],
+      "goal_advice": "限盐、限钾磷、蛋白按配额；不要自行使用低钠盐（常含钾）。",
+      "disclaimer": "肾病分期不同、透析与否，限制差异很大，务必以肾内科医嘱为准。"
+    },
+    {
+      "id": "hyperlipidemia",
+      "name": "高血脂",
+      "aliases": ["高血脂", "高胆固醇", "血脂异常"],
+      "priority": 2,
+      "rules": [
+        {
+          "id": "hlp_caution_fat",
+          "match": { "tags_any": ["高油", "油炸", "含内脏"] },
+          "level": "caution",
+          "message": "{name} 油脂或胆固醇偏高（命中：{tags}），建议去掉可见肥油、少喝汤汁。",
+          "evidence": ["kb_lipid_01"]
+        },
+        {
+          "id": "hlp_caution_processed",
+          "match": { "tags_any": ["加工肉"] },
+          "level": "caution",
+          "message": "{name} 含加工肉（命中：{tags}），饱和脂肪与钠都偏高。",
+          "evidence": ["kb_lipid_01"]
+        }
+      ],
+      "goal_advice": "优先白肉与豆制品，蒸煮代替油炸；每周吃 2 次深海鱼。",
+      "disclaimer": "血脂管理需结合运动与用药，本提示仅作点菜参考。"
+    }
+  ]
+}

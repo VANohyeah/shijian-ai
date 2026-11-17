@@ -1,9 +1,6 @@
-/**
- * 档案读写。
- * 目标结构里只列了 profile.put.ts；读取用一个轻量 GET 补上，
- * 否则前端每次都只能靠 localStorage 猜。
- */
+
 import type { UserProfile } from '../../shared/types'
+import { saveProfile } from '../utils/store'
 
 const ALLOWED_GOALS = ['fat_loss', 'muscle_gain', 'sugar_control', 'none']
 

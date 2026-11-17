@@ -1,9 +1,4 @@
-/**
- * 地域菜库目录：把 C 交付的 250 道菜 / 30 城 变成统一的 Dish 对象。
- *
- * 数据来源：食鉴-C角色交付包 v1.0（02_地域菜库/dishes.json、cities.json）
- * 契约：字段以 C 的 01_数据规格/菜品对象字段规范.md 为准，这里只做「补齐我方附加字段」。
- */
+
 import dishesRaw from '../../seed/dishes.json'
 import citiesRaw from '../../seed/cities.json'
 import type { Dish } from '../../shared/types'
@@ -47,7 +42,6 @@ export interface CityInfo {
 const rawDishes = (dishesRaw as unknown as { dishes: RawDish[] }).dishes ?? []
 const rawCities = (citiesRaw as unknown as { cities: RawCity[] }).cities ?? []
 
-/** C 的数据是中文菜名，name_zh 与 name 相同 */
 function toDish(raw: RawDish): Dish {
   return {
     id: raw.id,
@@ -75,7 +69,6 @@ for (const raw of rawDishes) {
   dishesByCity.set(raw.city, list)
 }
 
-/** 城市列表，按赛区（area）分组用 */
 export function listCities(): CityInfo[] {
   return rawCities.map((c) => ({
     id: c.id,
@@ -88,14 +81,12 @@ export function listCities(): CityInfo[] {
   }))
 }
 
-/** 找到城市（支持 id 或中文名） */
 export function findCity(cityIdOrName: string): CityInfo | null {
   const key = cityIdOrName.trim()
   const hit = rawCities.find((c) => c.id === key || c.name === key)
   return hit ? listCities().find((c) => c.id === hit.id) ?? null : null
 }
 
-/** 该城市的菜品 */
 export function getCityDishes(cityIdOrName: string): Dish[] {
   const city = findCity(cityIdOrName)
   if (!city) return []
@@ -106,7 +97,6 @@ export function totalDishes(): number {
   return rawDishes.length
 }
 
-/** 按 id 取单道菜（菜品详情页用） */
 export function findDish(dishId: string): Dish | null {
   for (const list of dishesByCity.values()) {
     const hit = list.find((d) => d.id === dishId)
@@ -115,7 +105,6 @@ export function findDish(dishId: string): Dish | null {
   return null
 }
 
-/** 全量菜品，点菜组合等需要跨城市取数时用 */
 export function allDishes(): Dish[] {
-  return rawDishes.map(toDish)
+  return [...dishesByCity.values()].flat()
 }

@@ -1,13 +1,6 @@
-/**
- * 菜单图片 -> 菜品 JSON 列表。
- *
- * v2 变更（2026-11-09）：
- *   - 返回 { dishes: Dish[] }，不再只取第一道菜（分类式菜单会把标题错当菜名）
- *   - 统一空值：空字符串一律转 null，避免前端出现 "region": ""
- *
- * 容错策略：供应商优先 GLM，模型按候选列表逐个试，图片按 data URI / 裸 base64 两种传法逐个试。
- */
+
 import { ALLERGENS, type Allergen, type Dish } from '../../shared/types'
+import { buildImageVariants, buildVisionMessages, providerChain } from '../utils/ai'
 
 const SYSTEM_PROMPT =
   '你是菜单识别器。只输出一个 JSON 对象，不要解释，不要 markdown 代码块。'
@@ -51,7 +44,6 @@ const SCHEMA_HINT = `先判断菜单的结构，再输出。中文菜单常见�
 7. 图中若没有任何可点菜品，返回 {"groups": []}。
 8. 只输出 JSON，不要任何其他字符。`
 
-/** 从模型输出里抽出 JSON，容忍 ```json 包裹与首尾杂字 */
 function extractJson(raw: string): any | null {
   const cleaned = raw.replace(/```json/gi, '').replace(/```/g, '').trim()
   try {
@@ -70,7 +62,6 @@ function extractJson(raw: string): any | null {
   }
 }
 
-/** 空字符串 -> null，去除无意义值 */
 function str(v: unknown): string | null {
   if (typeof v !== 'string') return null
   const t = v.trim()
@@ -95,12 +86,12 @@ function normalizeOne(parsed: any, index: number, group?: { title?: string | nul
   return {
     id: `photo_${Date.now()}_${index}`,
     name,
-    // 原文本身含中文时，中文名缺省等于原名
+
     name_zh: str(parsed?.name_zh) ?? (/[\u4e00-\u9fa5]/.test(name) ? name : null),
     region: str(parsed?.region),
     city: str(parsed?.city),
     ingredients,
-    // 数量对不上时截到等长，避免前端错位
+
     ingredients_zh: ingredientsZh.slice(0, ingredients.length),
     method: str(parsed?.method),
     flavors: strList(parsed?.flavors, 5),
@@ -116,11 +107,6 @@ function normalizeOne(parsed: any, index: number, group?: { title?: string | nul
   }
 }
 
-/**
- * 展平模型输出。
- * 主格式：{ groups: [{ title, price, items: [{...}] }] }
- * 兼容：{ dishes: [...] } / 裸数组 / 单个对象
- */
 function normalizeDishes(parsed: any): Dish[] {
   const out: Dish[] = []
 

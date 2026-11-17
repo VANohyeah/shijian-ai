@@ -1,0 +1,109 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-11-09",
+  "owner": "C（数据/交付）",
+  "kind": "goals",
+  "note": "对应档案里的 goal 字段。目标是『软约束』：只影响提示等级（info/caution），不产生 forbid。若同一道菜同时命中慢病硬规则与目标软规则，按更严格者输出。",
+
+  "goals": [
+    {
+      "id": "fat_loss",
+      "name": "减脂",
+      "aliases": ["减脂", "减肥", "fat_loss"],
+      "rules": [
+        {
+          "id": "fatloss_caution_fried",
+          "match": { "tags_any": ["油炸", "高油"] },
+          "level": "caution",
+          "message": "{name} 油脂偏高（命中：{tags}），减脂期建议换清蒸/白灼做法，或两人分食。",
+          "evidence": ["kb_energy_01"]
+        },
+        {
+          "id": "fatloss_caution_sugar",
+          "match": { "tags_any": ["高糖", "甜品"] },
+          "level": "caution",
+          "message": "{name} 含糖量偏高（命中：{tags}），减脂期的隐形热量大头。",
+          "evidence": ["kb_sugar_01"]
+        },
+        {
+          "id": "fatloss_info_refined",
+          "match": { "tags_any": ["精制碳水"] },
+          "level": "info",
+          "message": "{name} 以精制碳水为主（命中：{tags}），饱腹感差、容易吃多。",
+          "evidence": ["kb_energy_01"]
+        },
+        {
+          "id": "fatloss_info_protein",
+          "match": { "tags_any": ["高蛋白"] },
+          "level": "info",
+          "message": "{name} 蛋白质给得足（命中：{tags}），减脂期优先选这类。",
+          "evidence": ["kb_energy_01"]
+        }
+      ]
+    },
+    {
+      "id": "muscle_gain",
+      "name": "增肌",
+      "aliases": ["增肌", "muscle_gain"],
+      "rules": [
+        {
+          "id": "gain_info_protein",
+          "match": { "tags_any": ["高蛋白"] },
+          "level": "info",
+          "message": "{name} 是高蛋白菜品（命中：{tags}），适合作为增肌餐的蛋白来源。",
+          "evidence": ["kb_energy_02"]
+        },
+        {
+          "id": "gain_caution_fried",
+          "match": { "tags_any": ["油炸"] },
+          "level": "caution",
+          "message": "{name} 为油炸做法（命中：{tags}），热量密度高，增肌期也要控制。",
+          "evidence": ["kb_energy_02"]
+        }
+      ]
+    },
+    {
+      "id": "sugar_control",
+      "name": "控糖",
+      "aliases": ["控糖", "sugar_control"],
+      "rules": [
+        {
+          "id": "sugarctl_caution_sweet",
+          "match": { "tags_any": ["高糖", "甜品"] },
+          "level": "caution",
+          "message": "{name} 甜味明显（命中：{tags}），控糖期建议避开或只尝一口。",
+          "evidence": ["kb_sugar_01"]
+        },
+        {
+          "id": "sugarctl_caution_refined",
+          "match": { "tags_any": ["精制碳水", "主食"] },
+          "level": "caution",
+          "message": "{name} 以精制碳水为主（命中：{tags}），建议减半并搭配蔬菜蛋白质。",
+          "evidence": ["kb_sugar_02"]
+        }
+      ]
+    },
+    {
+      "id": "purine_control",
+      "name": "控嘌呤",
+      "aliases": ["控嘌呤", "低嘌呤", "purine_control"],
+      "rules": [
+        {
+          "id": "purinectl_caution",
+          "match": { "tags_any": ["高嘌呤", "中嘌呤", "含海鲜", "含酒精"] },
+          "level": "caution",
+          "message": "{name} 嘌呤或酒精偏高（命中：{tags}），控嘌呤期建议换清淡蔬菜与蛋类。",
+          "evidence": ["kb_purine_02"]
+        }
+      ]
+    },
+    {
+      "id": "none",
+      "name": "无特殊",
+      "aliases": ["无特殊", "none"],
+      "rules": []
+    }
+  ],
+
+  "derived_metrics_note": "BMI、BMR 由前端计算展示，不进模型上下文；本文件不参与任何数值计算。"
+}

@@ -1,0 +1,1541 @@
+{
+  "summary": {
+    "generated_at": "2026-11-09T08:01:23.635Z",
+    "mode": "build",
+    "parts": 6,
+    "dishes": 250,
+    "cities": 30,
+    "language_view": 250,
+    "auto_fixed": 21,
+    "human_reviewed": 50,
+    "rules": 46,
+    "knowledge_entries": 52,
+    "errors": 0,
+    "warnings": 35,
+    "infos": 289
+  },
+  "fixes": [
+    {
+      "id": "dish_chongqing_02",
+      "name": "毛血旺",
+      "added_allergens": [],
+      "added_tags": [
+        "含牛肉"
+      ],
+      "part": "g1.json"
+    },
+    {
+      "id": "dish_chongqing_06",
+      "name": "酸辣粉",
+      "added_allergens": [
+        "大豆"
+      ],
+      "added_tags": [],
+      "part": "g1.json"
+    },
+    {
+      "id": "dish_guangzhou_03",
+      "name": "烧鹅",
+      "added_allergens": [
+        "含麸质谷物"
+      ],
+      "added_tags": [],
+      "part": "g2.json"
+    },
+    {
+      "id": "dish_foshan_05",
+      "name": "均安烧猪",
+      "added_allergens": [
+        "含麸质谷物"
+      ],
+      "added_tags": [],
+      "part": "g2.json"
+    },
+    {
+      "id": "dish_shanghai_01",
+      "name": "红烧肉",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_shanghai_03",
+      "name": "油爆虾",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_shanghai_06",
+      "name": "蟹粉豆腐",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_shanghai_07",
+      "name": "草头圈子",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_shanghai_08",
+      "name": "白斩鸡",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_shanghai_09",
+      "name": "本帮熏鱼",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_nanjing_03",
+      "name": "清炖狮子头",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_nanjing_04",
+      "name": "皮肚面",
+      "added_allergens": [],
+      "added_tags": [
+        "含内脏"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_nanjing_06",
+      "name": "炖生敲",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_suzhou_03",
+      "name": "樱桃肉",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_suzhou_07",
+      "name": "苏式酱鸭",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_yangzhou_07",
+      "name": "拆烩鲢鱼头",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_yangzhou_09",
+      "name": "三套鸭",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_hangzhou_01",
+      "name": "西湖醋鱼",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_hangzhou_02",
+      "name": "东坡肉",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_hangzhou_05",
+      "name": "叫化鸡",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g4.json"
+    },
+    {
+      "id": "dish_ningbo_03",
+      "name": "冰糖甲鱼",
+      "added_allergens": [
+        "酒精"
+      ],
+      "added_tags": [
+        "含酒精"
+      ],
+      "part": "g5.json"
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    {
+      "where": "g1.json / dish_chengdu_09",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g1.json / dish_chengdu_09",
+      "msg": "食材可推出标签「高嘌呤」但未标"
+    },
+    {
+      "where": "g1.json / dish_guiyang_02",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g1.json / dish_guiyang_06",
+      "msg": "食材可推出标签「腌制」但未标"
+    },
+    {
+      "where": "g1.json / dish_guiyang_06",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g1.json / dish_guiyang_08",
+      "msg": "食材可推出标签「腌制」但未标"
+    },
+    {
+      "where": "g1.json / dish_kunming_01",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g1.json / dish_kunming_05",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g1.json / dish_kunming_06",
+      "msg": "食材可推出标签「腌制」但未标"
+    },
+    {
+      "where": "g1.json / dish_kunming_07",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g2.json / dish_guangzhou_08",
+      "msg": "食材可推出标签「油炸」但未标"
+    },
+    {
+      "where": "g2.json / dish_guilin_03",
+      "msg": "食材可推出标签「腌制」但未标"
+    },
+    {
+      "where": "g2.json / dish_haikou_05",
+      "msg": "食材可推出标签「腌制」但未标"
+    },
+    {
+      "where": "g3.json / dish_wuhan_08",
+      "msg": "食材可推出标签「腌制」但未标"
+    },
+    {
+      "where": "g3.json / dish_changsha_06",
+      "msg": "食材可推出标签「腌制」但未标"
+    },
+    {
+      "where": "g3.json / dish_beijing_04",
+      "msg": "食材可推出标签「腌制」但未标"
+    },
+    {
+      "where": "g3.json / dish_beijing_08",
+      "msg": "食材可推出标签「腌制」但未标"
+    },
+    {
+      "where": "g4.json / dish_shanghai_04",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g4.json / dish_nanjing_04",
+      "msg": "食材可推出标签「高嘌呤」但未标"
+    },
+    {
+      "where": "g4.json / dish_suzhou_08",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_01",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_02",
+      "msg": "食材可推出标签「高嘌呤」但未标"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_03",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_04",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_07",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_09",
+      "msg": "食材可推出标签「加工肉」但未标"
+    },
+    {
+      "where": "g4.json / dish_hangzhou_08",
+      "msg": "食材可推出标签「油炸」但未标"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_06",
+      "msg": "食材可推出标签「高嘌呤」但未标"
+    },
+    {
+      "where": "g5.json / dish_qingdao_02",
+      "msg": "食材可推出标签「高嘌呤」但未标"
+    },
+    {
+      "where": "g5.json / dish_tianjin_02",
+      "msg": "食材可推出标签「油炸」但未标"
+    },
+    {
+      "where": "g5.json / dish_tianjin_02",
+      "msg": "食材可推出标签「腌制」但未标"
+    },
+    {
+      "where": "g5.json / dish_tianjin_03",
+      "msg": "食材可推出标签「腌制」但未标"
+    },
+    {
+      "where": "g6.json / dish_xian_07",
+      "msg": "辣度 2 但口味无辣味标签"
+    },
+    {
+      "where": "dish dish_fuzhou_01",
+      "msg": "价格 198 元离群（同城均值 54，σ=55.8）"
+    },
+    {
+      "where": "dish dish_xian_08",
+      "msg": "价格 88 元离群（同城均值 28，σ=23.3）"
+    }
+  ],
+  "infos": [
+    {
+      "where": "g1.json / dish_chengdu_01",
+      "msg": "映射表未收录食材：郫县豆瓣、花椒面、蒜苗"
+    },
+    {
+      "where": "g1.json / dish_chengdu_02",
+      "msg": "映射表未收录食材：蒜苗、郫县豆瓣、青椒"
+    },
+    {
+      "where": "g1.json / dish_chengdu_03",
+      "msg": "映射表未收录食材：牛腱肉、牛舌、花椒面、芹菜"
+    },
+    {
+      "where": "g1.json / dish_chengdu_03",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g1.json / dish_chengdu_04",
+      "msg": "映射表未收录食材：兔头、干辣椒、花椒、八角、姜"
+    },
+    {
+      "where": "g1.json / dish_chengdu_05",
+      "msg": "映射表未收录食材：蒜泥、白糖"
+    },
+    {
+      "where": "g1.json / dish_chengdu_06",
+      "msg": "映射表未收录食材：宜宾芽菜、花椒面、葱花"
+    },
+    {
+      "where": "g1.json / dish_chengdu_07",
+      "msg": "映射表未收录食材：糯米粉、白糖"
+    },
+    {
+      "where": "g1.json / dish_chengdu_07",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g1.json / dish_chengdu_08",
+      "msg": "映射表未收录食材：花椒、盐、樟树叶、花茶、姜"
+    },
+    {
+      "where": "g1.json / dish_chengdu_09",
+      "msg": "映射表未收录食材：白菜心、姜"
+    },
+    {
+      "where": "g1.json / dish_chongqing_01",
+      "msg": "映射表未收录食材：郫县豆瓣、干辣椒、花椒、黄喉、蒜泥"
+    },
+    {
+      "where": "g1.json / dish_chongqing_01",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g1.json / dish_chongqing_02",
+      "msg": "映射表未收录食材：黄喉、郫县豆瓣、干辣椒、花椒"
+    },
+    {
+      "where": "g1.json / dish_chongqing_03",
+      "msg": "映射表未收录食材：干辣椒、花椒、姜、蒜、盐"
+    },
+    {
+      "where": "g1.json / dish_chongqing_04",
+      "msg": "映射表未收录食材：干辣椒、花椒、郫县豆瓣、淀粉"
+    },
+    {
+      "where": "g1.json / dish_chongqing_05",
+      "msg": "映射表未收录食材：花椒面、葱、姜"
+    },
+    {
+      "where": "g1.json / dish_chongqing_06",
+      "msg": "映射表未收录食材：红薯粉、芽菜、陈醋、香菜"
+    },
+    {
+      "where": "g1.json / dish_chongqing_07",
+      "msg": "映射表未收录食材：碱水面、花椒面、芽菜、青菜"
+    },
+    {
+      "where": "g1.json / dish_chongqing_08",
+      "msg": "映射表未收录食材：酸萝卜、姜、花椒、葱"
+    },
+    {
+      "where": "g1.json / dish_chongqing_09",
+      "msg": "映射表未收录食材：白糖、植物油"
+    },
+    {
+      "where": "g1.json / dish_guiyang_01",
+      "msg": "映射表未收录食材：稻花鱼、红酸汤、西红柿、木姜子、小米辣、姜、蒜、香菜"
+    },
+    {
+      "where": "g1.json / dish_guiyang_02",
+      "msg": "映射表未收录食材：全蛋面、绿豆芽"
+    },
+    {
+      "where": "g1.json / dish_guiyang_03",
+      "msg": "映射表未收录食材：米皮、萝卜丝、折耳根、黄瓜丝、酸辣蘸水"
+    },
+    {
+      "where": "g1.json / dish_guiyang_04",
+      "msg": "映射表未收录食材：折耳根、辣椒面、木姜子、葱"
+    },
+    {
+      "where": "g1.json / dish_guiyang_05",
+      "msg": "映射表未收录食材：折耳根、干辣椒、蒜苗、姜"
+    },
+    {
+      "where": "g1.json / dish_guiyang_06",
+      "msg": "映射表未收录食材：芸豆、白菜、糍粑辣椒、蒜苗"
+    },
+    {
+      "where": "g1.json / dish_guiyang_07",
+      "msg": "映射表未收录食材：米糕、藕粉、玫瑰糖、冬瓜糖"
+    },
+    {
+      "where": "g1.json / dish_guiyang_08",
+      "msg": "映射表未收录食材：米粉、花椒、香菜"
+    },
+    {
+      "where": "g1.json / dish_kunming_01",
+      "msg": "映射表未收录食材：米线、韭菜、豌豆尖"
+    },
+    {
+      "where": "g1.json / dish_kunming_02",
+      "msg": "映射表未收录食材：姜、葱、盐、枸杞、三七根"
+    },
+    {
+      "where": "g1.json / dish_kunming_03",
+      "msg": "映射表未收录食材：见手青、青头菌、鸡枞菌、大蒜、青椒"
+    },
+    {
+      "where": "g1.json / dish_kunming_04",
+      "msg": "映射表未收录食材：蜂蜜、花椒、姜、葱、盐"
+    },
+    {
+      "where": "g1.json / dish_kunming_05",
+      "msg": "映射表未收录食材：乳饼、青豆、盐"
+    },
+    {
+      "where": "g1.json / dish_kunming_06",
+      "msg": "映射表未收录食材：辣椒面、葱"
+    },
+    {
+      "where": "g1.json / dish_kunming_06",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g1.json / dish_kunming_07",
+      "msg": "映射表未收录食材：白糖"
+    },
+    {
+      "where": "g1.json / dish_kunming_07",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g1.json / dish_kunming_08",
+      "msg": "映射表未收录食材：豌豆粉、陈醋、香菜、蒜水"
+    },
+    {
+      "where": "g1.json / dish_lasa_01",
+      "msg": "映射表未收录食材：青稞炒面、白糖、奶渣"
+    },
+    {
+      "where": "g1.json / dish_lasa_01",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g1.json / dish_lasa_02",
+      "msg": "映射表未收录食材：砖茶、盐"
+    },
+    {
+      "where": "g1.json / dish_lasa_03",
+      "msg": "映射表未收录食材：藏面、葱花、盐、辣椒粉"
+    },
+    {
+      "where": "g1.json / dish_lasa_04",
+      "msg": "映射表未收录食材：姜、花椒、盐、葱、蒜"
+    },
+    {
+      "where": "g1.json / dish_lasa_05",
+      "msg": "映射表未收录食材：牦牛血、糌粑、盐、葱"
+    },
+    {
+      "where": "g1.json / dish_lasa_06",
+      "msg": "映射表未收录食材：蕨麻、大米、白糖、葡萄干"
+    },
+    {
+      "where": "g1.json / dish_lasa_06",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g1.json / dish_lasa_07",
+      "msg": "映射表未收录食材：红茶、白糖"
+    },
+    {
+      "where": "g1.json / dish_lasa_08",
+      "msg": "映射表未收录食材：洋葱、姜、花椒、盐"
+    },
+    {
+      "where": "g2.json / dish_guangzhou_01",
+      "msg": "映射表未收录食材：姜、葱、盐、沙姜"
+    },
+    {
+      "where": "g2.json / dish_guangzhou_02",
+      "msg": "映射表未收录食材：霸王花、猪筒骨、无花果、陈皮、姜、盐"
+    },
+    {
+      "where": "g2.json / dish_guangzhou_03",
+      "msg": "映射表未收录食材：五香粉、盐、白醋、蒜、八角"
+    },
+    {
+      "where": "g2.json / dish_guangzhou_04",
+      "msg": "映射表未收录食材：河粉、豆芽、韭黄、葱"
+    },
+    {
+      "where": "g2.json / dish_guangzhou_05",
+      "msg": "映射表未收录食材：姜、葱、盐"
+    },
+    {
+      "where": "g2.json / dish_guangzhou_06",
+      "msg": "映射表未收录食材：澄面、生粉、笋粒、盐"
+    },
+    {
+      "where": "g2.json / dish_guangzhou_07",
+      "msg": "映射表未收录食材：梅头肉、叉烧酱、蜂蜜、蒜、五香粉"
+    },
+    {
+      "where": "g2.json / dish_guangzhou_08",
+      "msg": "映射表未收录食材：大米、浮皮、姜丝、葱花"
+    },
+    {
+      "where": "g2.json / dish_guangzhou_08",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g2.json / dish_guangzhou_09",
+      "msg": "映射表未收录食材：猪前蹄、白醋、冰糖、盐、姜、辣椒、蒜"
+    },
+    {
+      "where": "g2.json / dish_foshan_01",
+      "msg": "映射表未收录食材：瘦身鲩鱼、姜丝、蒜片、葱丝"
+    },
+    {
+      "where": "g2.json / dish_foshan_02",
+      "msg": "映射表未收录食材：叉烧粒、榄仁、生粉、盐"
+    },
+    {
+      "where": "g2.json / dish_foshan_03",
+      "msg": "映射表未收录食材：山坑鲩鱼、姜丝、葱丝、盐、丝瓜"
+    },
+    {
+      "where": "g2.json / dish_foshan_04",
+      "msg": "映射表未收录食材：陈村粉、葱花、白糖"
+    },
+    {
+      "where": "g2.json / dish_foshan_05",
+      "msg": "映射表未收录食材：中猪、五香粉、盐、白醋、蒜"
+    },
+    {
+      "where": "g2.json / dish_foshan_06",
+      "msg": "映射表未收录食材：鲩鱼蓉、木耳丝、丝瓜丝、陈皮丝、姜丝、生粉"
+    },
+    {
+      "where": "g2.json / dish_foshan_07",
+      "msg": "映射表未收录食材：白糖、红豆"
+    },
+    {
+      "where": "g2.json / dish_foshan_08",
+      "msg": "映射表未收录食材：鲮鱼、冬菇、陈皮、生粉、葱"
+    },
+    {
+      "where": "g2.json / dish_chaozhou_01",
+      "msg": "映射表未收录食材：南姜、八角、桂皮、香茅、冰糖"
+    },
+    {
+      "where": "g2.json / dish_chaozhou_02",
+      "msg": "映射表未收录食材：血蚶、蒜、辣椒、香菜、米醋"
+    },
+    {
+      "where": "g2.json / dish_chaozhou_03",
+      "msg": "映射表未收录食材：蒜、辣椒、香菜、米醋"
+    },
+    {
+      "where": "g2.json / dish_chaozhou_04",
+      "msg": "映射表未收录食材：番薯粉、香菜、葱花"
+    },
+    {
+      "where": "g2.json / dish_chaozhou_05",
+      "msg": "映射表未收录食材：黄牛后腿肉、粿条、番薯粉、芹菜粒、蒜酥、盐"
+    },
+    {
+      "where": "g2.json / dish_chaozhou_06",
+      "msg": "映射表未收录食材：番薯叶、草菇、上汤、生粉、盐"
+    },
+    {
+      "where": "g2.json / dish_chaozhou_06",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g2.json / dish_chaozhou_07",
+      "msg": "映射表未收录食材：芋头、白糖"
+    },
+    {
+      "where": "g2.json / dish_chaozhou_08",
+      "msg": "映射表未收录食材：巴浪鱼、盐、姜、葱、南姜、普宁豆酱"
+    },
+    {
+      "where": "g2.json / dish_chaozhou_09",
+      "msg": "映射表未收录食材：薄壳、金不换、蒜、辣椒"
+    },
+    {
+      "where": "g2.json / dish_guilin_01",
+      "msg": "映射表未收录食材：番茄、青红椒、蒜、姜、紫苏"
+    },
+    {
+      "where": "g2.json / dish_guilin_02",
+      "msg": "映射表未收录食材：鲜米粉、锅烧、酸豆角、卤水、葱花"
+    },
+    {
+      "where": "g2.json / dish_guilin_03",
+      "msg": "映射表未收录食材：荔浦芋头、冰糖、八角"
+    },
+    {
+      "where": "g2.json / dish_guilin_04",
+      "msg": "映射表未收录食材：田螺、薄荷、紫苏、姜、蒜、辣椒"
+    },
+    {
+      "where": "g2.json / dish_guilin_05",
+      "msg": "映射表未收录食材：炒米、姜、蒜、葱花"
+    },
+    {
+      "where": "g2.json / dish_guilin_06",
+      "msg": "映射表未收录食材：木瓜、白萝卜、黄瓜、米醋、辣椒粉、白糖、盐"
+    },
+    {
+      "where": "g2.json / dish_guilin_06",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g2.json / dish_guilin_07",
+      "msg": "映射表未收录食材：米醋、仔姜、辣椒、蒜"
+    },
+    {
+      "where": "g2.json / dish_guilin_08",
+      "msg": "映射表未收录食材：白果、姜、枸杞、陈皮、盐"
+    },
+    {
+      "where": "g2.json / dish_haikou_01",
+      "msg": "映射表未收录食材：姜、蒜、桔子汁"
+    },
+    {
+      "where": "g2.json / dish_haikou_02",
+      "msg": "映射表未收录食材：姜、蒜、酸桔、辣椒"
+    },
+    {
+      "where": "g2.json / dish_haikou_03",
+      "msg": "映射表未收录食材：姜、蒜、米醋"
+    },
+    {
+      "where": "g2.json / dish_haikou_04",
+      "msg": "映射表未收录食材：椰青水、椰肉、姜、沙姜、桔子汁、小米椒"
+    },
+    {
+      "where": "g2.json / dish_haikou_05",
+      "msg": "映射表未收录食材：细米粉、豆芽、卤汁"
+    },
+    {
+      "where": "g2.json / dish_haikou_06",
+      "msg": "映射表未收录食材：椰浆、红豆、绿豆、薏米、西瓜、芋头、冰糖"
+    },
+    {
+      "where": "g2.json / dish_haikou_06",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g2.json / dish_haikou_07",
+      "msg": "映射表未收录食材：糯米、椰肉、椰浆、白糖、盐"
+    },
+    {
+      "where": "g2.json / dish_haikou_08",
+      "msg": "映射表未收录食材：糟粕醋、海菜、米粉、辣椒、蒜"
+    },
+    {
+      "where": "g3.json / dish_wuhan_01",
+      "msg": "映射表未收录食材：碱水面、萝卜干、小葱"
+    },
+    {
+      "where": "g3.json / dish_wuhan_02",
+      "msg": "映射表未收录食材：绿豆米浆皮、糯米、笋丁"
+    },
+    {
+      "where": "g3.json / dish_wuhan_03",
+      "msg": "映射表未收录食材：莲藕、姜、小葱、白胡椒粉"
+    },
+    {
+      "where": "g3.json / dish_wuhan_04",
+      "msg": "映射表未收录食材：武昌鱼、姜、小葱、蒸鱼豉油、红椒丝、香菜"
+    },
+    {
+      "where": "g3.json / dish_wuhan_05",
+      "msg": "映射表未收录食材：莲藕、大米粉、姜、小葱"
+    },
+    {
+      "where": "g3.json / dish_wuhan_05",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g3.json / dish_wuhan_06",
+      "msg": "映射表未收录食材：鸭脖、干辣椒、花椒、八角、桂皮、冰糖"
+    },
+    {
+      "where": "g3.json / dish_wuhan_07",
+      "msg": "映射表未收录食材：藕带、泡椒、米醋、蒜、盐"
+    },
+    {
+      "where": "g3.json / dish_wuhan_08",
+      "msg": "映射表未收录食材：洪山菜薹、蒜、干辣椒、盐"
+    },
+    {
+      "where": "g3.json / dish_changsha_01",
+      "msg": "映射表未收录食材：胖头鱼头、剁辣椒、姜、蒜、小葱、蒸鱼豉油"
+    },
+    {
+      "where": "g3.json / dish_changsha_02",
+      "msg": "映射表未收录食材：小米椒、螺丝椒、蒜、姜、紫苏"
+    },
+    {
+      "where": "g3.json / dish_changsha_03",
+      "msg": "映射表未收录食材：干辣椒、花椒、姜、蒜、紫苏"
+    },
+    {
+      "where": "g3.json / dish_changsha_04",
+      "msg": "映射表未收录食材：蒜蓉、香菜、香醋"
+    },
+    {
+      "where": "g3.json / dish_changsha_05",
+      "msg": "映射表未收录食材：猪前腿肉、螺丝椒、蒜"
+    },
+    {
+      "where": "g3.json / dish_changsha_06",
+      "msg": "映射表未收录食材：腊鱼、干辣椒、姜"
+    },
+    {
+      "where": "g3.json / dish_changsha_07",
+      "msg": "映射表未收录食材：青辣椒、蒜、香醋"
+    },
+    {
+      "where": "g3.json / dish_changsha_08",
+      "msg": "映射表未收录食材：糯米粉、红糖、茶油"
+    },
+    {
+      "where": "g3.json / dish_changsha_09",
+      "msg": "映射表未收录食材：米粉、肉丝、酸豆角、剁椒、香葱"
+    },
+    {
+      "where": "g3.json / dish_zhengzhou_01",
+      "msg": "映射表未收录食材：烩面片、羊骨汤、粉条、香菜"
+    },
+    {
+      "where": "g3.json / dish_zhengzhou_02",
+      "msg": "映射表未收录食材：粉条、胡椒、黄花菜、木耳、香醋"
+    },
+    {
+      "where": "g3.json / dish_zhengzhou_03",
+      "msg": "映射表未收录食材：八角、桂皮、砂仁、蜂蜜"
+    },
+    {
+      "where": "g3.json / dish_zhengzhou_04",
+      "msg": "映射表未收录食材：黄河鲤鱼、白糖、香醋、淀粉、姜"
+    },
+    {
+      "where": "g3.json / dish_zhengzhou_05",
+      "msg": "映射表未收录食材：花椒、大葱"
+    },
+    {
+      "where": "g3.json / dish_zhengzhou_06",
+      "msg": "映射表未收录食材：猪皮冻、姜、小葱"
+    },
+    {
+      "where": "g3.json / dish_zhengzhou_06",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g3.json / dish_zhengzhou_07",
+      "msg": "映射表未收录食材：绿豆酸浆、芹菜"
+    },
+    {
+      "where": "g3.json / dish_zhengzhou_08",
+      "msg": "映射表未收录食材：花椒、八角、姜、盐、香醋"
+    },
+    {
+      "where": "g3.json / dish_taiyuan_01",
+      "msg": "映射表未收录食材：猪里脊、木耳、冬笋、蒜苗、香醋、淀粉"
+    },
+    {
+      "where": "g3.json / dish_taiyuan_02",
+      "msg": "映射表未收录食材：番茄、老陈醋、小葱、香菜"
+    },
+    {
+      "where": "g3.json / dish_taiyuan_03",
+      "msg": "映射表未收录食材：番茄、蒜、老陈醋"
+    },
+    {
+      "where": "g3.json / dish_taiyuan_04",
+      "msg": "映射表未收录食材：长山药、莲藕、黄芪、韭菜"
+    },
+    {
+      "where": "g3.json / dish_taiyuan_04",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g3.json / dish_taiyuan_05",
+      "msg": "映射表未收录食材：牛腱子、盐、花椒、八角、姜"
+    },
+    {
+      "where": "g3.json / dish_taiyuan_06",
+      "msg": "映射表未收录食材：羊肠、粉条、香菜、老陈醋"
+    },
+    {
+      "where": "g3.json / dish_taiyuan_07",
+      "msg": "映射表未收录食材：荞面、蒜、老陈醋、盐"
+    },
+    {
+      "where": "g3.json / dish_taiyuan_08",
+      "msg": "映射表未收录食材：大葱、姜、花椒水"
+    },
+    {
+      "where": "g3.json / dish_taiyuan_08",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g3.json / dish_beijing_01",
+      "msg": "映射表未收录食材：荷叶饼、大葱、黄瓜条"
+    },
+    {
+      "where": "g3.json / dish_beijing_02",
+      "msg": "映射表未收录食材：手擀面、干黄酱、黄瓜、豆芽、大葱"
+    },
+    {
+      "where": "g3.json / dish_beijing_03",
+      "msg": "映射表未收录食材：猪肠、猪肺、火烧、蒜、香菜"
+    },
+    {
+      "where": "g3.json / dish_beijing_04",
+      "msg": "映射表未收录食材：韭菜花、香菜"
+    },
+    {
+      "where": "g3.json / dish_beijing_05",
+      "msg": "映射表未收录食材：猪里脊、大葱、白糖、淀粉"
+    },
+    {
+      "where": "g3.json / dish_beijing_06",
+      "msg": "映射表未收录食材：白豌豆、白糖、桂花、金糕"
+    },
+    {
+      "where": "g3.json / dish_beijing_07",
+      "msg": "映射表未收录食材：羊头肉、花椒、盐、大葱、蒜"
+    },
+    {
+      "where": "g3.json / dish_beijing_08",
+      "msg": "映射表未收录食材：白菜、粉丝、韭菜花"
+    },
+    {
+      "where": "g3.json / dish_beijing_09",
+      "msg": "映射表未收录食材：绿豆、焦圈、腌芥菜丝"
+    },
+    {
+      "where": "g4.json / dish_shanghai_01",
+      "msg": "映射表未收录食材：冰糖、姜"
+    },
+    {
+      "where": "g4.json / dish_shanghai_02",
+      "msg": "映射表未收录食材：春笋、百叶结、姜"
+    },
+    {
+      "where": "g4.json / dish_shanghai_03",
+      "msg": "映射表未收录食材：白糖、葱、姜"
+    },
+    {
+      "where": "g4.json / dish_shanghai_04",
+      "msg": "映射表未收录食材：糯米、笋丁"
+    },
+    {
+      "where": "g4.json / dish_shanghai_05",
+      "msg": "映射表未收录食材：猪皮冻、葱花、酵母"
+    },
+    {
+      "where": "g4.json / dish_shanghai_05",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g4.json / dish_shanghai_06",
+      "msg": "映射表未收录食材：姜末、淀粉"
+    },
+    {
+      "where": "g4.json / dish_shanghai_07",
+      "msg": "映射表未收录食材：草头、冰糖、姜"
+    },
+    {
+      "where": "g4.json / dish_shanghai_08",
+      "msg": "映射表未收录食材：姜、葱"
+    },
+    {
+      "where": "g4.json / dish_shanghai_09",
+      "msg": "映射表未收录食材：冰糖、五香粉、姜"
+    },
+    {
+      "where": "g4.json / dish_nanjing_01",
+      "msg": "映射表未收录食材：粗盐、花椒、八角、姜、葱"
+    },
+    {
+      "where": "g4.json / dish_nanjing_02",
+      "msg": "映射表未收录食材：粉丝、鸭汤、香菜"
+    },
+    {
+      "where": "g4.json / dish_nanjing_03",
+      "msg": "映射表未收录食材：猪前腿肉、马蹄、青菜、姜、盐"
+    },
+    {
+      "where": "g4.json / dish_nanjing_03",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g4.json / dish_nanjing_04",
+      "msg": "映射表未收录食材：肉丝、青菜、木耳、盐"
+    },
+    {
+      "where": "g4.json / dish_nanjing_05",
+      "msg": "映射表未收录食材：白醋、花椒、姜、盐"
+    },
+    {
+      "where": "g4.json / dish_nanjing_06",
+      "msg": "映射表未收录食材：鳝鱼、蒜、姜"
+    },
+    {
+      "where": "g4.json / dish_nanjing_07",
+      "msg": "映射表未收录食材：鸭油、葱、盐"
+    },
+    {
+      "where": "g4.json / dish_nanjing_08",
+      "msg": "映射表未收录食材：山药、糯米、冰糖、枸杞"
+    },
+    {
+      "where": "g4.json / dish_nanjing_08",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g4.json / dish_suzhou_01",
+      "msg": "映射表未收录食材：番茄酱、白糖、白醋、干淀粉"
+    },
+    {
+      "where": "g4.json / dish_suzhou_02",
+      "msg": "映射表未收录食材：鳝丝、蒜末、白糖、胡椒粉、淀粉"
+    },
+    {
+      "where": "g4.json / dish_suzhou_03",
+      "msg": "映射表未收录食材：红曲米、冰糖、姜"
+    },
+    {
+      "where": "g4.json / dish_suzhou_04",
+      "msg": "映射表未收录食材：淀粉、盐"
+    },
+    {
+      "where": "g4.json / dish_suzhou_05",
+      "msg": "映射表未收录食材：焖肉、青蒜、盐"
+    },
+    {
+      "where": "g4.json / dish_suzhou_06",
+      "msg": "映射表未收录食材：糯米小圆子、白糖、干桂花"
+    },
+    {
+      "where": "g4.json / dish_suzhou_07",
+      "msg": "映射表未收录食材：冰糖、八角、桂皮"
+    },
+    {
+      "where": "g4.json / dish_suzhou_08",
+      "msg": "映射表未收录食材：鲃鱼、笋片、盐"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_01",
+      "msg": "映射表未收录食材：鸡丝、姜"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_02",
+      "msg": "映射表未收录食材：马蹄、青菜、姜"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_03",
+      "msg": "映射表未收录食材：米饭、青豆、胡萝卜、葱"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_04",
+      "msg": "映射表未收录食材：鸡脯肉、笋"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_05",
+      "msg": "映射表未收录食材：笋丁、酵母"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_06",
+      "msg": "映射表未收录食材：粗盐、花椒、八角、姜、葱"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_07",
+      "msg": "映射表未收录食材：鲢鱼头、笋片、姜"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_08",
+      "msg": "映射表未收录食材：白糖、酵母、青红丝"
+    },
+    {
+      "where": "g4.json / dish_yangzhou_09",
+      "msg": "映射表未收录食材：笋"
+    },
+    {
+      "where": "g4.json / dish_hangzhou_01",
+      "msg": "映射表未收录食材：镇江香醋、白糖、姜末、淀粉"
+    },
+    {
+      "where": "g4.json / dish_hangzhou_02",
+      "msg": "映射表未收录食材：冰糖、姜、葱"
+    },
+    {
+      "where": "g4.json / dish_hangzhou_03",
+      "msg": "映射表未收录食材：龙井茶、淀粉、盐"
+    },
+    {
+      "where": "g4.json / dish_hangzhou_04",
+      "msg": "映射表未收录食材：雪菜、笋片、瘦肉丝、盐"
+    },
+    {
+      "where": "g4.json / dish_hangzhou_05",
+      "msg": "映射表未收录食材：荷叶、姜、葱"
+    },
+    {
+      "where": "g4.json / dish_hangzhou_06",
+      "msg": "映射表未收录食材：香菜、淀粉、胡椒粉"
+    },
+    {
+      "where": "g4.json / dish_hangzhou_07",
+      "msg": "映射表未收录食材：马兰头、香干、盐、白糖"
+    },
+    {
+      "where": "g4.json / dish_hangzhou_08",
+      "msg": "映射表未收录食材：春饼皮、小葱、辣酱"
+    },
+    {
+      "where": "g5.json / dish_ningbo_01",
+      "msg": "映射表未收录食材：盐、姜、花椒、白糖"
+    },
+    {
+      "where": "g5.json / dish_ningbo_02",
+      "msg": "映射表未收录食材：黄鱼、雪里蕻、冬笋、姜、葱"
+    },
+    {
+      "where": "g5.json / dish_ningbo_03",
+      "msg": "映射表未收录食材：甲鱼、冰糖、姜"
+    },
+    {
+      "where": "g5.json / dish_ningbo_04",
+      "msg": "映射表未收录食材：黄鱼、苔菜、盐"
+    },
+    {
+      "where": "g5.json / dish_ningbo_05",
+      "msg": "映射表未收录食材：黄鱼鲞、冰糖、姜、葱"
+    },
+    {
+      "where": "g5.json / dish_ningbo_06",
+      "msg": "映射表未收录食材：年糕、姜、葱"
+    },
+    {
+      "where": "g5.json / dish_ningbo_07",
+      "msg": "映射表未收录食材：天菜、白糖、菜籽油、桂皮"
+    },
+    {
+      "where": "g5.json / dish_ningbo_08",
+      "msg": "映射表未收录食材：糯米粉、猪板油、白糖、糖桂花"
+    },
+    {
+      "where": "g5.json / dish_ningbo_08",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_01",
+      "msg": "映射表未收录食材：花菇"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_01",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_02",
+      "msg": "映射表未收录食材：猪里脊、荸荠、番茄酱、白糖、白醋、淀粉、蒜"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_02",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_03",
+      "msg": "映射表未收录食材：鳗鱼肉、地瓜粉、葱、虾油、芹菜"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_04",
+      "msg": "映射表未收录食材：米浆、芹菜"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_04",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_05",
+      "msg": "映射表未收录食材：猪肋排、蒜、番茄酱、白糖、白醋、淀粉"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_06",
+      "msg": "映射表未收录食材：肉燕皮、芹菜、虾油"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_07",
+      "msg": "映射表未收录食材：槟榔芋、白糖、红枣"
+    },
+    {
+      "where": "g5.json / dish_fuzhou_08",
+      "msg": "映射表未收录食材：红糟、姜、蒜、白糖"
+    },
+    {
+      "where": "g5.json / dish_xiamen_01",
+      "msg": "映射表未收录食材：碱水面、豆芽"
+    },
+    {
+      "where": "g5.json / dish_xiamen_02",
+      "msg": "映射表未收录食材：土笋、盐、蒜、香醋、芥末"
+    },
+    {
+      "where": "g5.json / dish_xiamen_03",
+      "msg": "映射表未收录食材：老姜、黑麻油、当归、枸杞"
+    },
+    {
+      "where": "g5.json / dish_xiamen_04",
+      "msg": "映射表未收录食材：海蛎、地瓜粉、青蒜、甜辣酱"
+    },
+    {
+      "where": "g5.json / dish_xiamen_05",
+      "msg": "映射表未收录食材：板栗、冰糖"
+    },
+    {
+      "where": "g5.json / dish_xiamen_06",
+      "msg": "映射表未收录食材：糯米"
+    },
+    {
+      "where": "g5.json / dish_xiamen_07",
+      "msg": "映射表未收录食材：小管、姜、蒜、青蒜"
+    },
+    {
+      "where": "g5.json / dish_xiamen_08",
+      "msg": "映射表未收录食材：白糖、食用碱"
+    },
+    {
+      "where": "g5.json / dish_qingdao_01",
+      "msg": "映射表未收录食材：干辣椒、葱、姜、蒜"
+    },
+    {
+      "where": "g5.json / dish_qingdao_02",
+      "msg": "映射表未收录食材：大葱、白糖"
+    },
+    {
+      "where": "g5.json / dish_qingdao_03",
+      "msg": "映射表未收录食材：鲅鱼、韭菜、花椒水"
+    },
+    {
+      "where": "g5.json / dish_qingdao_04",
+      "msg": "映射表未收录食材：猪肋排、米饭、八角、姜、葱"
+    },
+    {
+      "where": "g5.json / dish_qingdao_05",
+      "msg": "映射表未收录食材：石花菜、蒜、香醋、香菜"
+    },
+    {
+      "where": "g5.json / dish_qingdao_06",
+      "msg": "映射表未收录食材：粉丝、蒜、葱、蒸鱼豉油"
+    },
+    {
+      "where": "g5.json / dish_qingdao_07",
+      "msg": "映射表未收录食材：崂山菇、姜、葱、盐、枸杞"
+    },
+    {
+      "where": "g5.json / dish_qingdao_08",
+      "msg": "映射表未收录食材：韭菜、姜"
+    },
+    {
+      "where": "g5.json / dish_qingdao_08",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g5.json / dish_tianjin_01",
+      "msg": "映射表未收录食材：葱、姜"
+    },
+    {
+      "where": "g5.json / dish_tianjin_01",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g5.json / dish_tianjin_02",
+      "msg": "映射表未收录食材：绿豆面、葱花"
+    },
+    {
+      "where": "g5.json / dish_tianjin_02",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g5.json / dish_tianjin_03",
+      "msg": "映射表未收录食材：绿豆锅巴、卤汁、香菜"
+    },
+    {
+      "where": "g5.json / dish_tianjin_04",
+      "msg": "映射表未收录食材：鲤鱼、白糖、醋、葱、姜、蒜、淀粉"
+    },
+    {
+      "where": "g5.json / dish_tianjin_06",
+      "msg": "映射表未收录食材：猪腰、猪里脊、葱、蒜、醋"
+    },
+    {
+      "where": "g5.json / dish_tianjin_06",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g5.json / dish_tianjin_07",
+      "msg": "映射表未收录食材：海蜇皮、黄瓜、老醋、蒜、盐"
+    },
+    {
+      "where": "g5.json / dish_tianjin_08",
+      "msg": "映射表未收录食材：玉米面、葱、姜、蒜"
+    },
+    {
+      "where": "g6.json / dish_xian_01",
+      "msg": "映射表未收录食材：白吉馍、八角、桂皮、生姜、冰糖"
+    },
+    {
+      "where": "g6.json / dish_xian_02",
+      "msg": "映射表未收录食材：羊骨、饦饦馍、粉丝、木耳、香菜、糖蒜"
+    },
+    {
+      "where": "g6.json / dish_xian_03",
+      "msg": "映射表未收录食材：辣椒面、大蒜、青菜、菜籽油、香醋、盐"
+    },
+    {
+      "where": "g6.json / dish_xian_04",
+      "msg": "映射表未收录食材：馍块、粉丝、蒜苗、花椒"
+    },
+    {
+      "where": "g6.json / dish_xian_05",
+      "msg": "映射表未收录食材：胡萝卜、木耳、香醋"
+    },
+    {
+      "where": "g6.json / dish_xian_06",
+      "msg": "映射表未收录食材：面皮、黄瓜丝、绿豆芽、香醋、蒜水"
+    },
+    {
+      "where": "g6.json / dish_xian_07",
+      "msg": "映射表未收录食材：胡萝卜、莲花白、花椒、淀粉、辣椒"
+    },
+    {
+      "where": "g6.json / dish_xian_08",
+      "msg": "映射表未收录食材：花椒、八角、桂皮、生姜、大葱"
+    },
+    {
+      "where": "g6.json / dish_xian_09",
+      "msg": "映射表未收录食材：糯米、红枣、芸豆、白糖"
+    },
+    {
+      "where": "g6.json / dish_xian_09",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_lanzhou_01",
+      "msg": "映射表未收录食材：拉面、白萝卜、香菜、蒜苗"
+    },
+    {
+      "where": "g6.json / dish_lanzhou_02",
+      "msg": "映射表未收录食材：花椒、生姜、大蒜、盐、香菜"
+    },
+    {
+      "where": "g6.json / dish_lanzhou_03",
+      "msg": "映射表未收录食材：酿皮、黄瓜丝、香醋、蒜泥"
+    },
+    {
+      "where": "g6.json / dish_lanzhou_04",
+      "msg": "映射表未收录食材：麻豌豆、红枣、白糖、食用碱"
+    },
+    {
+      "where": "g6.json / dish_lanzhou_05",
+      "msg": "映射表未收录食材：莜麦、青稞、酒曲、白糖"
+    },
+    {
+      "where": "g6.json / dish_lanzhou_05",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_lanzhou_06",
+      "msg": "映射表未收录食材：葡萄干、白糖"
+    },
+    {
+      "where": "g6.json / dish_lanzhou_07",
+      "msg": "映射表未收录食材：粉条、干辣椒、花椒、生姜、大蒜"
+    },
+    {
+      "where": "g6.json / dish_lanzhou_08",
+      "msg": "映射表未收录食材：浆水、芹菜、韭菜、干辣椒、大蒜"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_01",
+      "msg": "映射表未收录食材：青椒、皮带面、干辣椒、花椒、生姜"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_02",
+      "msg": "映射表未收录食材：大米、胡萝卜、洋葱、孜然、羊油"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_02",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_03",
+      "msg": "映射表未收录食材：洋葱、孜然、羊油、黑胡椒"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_03",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_04",
+      "msg": "映射表未收录食材：洋葱、孜然、辣椒面、盐"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_05",
+      "msg": "映射表未收录食材：西红柿、青椒、洋葱、大蒜、香醋"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_05",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_06",
+      "msg": "映射表未收录食材：花椒、麻椒、洋葱、线辣椒、香醋、生姜"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_07",
+      "msg": "映射表未收录食材：洋葱、胡萝卜、盐、孜然、香菜"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_08",
+      "msg": "映射表未收录食材：白糖、酵母"
+    },
+    {
+      "where": "g6.json / dish_wulumuqi_08",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_haerbin_01",
+      "msg": "映射表未收录食材：猪里脊、白糖、白醋、大葱、生姜、胡萝卜"
+    },
+    {
+      "where": "g6.json / dish_haerbin_01",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_haerbin_02",
+      "msg": "映射表未收录食材：淀粉、大蒜、黑胡椒、肠衣"
+    },
+    {
+      "where": "g6.json / dish_haerbin_03",
+      "msg": "映射表未收录食材：粉条、大葱、生姜"
+    },
+    {
+      "where": "g6.json / dish_haerbin_04",
+      "msg": "映射表未收录食材：鲤鱼、粉条、大酱、大葱、生姜"
+    },
+    {
+      "where": "g6.json / dish_haerbin_05",
+      "msg": "映射表未收录食材：白糖、香草"
+    },
+    {
+      "where": "g6.json / dish_haerbin_05",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_haerbin_06",
+      "msg": "映射表未收录食材：茄子、青椒、大蒜、淀粉"
+    },
+    {
+      "where": "g6.json / dish_haerbin_06",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_haerbin_07",
+      "msg": "映射表未收录食材：榛蘑、粉条、大葱、生姜、八角"
+    },
+    {
+      "where": "g6.json / dish_haerbin_08",
+      "msg": "映射表未收录食材：卷心菜、西红柿、洋葱、芹菜、番茄酱"
+    },
+    {
+      "where": "g6.json / dish_haerbin_08",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_haerbin_09",
+      "msg": "映射表未收录食材：黑麦粉、酵母、盐"
+    },
+    {
+      "where": "g6.json / dish_haerbin_09",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_shenyang_01",
+      "msg": "映射表未收录食材：白糖、花椒、八角、生姜"
+    },
+    {
+      "where": "g6.json / dish_shenyang_02",
+      "msg": "映射表未收录食材：白菜、大葱、生姜"
+    },
+    {
+      "where": "g6.json / dish_shenyang_02",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_shenyang_03",
+      "msg": "映射表未收录食材：大葱、生姜、大蒜"
+    },
+    {
+      "where": "g6.json / dish_shenyang_04",
+      "msg": "映射表未收录食材：猪里脊、青椒、胡萝卜、香醋、大蒜"
+    },
+    {
+      "where": "g6.json / dish_shenyang_04",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_shenyang_05",
+      "msg": "映射表未收录食材：黄瓜丝、香醋、蒜泥"
+    },
+    {
+      "where": "g6.json / dish_shenyang_06",
+      "msg": "映射表未收录食材：大葱、生姜、花椒水、食用油"
+    },
+    {
+      "where": "g6.json / dish_shenyang_06",
+      "msg": "菜名与配料无字面交集，确认是否为复合菜名"
+    },
+    {
+      "where": "g6.json / dish_shenyang_07",
+      "msg": "映射表未收录食材：猪肘、冰糖、八角、桂皮、大葱、生姜"
+    },
+    {
+      "where": "g6.json / dish_shenyang_08",
+      "msg": "映射表未收录食材：荞麦面、黄瓜、梨、辣白菜、香醋"
+    }
+  ]
+}

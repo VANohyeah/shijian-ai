@@ -1,8 +1,6 @@
-/**
- * 收藏 / 取消收藏。
- * body: { deviceId, dish, action?: 'add' | 'remove' }
- */
+
 import type { Dish } from '../../../shared/types'
+import { addFavorite, removeFavorite } from '../../utils/store'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<{ deviceId?: string; dish?: Dish; action?: 'add' | 'remove' }>(event)

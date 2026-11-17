@@ -1,7 +1,9 @@
-/**
- * 菜品详情：基础信息 + 语言视角 + 复刻视角 + （可选）针对某档案的判定。
- * GET /api/dishes/:id?deviceId=xxx
- */
+import { findDish } from '../../utils/catalog'
+import { getLanguageView, getRecipeView } from '../../utils/content'
+import { assessMenu } from '../../utils/rules'
+import { enrichWithKnowledge } from '../../utils/retrieve'
+import { getProfile } from '../../utils/store'
+
 export default defineEventHandler(async (event) => {
   const dishId = String(event.context.params?.id ?? '').trim()
   const { deviceId } = getQuery(event) as { deviceId?: string }
@@ -33,7 +35,7 @@ export default defineEventHandler(async (event) => {
     language,
     recipe,
     assessment,
-    /** 哪些视角有内容，前端据此决定 tab 要不要灰掉 */
+
     available: { language: Boolean(language), recipe: Boolean(recipe) }
   }
 })

@@ -1,7 +1,5 @@
-/**
- * 流式对话代理：浏览器 -> 本服务 -> 模型 -> SSE 逐字回传。
- * Key 只存在于服务端环境变量，绝不下发前端。
- */
+import { providerChain, type ChatMessage } from '../utils/ai'
+
 export default defineEventHandler(async (event) => {
   const body = await readBody<{ messages?: ChatMessage[] }>(event)
   const messages = body?.messages

@@ -1,4 +1,5 @@
-/** 城市列表：前端按 area 分组展示 */
+import { listCities, totalDishes } from '../../utils/catalog'
+
 export default defineEventHandler((event) => {
   const cities = listCities()
   const areas = [...new Set(cities.map((c) => c.area))]

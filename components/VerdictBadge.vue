@@ -1,15 +1,63 @@
 <script setup lang="ts">
-import type { DishAssessment, RiskLevel } from '~/shared/types'
+import type { RiskLevel } from '~/shared/types'
+import { LEVEL_LABEL } from '~/shared/types'
 
 defineProps<{ level: RiskLevel }>()
 
-const TEXT: Record<RiskLevel, string> = {
-  safe: '✅ 可以吃',
-  caution: '⚠️ 注意',
-  forbidden: '⛔ 别点'
-}
+
 </script>
 
 <template>
-  <span :class="['badge', level]">{{ TEXT[level] }}</span>
+  <span :class="['vb', level]">
+    <span class="mark" aria-hidden="true"></span>
+    {{ LEVEL_LABEL[level] }}
+  </span>
 </template>
+
+<style scoped>
+
+.vb {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 10px;
+  border-radius: var(--r);
+  background: var(--forest);
+  color: var(--cream);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+
+.mark {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  background: var(--paper);
+  border-radius: 50%;
+}
+
+.safe {
+  background: var(--forest);
+}
+
+.caution {
+  background: var(--olive);
+}
+
+.caution .mark {
+  border-radius: 1px;
+}
+
+.forbidden {
+  background: var(--brick);
+}
+
+.forbidden .mark {
+  border-radius: 1px;
+  transform: rotate(45deg);
+}
+</style>

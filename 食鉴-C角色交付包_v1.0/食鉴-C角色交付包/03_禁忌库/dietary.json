@@ -1,0 +1,145 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-11-09",
+  "owner": "C（数据/交付）",
+  "kind": "dietary",
+  "note": "对应档案里的 dietary 字段（宗教戒律、素食、忌酒）。这些是『用户主动声明』的硬约束，命中一律 forbid，不做降级——违背戒律和过敏一样，没有『少吃一点』的余地。",
+
+  "options": [
+    {
+      "id": "vegan",
+      "name": "全素（纯素）",
+      "aliases": ["全素", "纯素", "vegan"],
+      "rules": [
+        {
+          "id": "vegan_forbid_meat",
+          "match": { "tags_any": ["含猪肉", "含牛肉", "含羊肉", "含禽肉", "含海鲜", "含内脏"] },
+          "level": "forbid",
+          "message": "{name} 含动物性食材（命中：{tags}），与你的全素选择冲突。",
+          "evidence": ["kb_diet_01"]
+        },
+        {
+          "id": "vegan_forbid_animal_product",
+          "match": { "tags_any": ["含蛋", "含乳"] },
+          "level": "forbid",
+          "message": "{name} 含蛋或乳制品（命中：{tags}），不属于全素范围。",
+          "evidence": ["kb_diet_01"]
+        },
+        {
+          "id": "vegan_forbid_hidden",
+          "match": { "ingredients_any": ["蚝油", "鱼露", "猪油", "鸡精", "高汤", "虾皮", "肉末"] },
+          "level": "forbid",
+          "message": "{name} 使用了动物性调味（命中：{ingredients}），素食者通常不接受。",
+          "evidence": ["kb_diet_01"]
+        }
+      ]
+    },
+    {
+      "id": "lacto_ovo",
+      "name": "蛋奶素",
+      "aliases": ["蛋奶素", "素食"],
+      "rules": [
+        {
+          "id": "lovo_forbid_meat",
+          "match": { "tags_any": ["含猪肉", "含牛肉", "含羊肉", "含禽肉", "含海鲜", "含内脏"] },
+          "level": "forbid",
+          "message": "{name} 含肉类或海鲜（命中：{tags}），与蛋奶素冲突。",
+          "evidence": ["kb_diet_01"]
+        },
+        {
+          "id": "lovo_caution_animal_fat",
+          "match": { "ingredients_any": ["猪油", "蚝油", "鱼露", "高汤", "鸡精"] },
+          "level": "caution",
+          "message": "{name} 可能使用动物性调味（命中：{ingredients}），点单前请确认。",
+          "evidence": ["kb_diet_01"]
+        }
+      ]
+    },
+    {
+      "id": "halal",
+      "name": "清真",
+      "aliases": ["清真", "halal", "穆斯林"],
+      "rules": [
+        {
+          "id": "halal_forbid_pork",
+          "match": { "tags_all": ["含猪肉"] },
+          "level": "forbid",
+          "message": "{name} 含猪肉（命中：{ingredients}），不符合清真要求。",
+          "evidence": ["kb_diet_02"]
+        },
+        {
+          "id": "halal_forbid_alcohol",
+          "match": { "tags_all": ["含酒精"] },
+          "level": "forbid",
+          "message": "{name} 含酒精（命中：{ingredients}），不符合清真要求。",
+          "evidence": ["kb_diet_02"]
+        },
+        {
+          "id": "halal_caution_unknown_meat",
+          "match": { "tags_any": ["含牛肉", "含羊肉", "含禽肉"] },
+          "level": "caution",
+          "message": "{name} 含牛羊肉或禽肉（命中：{tags}），需确认是否为清真屠宰。",
+          "evidence": ["kb_diet_02"]
+        }
+      ]
+    },
+    {
+      "id": "no_alcohol",
+      "name": "忌酒",
+      "aliases": ["忌酒", "戒酒", "不饮酒"],
+      "rules": [
+        {
+          "id": "noalcohol_forbid",
+          "match": { "tags_all": ["含酒精"] },
+          "level": "forbid",
+          "message": "{name} 含酒精（命中：{ingredients}），与你的忌酒选择冲突。",
+          "evidence": ["kb_diet_03"]
+        }
+      ]
+    },
+    {
+      "id": "no_pork",
+      "name": "忌猪肉",
+      "aliases": ["忌猪肉", "不吃猪肉"],
+      "rules": [
+        {
+          "id": "nopork_forbid",
+          "match": { "tags_all": ["含猪肉"] },
+          "level": "forbid",
+          "message": "{name} 含猪肉或猪油（命中：{ingredients}）。",
+          "evidence": ["kb_diet_03"]
+        }
+      ]
+    },
+    {
+      "id": "no_beef",
+      "name": "忌牛肉",
+      "aliases": ["忌牛肉", "不吃牛肉"],
+      "rules": [
+        {
+          "id": "nobeef_forbid",
+          "match": { "tags_all": ["含牛肉"] },
+          "level": "forbid",
+          "message": "{name} 含牛肉（命中：{ingredients}）。",
+          "evidence": ["kb_diet_03"]
+        }
+      ]
+    },
+    {
+      "id": "no_seafood",
+      "name": "忌海鲜",
+      "aliases": ["不吃海鲜", "忌海鲜"],
+      "rules": [
+        {
+          "id": "noseafood_forbid",
+          "match": { "tags_all": ["含海鲜"] },
+          "level": "forbid",
+          "message": "{name} 含海鲜或海鲜调味（命中：{ingredients}）。",
+          "evidence": ["kb_diet_03"]
+        }
+      ]
+    }
+  ],
+
+  "disclaimer": "饮食选择应被尊重。本库只做『是否冲突』的事实判断，不做价值评判。"
+}

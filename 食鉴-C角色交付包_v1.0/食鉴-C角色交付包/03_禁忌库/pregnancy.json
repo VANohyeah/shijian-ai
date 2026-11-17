@@ -1,0 +1,76 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-11-09",
+  "owner": "C（数据/交付）",
+  "kind": "pregnancy",
+  "priority": 2,
+  "priority_note": "方案文档定的优先级：过敏 > 孕期 > 慢病 > 目标。孕期规则优先级高于慢病，因为胎儿风险不可逆。",
+
+  "rules": [
+    {
+      "id": "preg_forbid_raw",
+      "match": { "tags_any": ["生食", "半生食"] },
+      "level": "forbid",
+      "message": "{name} 为生食或半生食（命中：{tags}），孕期存在李斯特菌、弓形虫与寄生虫风险，建议不要点。",
+      "evidence": ["kb_preg_01"]
+    },
+    {
+      "id": "preg_forbid_raw_ingredient",
+      "match": { "ingredients_any": ["生腌", "刺身", "生鱼片", "溏心", "醉虾", "醉蟹", "生蚝", "生鸡蛋", "生蛋液"] },
+      "level": "forbid",
+      "message": "{name} 含生食原料（命中：{ingredients}），孕期感染风险高，建议换成全熟做法。",
+      "evidence": ["kb_preg_01"]
+    },
+    {
+      "id": "preg_forbid_alcohol",
+      "match": { "tags_all": ["含酒精"] },
+      "level": "forbid",
+      "message": "{name} 含酒精（命中：{ingredients}），孕期没有安全饮酒量，建议不要点。",
+      "evidence": ["kb_preg_02"]
+    },
+    {
+      "id": "preg_forbid_mercury",
+      "match": { "tags_all": ["高汞鱼"] },
+      "level": "forbid",
+      "message": "{name} 使用高汞鱼类（命中：{ingredients}），汞会影响胎儿神经发育，建议换低汞鱼。",
+      "evidence": ["kb_preg_03"]
+    },
+    {
+      "id": "preg_caution_caffeine",
+      "match": { "tags_all": ["含咖啡因"] },
+      "level": "caution",
+      "message": "{name} 含咖啡因（命中：{ingredients}），孕期每日咖啡因建议不超过 200mg，注意累计。",
+      "evidence": ["kb_preg_04"]
+    },
+    {
+      "id": "preg_caution_organ",
+      "match": { "tags_all": ["含内脏"] },
+      "level": "caution",
+      "message": "{name} 含动物内脏（命中：{ingredients}），肝脏维生素 A 含量极高，孕期每周不超过 1 次、每次 50g 左右。",
+      "evidence": ["kb_preg_05"]
+    },
+    {
+      "id": "preg_caution_unpasteurized",
+      "match": { "ingredients_any": ["生奶", "未杀菌", "现挤"] },
+      "level": "forbid",
+      "message": "{name} 使用未杀菌乳制品（命中：{ingredients}），孕期应避免。",
+      "evidence": ["kb_preg_01"]
+    },
+    {
+      "id": "preg_caution_cold_deli",
+      "match": { "tags_any": ["凉菜"], "ingredients_any": ["卤", "酱肉", "熟食", "冷切", "白切", "糟", "醉"] },
+      "level": "caution",
+      "message": "{name} 是冷食熟制品（命中：{tags}／{ingredients}），久置易滋生李斯特菌，孕期建议现做现吃或加热后食用。",
+      "evidence": ["kb_preg_01", "kb_hygiene_01"]
+    }
+  ],
+
+  "stage_notes": {
+    "first_trimester": "孕早期重点防李斯特菌与弓形虫：生食、半生食、未杀菌乳制品一律不碰；叶酸补充优先。",
+    "second_third_trimester": "中晚期增加对钠与糖的关注（妊娠高血压、妊娠糖尿病），高盐高糖菜品按慢病口径提示。",
+    "breastfeeding": "哺乳期同样避免酒精与高汞鱼；咖啡因控制在每日 200mg 以内。"
+  },
+
+  "goal_advice": "外食优先选全熟热菜；生冷海鲜、溏心蛋、现切熟食柜都避开；不确定时要求『全熟、不要酒』。",
+  "disclaimer": "孕期饮食限制需结合产检结果，本提示不替代产科医生意见。"
+}

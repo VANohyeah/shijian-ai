@@ -1,24 +1,10 @@
-/**
- * Agent 接口：模型 + 工具 + 循环。
- *
- * 与 /api/evaluate 的区别：
- *   evaluate 是「写死流程」——代码决定先读档案、再判定；
- *   agent 是「模型决定下一步」——它自己决定调哪个工具、调几次、什么时候收口。
- *   评分表里「Agent / 工作流 8%」看的就是后者。
- *
- * 关键实现点（容易写错）：
- *   1. 执行工具前，必须把 assistant 那条消息（含 tool_calls）原样塞回 messages
- *   2. tool 消息必须带 tool_call_id，顺序与 tool_calls 一一对应
- *   3. MAX_ROUNDS 是刹车，防止模型来回调同一个工具
- *   4. 工具报错不抛异常，把 { ok: false } 喂回去，让模型自己换招
- */
+
 import type { Dish, UserProfile } from '../../shared/types'
-import { DEFAULT_PROFILE } from '../../shared/types'
 import { providerChain } from '../utils/ai'
 import { allDishes, findCity, findDish, getCityDishes } from '../utils/catalog'
 import { assessMenu } from '../utils/rules'
 import { enrichWithKnowledge, retrieve } from '../utils/retrieve'
-import { getProfile } from '../utils/store'
+import { resolveProfile } from '../utils/profile'
 
 const MAX_ROUNDS = 5
 
@@ -120,7 +106,7 @@ async function runTool(
         } else if (ctx.dishes?.length) {
           list = ctx.dishes
         } else {
-          // 没给城市、页面也没带菜：查全库，再按关键词过滤
+
           list = allDishes()
         }
         if (args.keyword) {
@@ -149,7 +135,7 @@ async function runTool(
 
       case 'assess_dishes': {
         const ids: string[] = Array.isArray(args.dishIds) ? args.dishIds : []
-        // 页面带来的菜优先（id 可能不在菜库里）
+
         const local = ctx.dishes ?? []
         const dishes = ids
           .map((id) => local.find((d) => d.id === id) ?? findDish(String(id)))
@@ -202,7 +188,7 @@ async function runTool(
   }
 }
 
-/** 用规则引擎的结论给模型答案兜底：模型负责表达，规则负责结论 */
+
 function appendix(assessed: any): string {
   if (!assessed?.results?.length) return ''
   const pick = (level: string) =>
@@ -235,11 +221,14 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: '缺少 question' })
   }
 
-  const profile: UserProfile = (await getProfile(deviceId)) ?? DEFAULT_PROFILE
+  const profile: UserProfile = await resolveProfile({ deviceId })
   const provider = providerChain()[0]
   if (!provider) {
     throw createError({ statusCode: 503, statusMessage: '没有配置可用的模型供应商' })
   }
+
+
+  const AGENT_MODEL = process.env.GLM_AGENT_MODEL?.trim() || 'glm-5.3-flash'
 
   const trace: TraceRow[] = []
   const messages: any[] = [
@@ -257,10 +246,10 @@ export default defineEventHandler(async (event) => {
   }
 
   let rounds = 0
-  /** 模型想跳过判定时，强行再要一轮工具调用 */
+
   let forceTool = false
   let nudged = false
-  /** 最后一次 assess_dishes 的结果：答案末尾用规则引擎的结论兜底 */
+
   let lastAssess: any = null
 
   while (rounds < MAX_ROUNDS) {
@@ -273,10 +262,14 @@ export default defineEventHandler(async (event) => {
         Authorization: `Bearer ${provider.apiKey}`
       },
       body: JSON.stringify({
-        model: provider.textModels[0],
+        model: AGENT_MODEL,
         messages,
         tools: TOOLS,
-        tool_choice: forceTool ? 'required' : 'auto',
+
+
+        tool_choice: forceTool
+          ? { type: 'function', function: { name: 'assess_dishes' } }
+          : 'auto',
         temperature: 0.3
       })
     })
@@ -284,7 +277,7 @@ export default defineEventHandler(async (event) => {
     if (!res.ok) {
       throw createError({
         statusCode: 502,
-        statusMessage: `${provider.label}/${provider.textModels[0]}: ${(await res.text()).slice(0, 200)}`
+        statusMessage: `${provider.label}/${AGENT_MODEL}: ${(await res.text()).slice(0, 200)}`
       })
     }
 
@@ -294,9 +287,9 @@ export default defineEventHandler(async (event) => {
       throw createError({ statusCode: 502, statusMessage: '模型没有返回 message' })
     }
 
-    // 没有工具调用 = 它想收口了
+
     if (!msg.tool_calls?.length) {
-      // 护栏：涉及菜品的回答必须先过规则引擎，不能凭模型常识下结论
+
       const hasAssess = trace.some((t) => t.tool === 'assess_dishes')
       const mentionsDish = /菜|吃|点|推荐|豆腐|鱼|肉|面|饭|锅/.test(question)
 
@@ -323,9 +316,12 @@ export default defineEventHandler(async (event) => {
       }
     }
 
-    // 必须原样塞回 assistant（含 tool_calls），否则下一轮格式报错
+
     messages.push(msg)
-    forceTool = false
+
+    if (msg.tool_calls.some((c: any) => c.function?.name === 'assess_dishes')) {
+      forceTool = false
+    }
 
     for (const call of msg.tool_calls) {
       const name = call.function?.name ?? ''
@@ -339,7 +335,14 @@ export default defineEventHandler(async (event) => {
       const t0 = Date.now()
       const { ok, data: result } = await runTool(name, args, { profile, dishes: body?.dishes })
       const ms = Date.now() - t0
-      if (name === 'assess_dishes' && ok) lastAssess = result
+
+
+      if (name === 'assess_dishes' && ok) {
+        const rows = (result as any)?.results ?? []
+        lastAssess = lastAssess
+          ? { results: [...(lastAssess.results ?? []), ...rows] }
+          : { results: rows }
+      }
 
       trace.push({ round: rounds, tool: name, args, ok, ms, preview: preview(result) })
 
@@ -351,7 +354,7 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  // 轮数用完还没收口：别让前端白等
+
   setResponseHeader(event, 'Content-Type', 'application/json; charset=utf-8')
   return {
     answer: '这个问题我查了几轮还没查清，建议直接问店员确认食材。',

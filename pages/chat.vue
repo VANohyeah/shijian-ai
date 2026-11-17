@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { describeError } from '~/composables/errors'
+import { useProfile } from '~/composables/useProfile'
+import { GOAL_LABEL } from '~/shared/types'
 import type { Dish } from '~/shared/types'
 
 interface Message {
@@ -15,18 +18,15 @@ const error = ref('')
 
 const SUGGESTIONS = [
   '我海鲜过敏、痛风，水煮鱼还能吃吗',
-  '减脂期在川菜馆怎么点菜',
-  '帮我解释一下什么是高嘌呤食物'
+  '减脂期，川菜馆该怎么点',
+  '高嘌呤到底是个啥'
 ]
 
 onMounted(async () => {
   await loadProfile()
   messages.value.push({
     role: 'assistant',
-    content:
-      '我是食鉴。可以问我「这道菜我能不能吃」「怎么点更稳」「为什么不能吃」。\n' +
-      '我会结合你的档案回答。档案里现在是：' +
-      describeProfile()
+    content: '我按这份档案答：' + describeProfile()
   })
 })
 
@@ -34,18 +34,10 @@ function describeProfile() {
   const parts: string[] = []
   if (profile.value.allergens.length) parts.push('过敏原 ' + profile.value.allergens.join('、'))
   if (profile.value.conditions.length) parts.push('身体状况 ' + profile.value.conditions.join('、'))
-  if (profile.value.goal !== 'none') {
-    const map: Record<string, string> = {
-      fat_loss: '减脂',
-      muscle_gain: '增肌',
-      sugar_control: '控糖'
-    }
-    parts.push('目标 ' + map[profile.value.goal])
-  }
-  return parts.length ? parts.join('；') : '还没填（去「我的档案」补一下更准）'
+  if (profile.value.goal !== 'none') parts.push('目标 ' + GOAL_LABEL[profile.value.goal])
+  return parts.length ? parts.join('；') : '还空着（去「你的情况」补两句，答案能准一截）'
 }
 
-/** 把档案作为系统提示带进对话，避免模型凭空猜测 */
 function systemPrompt() {
   return [
     '你是食鉴，一个中餐饮食安全助手。',
@@ -84,7 +76,7 @@ async function send(text?: string) {
     })
 
     if (!res.ok || !res.body) {
-      error.value = 'HTTP ' + res.status + '：' + (await res.text())
+      error.value = describeError(res, '把这句话问出去')
       messages.value.pop()
       return
     }
@@ -108,12 +100,12 @@ async function send(text?: string) {
           const delta = JSON.parse(payload)?.choices?.[0]?.delta?.content
           if (delta) target.content += delta
         } catch {
-          /* 半包，忽略 */
+
         }
       }
     }
   } catch (err) {
-    error.value = String(err)
+    error.value = describeError(err, '把这句话问出去')
   } finally {
     streaming.value = false
   }
@@ -121,11 +113,10 @@ async function send(text?: string) {
 </script>
 
 <template>
-  <main class="wrap">
-    <h1>问食鉴</h1>
-    <p class="muted">结合你的档案回答「能不能吃、怎么点」。不构成医疗建议。</p>
+  <main class="wrap wrap--read chat-page">
+    <PageHead back-to="/" back-label="回首页" kicker="不懂就问" title="问食鉴" />
 
-    <div class="chat">
+    <div class="chat" :class="{ 'is-empty': messages.length <= 1 }">
       <div v-for="(m, i) in messages" :key="i" :class="['msg', m.role]">
         <p v-if="m.content">{{ m.content }}</p>
         <span v-else class="typing">…</span>
@@ -134,11 +125,12 @@ async function send(text?: string) {
 
     <p v-if="error" class="err">{{ error }}</p>
 
+
     <div class="suggest" v-if="messages.length <= 1">
       <button v-for="s in SUGGESTIONS" :key="s" class="chip" @click="send(s)">{{ s }}</button>
     </div>
 
-    <div class="row bar">
+    <div class="bar">
       <input
         v-model="input"
         class="input"
@@ -155,55 +147,114 @@ async function send(text?: string) {
 </template>
 
 <style scoped>
+
+.chat-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-page :deep(.page-head) {
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.chat-page :deep(.page-head__back) {
+  margin-bottom: 12px;
+}
+
+.chat-page :deep(.page-head__title) {
+  font-size: clamp(24px, 3vw, 32px);
+}
+
 .chat {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 14px 0;
+  flex: 1;
+  margin: 0 0 16px;
 }
+
+.chat.is-empty {
+  justify-content: center;
+}
+
 .msg {
-  max-width: 88%;
-  padding: 10px 13px;
-  border-radius: 12px;
-  font-size: 14px;
+  max-width: 34em;
+  padding: 11px 15px;
+  border-radius: var(--radius);
+  font-size: 15px;
   line-height: 1.7;
   white-space: pre-wrap;
 }
+
 .msg p {
   margin: 0;
 }
+
 .msg.user {
   align-self: flex-end;
-  background: #111827;
-  color: #fff;
+  background: var(--sepia);
+  color: var(--cream);
 }
+
 .msg.assistant {
   align-self: flex-start;
-  background: #fff;
-  border: 1px solid #ebedf0;
+  background: var(--lifted);
+  border: 1px solid var(--line);
 }
+
 .typing {
-  color: #9ca3af;
+  color: var(--muted);
 }
+
 .suggest {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 12px;
 }
+
 .chip {
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid #d1d5db;
-  background: #fff;
+  padding: 8px 14px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--lifted);
   font-size: 13px;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  color: #374151;
+  color: var(--ink);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
+
+.chip:hover {
+  border-color: var(--sepia);
+  color: var(--sepia);
+}
+
 .bar {
-  position: sticky;
-  bottom: 12px;
-  background: #fbfbfc;
-  padding-top: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  margin-top: auto;
+  background: var(--cream);
+}
+
+.bar .btn {
+  flex: none;
+  padding-left: 26px;
+  padding-right: 26px;
+}
+
+.bar .btn:disabled {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--muted);
+  opacity: 1;
+}
+
+.bar .btn:disabled:hover {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--muted);
 }
 </style>
