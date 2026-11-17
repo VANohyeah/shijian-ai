@@ -1,17 +1,18 @@
 @echo off
 chcp 65001 >nul
+setlocal
 cd /d "%~dp0"
 title 食鉴 AI - 本地开发服务
 set NUXT_TELEMETRY_DISABLED=1
 
 echo.
 echo  ============================================
-echo    食鉴 AI  本地开发服务
+echo    食鉴 AI   本地开发服务
 echo  ============================================
 echo.
-echo  浏览器打开： http://localhost:3000
-echo  首次启动要编译，等 30 秒左右是正常的。
-echo  关掉这个窗口 = 停止服务。
+echo   启动后浏览器打开： http://127.0.0.1:3000
+echo   首次启动要编译，等 30 秒左右是正常的。
+echo   关掉这个窗口 = 停止服务。
 echo  ============================================
 echo.
 
@@ -46,7 +47,8 @@ if not exist ".env" (
   )
 )
 
-call npm run dev
+REM 关键：显式绑定 IPv4。默认只监听 ::1，浏览器走 127.0.0.1 会连不上
+call npm run dev -- --host 127.0.0.1 --port 3000
 
 echo.
 echo  服务已停止。按任意键关闭窗口。
